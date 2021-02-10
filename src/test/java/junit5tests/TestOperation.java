@@ -1,14 +1,16 @@
-package calculator;
+package junit5tests;
 
 //Import Junit5 libraries for unit testing:
 import static org.junit.jupiter.api.Assertions.*;
+
+import calculator.*;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TestOperation implements TestInterface {
+public class TestOperation {
 
 	private Operation o;
 	private Operation o2;
@@ -28,11 +30,6 @@ public class TestOperation implements TestInterface {
 	@Test
 	public void testEquals() {
 		assertEquals(o,o2);
-	}
-
-	@Test
-	public void testCompute() {
-		assertEquals(Integer.valueOf(1), o.compute());
 	}
 
 	@Test
