@@ -1,6 +1,6 @@
 package calculator;
 
-import visitor.Evaluator;
+import visitor.*;
 
 public class Calculator {
 
@@ -34,6 +34,29 @@ public class Calculator {
         e.accept(v);
         // and return the result of the evaluation at the end of the process
         return v.getResult();
+    }
+    public String toStrPrefix(Expression e){
+        PrefixPrinter v = new PrefixPrinter();
+        // and ask the expression to accept this visitor to start the evaluation process
+        e.accept(v);
+        // and return the result of the evaluation at the end of the process
+        return v.getDisplayed();
+    }
+
+    public String toStrInfix(Expression e){
+        InfixPrinter v = new InfixPrinter();
+        // and ask the expression to accept this visitor to start the evaluation process
+        e.accept(v);
+        // and return the result of the evaluation at the end of the process
+        return v.getDisplayed();
+    }
+
+    public String toStrPostfix(Expression e){
+        PostfixPrinter v = new PostfixPrinter();
+        // and ask the expression to accept this visitor to start the evaluation process
+        e.accept(v);
+        // and return the result of the evaluation at the end of the process
+        return v.getDisplayed();
     }
 
     /*

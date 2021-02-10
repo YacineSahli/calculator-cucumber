@@ -17,6 +17,12 @@ final public class Divides extends Operation
 	neutral = 1;
     }
   
-  public int op(int l, int r)
-    { return (l/r); }
+  public int op(int l, int r) throws ArithmeticException {
+  		if (r==0){
+			throw new ArithmeticException("Division per zero");
+		}
+  		else {
+			return (l/r);
+		}
+    }
 }

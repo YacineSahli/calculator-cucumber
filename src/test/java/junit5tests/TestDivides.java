@@ -3,7 +3,6 @@ package junit5tests;
 //Import Junit5 libraries for unit testing:
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
-
 import calculator.*;
 
 import java.util.ArrayList;
@@ -16,15 +15,17 @@ public class TestDivides {
 	private final int value2 = 6;
 	private Divides op;
 	private List<Expression> params;
+	private Calculator c = new Calculator();
 
 	@BeforeEach
 	public void setUp() {
-		  params = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
-		  try {
-		  	op = new Divides(params);
-			op.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
-		  }
-		  catch(IllegalConstruction e) { fail(); }
+
+		try {
+			params = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
+			op = new Divides(params);
+		} catch(IllegalConstruction e) { fail(); }
+
+
 	}
 
 	@Test
@@ -49,7 +50,7 @@ public class TestDivides {
 		// Two similar expressions, constructed separately (and using different constructors) should be equal
 		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
 		try {
-			Divides d = new Divides(p, Notation.INFIX);
+			Divides d = new Divides(p);
 			assertEquals(op, d);
 		}
 		catch(IllegalConstruction e) { fail(); }
@@ -96,25 +97,22 @@ public class TestDivides {
 	@Test
 	public void testPrefix() {
 		String prefix = "/ (" + value1 + ", " + value2 + ")";
-		assertEquals(prefix, op.toString(Notation.PREFIX));
-		op.notation = Notation.PREFIX;
-		assertEquals(prefix, op.toString());
+		assertEquals(prefix, c.toStrPrefix(op));
 	}
 
 	@Test
 	public void testInfix() {
 		String infix = "( " + value1 + " / " + value2 + " )";
-		assertEquals(infix, op.toString(Notation.INFIX));
-		op.notation = Notation.INFIX;
-		assertEquals(infix, op.toString());
+		assertEquals(infix, c.toStrInfix(op));
 	}
 
 	@Test
 	public void testPostfix() {
 		String postfix = "(" + value1 + ", " + value2 + ") /";
-		assertEquals(postfix, op.toString(Notation.POSTFIX));
-		op.notation = Notation.POSTFIX;
-		assertEquals(postfix, op.toString());
+		assertEquals(postfix, c.toStrPostfix(op));
+
 	}
+
+
 
 }

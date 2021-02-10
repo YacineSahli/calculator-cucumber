@@ -46,7 +46,7 @@ public abstract class Operation implements Expression
 
   public void accept(Visitor v) {
   	// ask each of the argument expressions of the current operation to accept the visitor
-  	for(Expression a:args) { a.accept(v); }
+  	//for(Expression a:args) { a.accept(v); }
   	// and then visit the current operation itself
     v.visit(this);
   }
@@ -75,7 +75,7 @@ public abstract class Operation implements Expression
 			   .getAsInt();  
   }
 
-  @Override
+  /*@Override
   final public String toString() {
   	return toString(notation);
   }
@@ -96,7 +96,12 @@ public abstract class Operation implements Expression
 			                " " + symbol;
 	   default: return "This case should never occur.";
 	  }
-  }
+  }*/
+
+	@Override
+	public String toString() {
+		return symbol;
+	}
 
 	//Two Operation expressions are equal if their list of arguments is equal and they are the same operation
 	@Override
