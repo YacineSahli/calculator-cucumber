@@ -47,7 +47,7 @@ public class TestTimes {
 		// Two similar expressions, constructed separately (and using different constructors) should not be equal
 		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
 		try {
-			Times e = new Times(p, Notation.INFIX);
+			Times e = new Times(p);
 			assertEquals(op, e);
 		}
 		catch(IllegalConstruction e) { fail(); }
@@ -64,7 +64,7 @@ public class TestTimes {
 		// Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
 		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
 		try {
-			Times e = new Times(p, Notation.INFIX);
+			Times e = new Times(p);
 			assertEquals(e.hashCode(), op.hashCode());
 		}
 		catch(IllegalConstruction e) { fail(); }
@@ -89,26 +89,6 @@ public class TestTimes {
 	@Test
 	public void testCountNbs() {
 		assertEquals(Integer.valueOf(2), op.countNbs());
-	}
-
-	@Test
-	public void testPrefix() {
-		String prefix = "* (" + value1 + ", " + value2 + ")";
-		assertEquals(prefix, c.toStrPrefix(op));
-
-	}
-
-	@Test
-	public void testInfix() {
-		String infix = "( " + value1 + " * " + value2 + " )";
-		assertEquals(infix, c.toStrInfix(op));
-
-	}
-
-	@Test
-	public void testPostfix() {
-		String postfix = "(" + value1 + ", " + value2 + ") *";
-		assertEquals(postfix, c.toStrPostfix(op));
 	}
 
 }

@@ -1,6 +1,9 @@
 package calculator;
 
-import visitor.*;
+
+import visitor.Evaluator;
+import visitor.Printer;
+import visitor.VisitorException;
 
 public class Calculator {
 
@@ -14,7 +17,14 @@ public class Calculator {
     */
 
     public void print(Expression e) {
-        System.out.println("The result of evaluating expression " + e);
+        // use Printer to display de expression with the INFIX notation
+        Printer p = new Printer(Notation.INFIX, ",");
+        try {
+            e.accept(p);
+            System.out.println("The result of evaluating expression " + p.getResult());
+        } catch (VisitorException visitorException) {
+            System.out.println(visitorException.getMessage());
+        }
         System.out.println("is: " + eval(e) + ".");
         System.out.println();
     }
@@ -27,36 +37,17 @@ public class Calculator {
         System.out.println();
     }
 
-    public int eval(Expression e) {
+    public String eval(Expression e) {
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process
-        e.accept(v);
+        try {
+            e.accept(v);
+        } catch (VisitorException visitorException) {
+            return visitorException.getMessage();
+        }
         // and return the result of the evaluation at the end of the process
-        return v.getResult();
-    }
-    public String toStrPrefix(Expression e){
-        PrefixPrinter v = new PrefixPrinter();
-        // and ask the expression to accept this visitor to start the evaluation process
-        e.accept(v);
-        // and return the result of the evaluation at the end of the process
-        return v.getDisplayed();
-    }
-
-    public String toStrInfix(Expression e){
-        InfixPrinter v = new InfixPrinter();
-        // and ask the expression to accept this visitor to start the evaluation process
-        e.accept(v);
-        // and return the result of the evaluation at the end of the process
-        return v.getDisplayed();
-    }
-
-    public String toStrPostfix(Expression e){
-        PostfixPrinter v = new PostfixPrinter();
-        // and ask the expression to accept this visitor to start the evaluation process
-        e.accept(v);
-        // and return the result of the evaluation at the end of the process
-        return v.getDisplayed();
+        return Integer.toString(v.getResult());
     }
 
     /*

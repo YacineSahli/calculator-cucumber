@@ -16,7 +16,7 @@ public class Evaluator extends Visitor {
         computedValue = n.getValue();
     }
 
-    public void visit(Operation o) {
+    public void visit(Operation o) throws VisitorException {
         ArrayList<Integer> evaluatedArgs = new ArrayList<>();
         //first loop to recursively evaluate each subexpression
         for(Expression a:o.args) {
@@ -27,7 +27,12 @@ public class Evaluator extends Visitor {
         int temp = evaluatedArgs.get(0);
         int max = evaluatedArgs.size();
         for(int counter=1; counter<max; counter++) {
-            temp = o.op(temp,evaluatedArgs.get(counter));
+            try {
+                temp = o.op(temp, evaluatedArgs.get(counter));
+            }catch (ArithmeticException e){
+                // If a problem is encountered during the evaluation, throw a VisitorException
+                throw new VisitorException("Impossible to evaluate Operation: "+e.getMessage(), o);
+            }
         }
         // store the accumulated result
         computedValue = temp;

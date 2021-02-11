@@ -67,7 +67,7 @@ public class TestDivides {
 		// Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
 		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
 		try {
-			Divides e = new Divides(p, Notation.INFIX);
+			Divides e = new Divides(p);
 			assertEquals(e.hashCode(), op.hashCode());
 		}
 		catch(IllegalConstruction e) { fail(); }
@@ -93,26 +93,5 @@ public class TestDivides {
 	public void testCountNbs() {
 		assertEquals(Integer.valueOf(2), op.countNbs());
 	}
-
-	@Test
-	public void testPrefix() {
-		String prefix = "/ (" + value1 + ", " + value2 + ")";
-		assertEquals(prefix, c.toStrPrefix(op));
-	}
-
-	@Test
-	public void testInfix() {
-		String infix = "( " + value1 + " / " + value2 + " )";
-		assertEquals(infix, c.toStrInfix(op));
-	}
-
-	@Test
-	public void testPostfix() {
-		String postfix = "(" + value1 + ", " + value2 + ") /";
-		assertEquals(postfix, c.toStrPostfix(op));
-
-	}
-
-
 
 }

@@ -11,13 +11,7 @@ final public class Divides extends Operation
 	neutral = 1;
 	}
 
-  public Divides(List<Expression> elist, Notation n) throws IllegalConstruction {
-	super(elist,n);
-	symbol = "/";
-	neutral = 1;
-    }
-  
-  public int op(int l, int r) throws ArithmeticException {
+  public int op(int l, int r) {
   		if (r==0){
 			throw new ArithmeticException("Division per zero");
 		}
