@@ -36,7 +36,8 @@ public class TestEvaluator {
     @Test
     public void testEvaluatorDividesPerZero() {
         try { op = new Divides(Arrays.asList(new MyNumber(value1), new MyNumber(zero)));
-            assertThrows(ArithmeticException.class, () -> calc.eval(op));
+            //assertThrows(ArithmeticException.class, () -> calc.eval(op));
+            assertNull(calc.eval(op));
           }
         catch(IllegalConstruction e) {
             fail();

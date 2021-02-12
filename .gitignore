@@ -2,3 +2,8 @@
 *.iws
 *.iml
 *.ipr
+
+#idea directory
+.idea/
+
+target/

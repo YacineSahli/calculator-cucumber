@@ -8,5 +8,5 @@ import calculator.Operation;
 public abstract class Visitor {
 
     public abstract void visit(MyNumber n);
-    public abstract void visit(Operation o);
+    public abstract void visit(Operation o) throws EvaluatorException;
 }
