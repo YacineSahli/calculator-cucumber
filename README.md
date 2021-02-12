@@ -1,7 +1,5 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ea2376a220ce4513827c97708cfac7b7)](https://app.codacy.com/gh/YacineSahli/calculator-cucumber?utm_source=github.com&utm_medium=referral&utm_content=YacineSahli/calculator-cucumber&utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/YacineSahli/calculator-cucumber?branch=master)](https://bettercodehub.com/)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6856a0f94d25446ca346cbc15a701d43)](https://www.codacy.com/gh/tommens/calculator-cucumber/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tommens/calculator-cucumber&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/6856a0f94d25446ca346cbc15a701d43)](https://www.codacy.com/gh/tommens/calculator-cucumber/dashboard?utm_source=github.com&utm_medium=referral&utm_content=tommens/calculator-cucumber&utm_campaign=Badge_Coverage)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ea2376a220ce4513827c97708cfac7b7)](https://app.codacy.com/gh/YacineSahli/calculator-cucumber?utm_source=github.com&utm_medium=referral&utm_content=YacineSahli/calculator-cucumber&utm_campaign=Badge_Grade)
 
 # Calculating arithmetic expressions
 
