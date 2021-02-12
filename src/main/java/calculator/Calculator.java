@@ -3,7 +3,7 @@ package calculator;
 
 import visitor.Evaluator;
 import visitor.Printer;
-import visitor.VisitorException;
+import visitor.EvaluatorException;
 
 public class Calculator {
 
@@ -22,8 +22,8 @@ public class Calculator {
         try {
             e.accept(p);
             System.out.println("The result of evaluating expression " + p.getResult());
-        } catch (VisitorException visitorException) {
-            System.out.println(visitorException.getMessage());
+        } catch (EvaluatorException evaluatorException) {
+            System.out.println(evaluatorException.getMessage());
         }
         System.out.println("is: " + eval(e) + ".");
         System.out.println();
@@ -37,17 +37,18 @@ public class Calculator {
         System.out.println();
     }
 
-    public String eval(Expression e) {
+    public Integer eval(Expression e){
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process
         try {
             e.accept(v);
-        } catch (VisitorException visitorException) {
-            return visitorException.getMessage();
+        } catch (EvaluatorException evaluatorException) {
+            System.out.println(evaluatorException.getMessage());
+            return null;
         }
         // and return the result of the evaluation at the end of the process
-        return Integer.toString(v.getResult());
+        return v.getResult();
     }
 
     /*

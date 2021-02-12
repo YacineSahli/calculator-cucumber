@@ -26,7 +26,7 @@ public class Printer extends Visitor {
     }
 
     @Override
-    public void visit(Operation o) throws VisitorException {
+    public void visit(Operation o) throws EvaluatorException {
         ArrayList<String> stringExpressions = new ArrayList<>();
         for (Expression expression : o.args) {
             expression.accept(this);

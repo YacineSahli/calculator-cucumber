@@ -1,11 +1,10 @@
 package calculator;
 
 import visitor.Visitor;
-import visitor.VisitorException;
+import visitor.EvaluatorException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public abstract class Operation implements Expression
 {  
@@ -37,7 +36,7 @@ public abstract class Operation implements Expression
   	args.addAll(params);
   }
 
-  public void accept(Visitor v) throws VisitorException {
+  public void accept(Visitor v) throws EvaluatorException {
   	// ask each of the argument expressions of the current operation to accept the visitor
   	for(Expression a:args) { a.accept(v); }
   	// and then visit the current operation itself

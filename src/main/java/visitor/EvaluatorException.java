@@ -2,11 +2,11 @@ package visitor;
 
 import calculator.Expression;
 
-public class VisitorException extends Exception{
+public class EvaluatorException extends Exception{
 
     private final Expression expression;
 
-    public VisitorException(String message, Expression expression){
+    public EvaluatorException(String message, Expression expression){
         super(message);
         this.expression = expression;
     }

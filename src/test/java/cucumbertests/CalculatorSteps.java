@@ -6,7 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import visitor.Printer;
-import visitor.VisitorException;
+import visitor.EvaluatorException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +83,7 @@ public class CalculatorSteps {
 			Printer p = new Printer(Notation.valueOf(notation), ",");
 			try {
 				op.accept(p);
-			} catch (VisitorException e) {
+			} catch (EvaluatorException e) {
 				e.printStackTrace();
 			}
 			assertEquals(s, p.getResult());
@@ -97,7 +97,7 @@ public class CalculatorSteps {
 	}
 
 	@Then("^the (.*) is (\\d+)$")
-	public void thenTheOperationIs(String s, int val) {
+	public void thenTheOperationIs(String s, Integer val) {
 		try {
 			switch (s) {
 				case "sum": { op = new Plus(params); break; }
@@ -113,7 +113,7 @@ public class CalculatorSteps {
 	}
 
 	@Then("the operation evaluates to {int}")
-	public void thenTheOperationEvaluatesTo(int val) {
+	public void thenTheOperationEvaluatesTo(Integer val) {
 		//During previous @When steps, extra parameters may have been added to the operation
 		//so we complete its parameter list here:
 		op.addMoreParams(params);

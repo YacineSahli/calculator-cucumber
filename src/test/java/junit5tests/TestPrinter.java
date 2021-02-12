@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
 import visitor.Printer;
-import visitor.VisitorException;
+import visitor.EvaluatorException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,7 +51,7 @@ public class TestPrinter {
             r = printer.getResult();
             assertEquals("/ (+ (3#4#5)#- (5#3)#2)", r);
 
-        } catch (VisitorException e) {
+        } catch (EvaluatorException e) {
             e.printStackTrace();
         }
     }
@@ -69,7 +69,7 @@ public class TestPrinter {
             r = printer.getResult();
             assertEquals("( ( 3 + 4 + 5 ) / ( 5 - 3 ) / 2 )", r);
 
-        } catch (VisitorException e) {
+        } catch (EvaluatorException e) {
             e.printStackTrace();
         }
     }
@@ -89,7 +89,7 @@ public class TestPrinter {
             r = printer.getResult();
             assertEquals("((3@4@5) +@(5@3) -@2) /", r);
 
-        } catch (VisitorException e) {
+        } catch (EvaluatorException e) {
             e.printStackTrace();
         }
     }
