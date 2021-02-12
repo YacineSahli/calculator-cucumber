@@ -9,12 +9,13 @@ import visitor.Evaluator;
 
 import java.util.Arrays;
 
+
 public class TestEvaluator {
 
     @SuppressWarnings("unused")
     private Evaluator visitor;
     private Calculator calc;
-    private int value1, value2;
+    private int value1, value2, zero;
     private Expression op;
 
     @BeforeEach
@@ -23,6 +24,7 @@ public class TestEvaluator {
         calc = new Calculator();
         value1 = 8;
         value2 = 6;
+        zero = 0;
     }
 
     @Test
@@ -32,11 +34,22 @@ public class TestEvaluator {
     }
 
     @Test
+    public void testEvaluatorDividesPerZero() {
+        try { op = new Divides(Arrays.asList(new MyNumber(value1), new MyNumber(zero)));
+            //assertThrows(ArithmeticException.class, () -> calc.eval(op));
+            assertNull(calc.eval(op));
+          }
+        catch(IllegalConstruction e) {
+            fail();
+        }
+    }
+    @Test
     public void testEvaluatorDivides() {
         try { op = new Divides(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
-          assertEquals( value1 / value2,
-                        calc.eval(op) );
-          }
+            assertEquals( value1 / value2,
+                    calc.eval(op) );
+
+        }
         catch(IllegalConstruction e) {
             fail();
         }
