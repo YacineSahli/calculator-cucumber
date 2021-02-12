@@ -5,6 +5,8 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import visitor.Printer;
+import visitor.EvaluatorException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,8 +79,14 @@ public class CalculatorSteps {
 	@Then("^its (.*) notation is (.*)$")
 	public void thenItsNotationIs(String notation, String s) {
 		if (notation.equals("PREFIX")||notation.equals("POSTFIX")||notation.equals("INFIX")) {
-			op.notation = Notation.valueOf(notation);
-			assertEquals(s, op.toString());
+			//op.notation = Notation.valueOf(notation);
+			Printer p = new Printer(Notation.valueOf(notation), ",");
+			try {
+				op.accept(p);
+			} catch (EvaluatorException e) {
+				e.printStackTrace();
+			}
+			assertEquals(s, p.getResult());
 		}
 		else fail(notation + " is not a correct notation! ");
 	}
@@ -89,7 +97,7 @@ public class CalculatorSteps {
 	}
 
 	@Then("^the (.*) is (\\d+)$")
-	public void thenTheOperationIs(String s, int val) {
+	public void thenTheOperationIs(String s, Integer val) {
 		try {
 			switch (s) {
 				case "sum": { op = new Plus(params); break; }
@@ -105,7 +113,7 @@ public class CalculatorSteps {
 	}
 
 	@Then("the operation evaluates to {int}")
-	public void thenTheOperationEvaluatesTo(int val) {
+	public void thenTheOperationEvaluatesTo(Integer val) {
 		//During previous @When steps, extra parameters may have been added to the operation
 		//so we complete its parameter list here:
 		op.addMoreParams(params);

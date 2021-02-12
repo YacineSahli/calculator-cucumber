@@ -16,6 +16,7 @@ public class TestMinus {
 	private final int value2 = 6;
 	private Minus op;
 	private List<Expression> params;
+	private Calculator c = new Calculator();
 
 	@BeforeEach
 	public void setUp() {
@@ -46,7 +47,7 @@ public class TestMinus {
 		// Two similar expressions, constructed separately (and using different constructors) should not be equal
 		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
 		try {
-			Minus e = new Minus(p, Notation.INFIX);
+			Minus e = new Minus(p);
 			assertEquals(op, e);
 		}
 		catch(IllegalConstruction e) { fail(); }
@@ -63,7 +64,7 @@ public class TestMinus {
 		// Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
 		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
 		try {
-			Minus e = new Minus(p, Notation.INFIX);
+			Minus e = new Minus(p);
 			assertEquals(e.hashCode(), op.hashCode());
 		}
 		catch(IllegalConstruction e) { fail(); }
@@ -88,30 +89,6 @@ public class TestMinus {
 	@Test
 	public void testCountNbs() {
 		assertEquals(Integer.valueOf(2), op.countNbs());
-	}
-
-	@Test
-	public void testPrefix() {
-		String prefix = "- (" + value1 + ", " + value2 + ")";
-		assertEquals(prefix, op.toString(Notation.PREFIX));
-		op.notation = Notation.PREFIX;
-		assertEquals(prefix, op.toString());
-	}
-
-	@Test
-	public void testInfix() {
-		String infix = "( " + value1 + " - " + value2 + " )";
-		assertEquals(infix, op.toString(Notation.INFIX));
-		op.notation = Notation.INFIX;
-		assertEquals(infix, op.toString());
-	}
-
-	@Test
-	public void testPostfix() {
-		String postfix = "(" + value1 + ", " + value2 + ") -";
-		assertEquals(postfix, op.toString(Notation.POSTFIX));
-		op.notation = Notation.POSTFIX;
-		assertEquals(postfix, op.toString());
 	}
 
 }
