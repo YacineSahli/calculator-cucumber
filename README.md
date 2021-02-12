@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1ca1bc88920f4a33804f1a5fdd791098)](https://app.codacy.com/gh/YacineSahli/calculator-cucumber?utm_source=github.com&utm_medium=referral&utm_content=YacineSahli/calculator-cucumber&utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/YacineSahli/calculator-cucumber?branch=master)](https://bettercodehub.com/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ea2376a220ce4513827c97708cfac7b7)](https://app.codacy.com/gh/YacineSahli/calculator-cucumber?utm_source=github.com&utm_medium=referral&utm_content=YacineSahli/calculator-cucumber&utm_campaign=Badge_Grade)
 
