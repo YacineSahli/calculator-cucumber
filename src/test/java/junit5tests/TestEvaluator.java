@@ -87,15 +87,4 @@ public class TestEvaluator {
             fail();
         }
     }
-
-    @Test
-    public void testEvaluatorDividesPerZero() {
-        try { op = new Divides(Arrays.asList(new MyNumber(value1), new MyNumber(zero)));
-            assertThrows(ArithmeticException.class, () -> calc.eval(op));
-        }
-        catch(IllegalConstruction e) {
-            fail();
-        }
-    }
-
 }
