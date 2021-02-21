@@ -40,7 +40,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: jacoco-report
-          path: jacoco.xml
+          path: jacoco.csv
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@master
         with:
