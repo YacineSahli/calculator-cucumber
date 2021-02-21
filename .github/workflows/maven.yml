@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: jacoco-report
-        path: ./target/site/jacoco/jacoco.csv
+        path: ./target/site/jacoco/jacoco.xml
 
 
   codacy-coverage-reporter:
@@ -41,10 +41,10 @@ jobs:
         with:
           name: jacoco-report
           path: ./
-      - run: tree jacoco.csv
+      - run: tree jacoco.xml
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@master
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: jacoco.csv
+          coverage-reports: jacoco.xml
 
