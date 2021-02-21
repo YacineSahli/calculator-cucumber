@@ -41,6 +41,7 @@ jobs:
         with:
           name: jacoco-report
           path: jacoco.csv
+      - run: cat jacoco.csv
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@master
         with:
