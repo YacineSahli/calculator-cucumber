@@ -5,7 +5,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, develop ]
   pull_request:
     branches: [ master ]
 
@@ -22,3 +22,29 @@ jobs:
         java-version: 11
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+  
+    - if: github.event_name == 'push'
+      uses: actions/upload-artifact@master
+      with:
+        name: jacoco-report
+        path: ./target/site/jacoco/jacoco.xml
+
+
+  codacy-coverage-reporter:
+    needs: build
+    runs-on: ubuntu-latest
+    name: codacy-coverage-reporter
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/download-artifact@master
+        with:
+          name: jacoco-report
+          path: ./
+      - run: tree jacoco.xml
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: jacoco.xml
+

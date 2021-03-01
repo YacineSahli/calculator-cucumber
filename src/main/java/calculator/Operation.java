@@ -1,17 +1,16 @@
 package calculator;
 
 import visitor.Visitor;
+import visitor.EvaluatorException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public abstract class Operation implements Expression
 {  
   public List<Expression> args;
   protected String symbol;
   protected int neutral; // the neutral element of the operation (e.g. 1 for *, 0 for +)
-  public Notation notation = Notation.INFIX; //by default, expressions are rendered as strings using infix notation
 
   // It is not allowed to create operation that have a null list of arguments.
   // Note that it is allowed to have an EMPTY list of arguments.
@@ -28,15 +27,8 @@ public abstract class Operation implements Expression
   public List<Expression> getArgs() {
   	return args;
   }
-
-  public /*constructor*/ Operation(List<Expression> elist,Notation n)
-		  throws IllegalConstruction
-  {
-  	this(elist);
-  	notation = n;
-  }
   
-  abstract public int op(int l, int r);
+  abstract public int op(int l, int r) throws ArithmeticException;
     // the operation itself is specified in the subclasses
 
   // add more arguments to the existing list of arguments args
@@ -44,7 +36,7 @@ public abstract class Operation implements Expression
   	args.addAll(params);
   }
 
-  public void accept(Visitor v) {
+  public void accept(Visitor v) throws EvaluatorException {
   	// ask each of the argument expressions of the current operation to accept the visitor
   	for(Expression a:args) { a.accept(v); }
   	// and then visit the current operation itself
@@ -75,28 +67,10 @@ public abstract class Operation implements Expression
 			   .getAsInt();  
   }
 
-  @Override
-  final public String toString() {
-  	return toString(notation);
-  }
-
-  final public String toString(Notation n) {
-   Stream<String> s = args.stream().map(Object::toString);
-   switch (n) {
-	   case INFIX: return "( " +
-			              s.reduce((s1,s2) -> s1 + " " + symbol + " " + s2).get() +
-			              " )";
-	   case PREFIX: return symbol + " " +
-			               "(" +
-			               s.reduce((s1,s2) -> s1 + ", " + s2).get() +
-			               ")";
-	   case POSTFIX: return "(" +
-			                s.reduce((s1,s2) -> s1 + ", " + s2).get() +
-			                ")" +
-			                " " + symbol;
-	   default: return "This case should never occur.";
-	  }
-  }
+	@Override
+	public String toString() {
+		return symbol;
+	}
 
 	//Two Operation expressions are equal if their list of arguments is equal and they are the same operation
 	@Override
