@@ -39,8 +39,8 @@ Feature: Integer Arithmetic Expressions
   Scenario: Printing the sum of two integer numbers
     Given the sum of two numbers 8 and 6
     Then its INFIX notation is ( 8 + 6 )
-    And its PREFIX notation is + (8, 6)
-    And its POSTFIX notation is (8, 6) +
+    And its PREFIX notation is + (8,6)
+    And its POSTFIX notation is (8,6) +
 
   # This is an example of a scenario in which we provide a list of numbers as input.
   # (In fact, this is not entirely true, since what is given as input is a table of
