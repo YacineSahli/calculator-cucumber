@@ -3,7 +3,8 @@ package calculator;
 public enum Unit {
     //TODO Accept all symbols when a unit has multiple symbols
     //TODO Accept plurals symbols
-    //TODO We should round number to a certain decimal when printing the result to avoid double precision error
+    //TODO We should use BigDecimal instead of double to avoid precision error, see eV to Joule for example in the
+    // energyConverter test
 
     unknown_unit("U/N", "U/N", "U/N", 0),
 
@@ -31,6 +32,10 @@ public enum Unit {
     //Power
 
     //Energy
+    J("energy", "J", "Joule", 1),
+    eV("energy", "eV", "electronvolt", Math.pow(1.60217653, -19)),
+    ftlbf("energy", "ftlbf", "foot-pound force", 1.355818),
+    hph("energy", "hph", "horsepower-hour", 2_684_519.54),
 
     //Pressure
     Pa("pressure", "Pa", "Pascal", 1),
