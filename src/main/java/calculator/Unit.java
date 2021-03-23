@@ -26,10 +26,6 @@ public enum Unit {
     m2("area", "m^2", "square meters", 1),
     km2("area", "km^2", "square kilometers", 1000000),
 
-    //TODO How to do currency conversion correctly without a base unit ? workaround
-    // I think we should create a new currency converter
-    //currency
-
     //Power
     W("power", "W", "Watt", 1),
     hp("power", "hp", "horsepower", 745.7),

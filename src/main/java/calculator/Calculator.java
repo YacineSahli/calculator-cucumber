@@ -1,9 +1,23 @@
 package calculator;
 
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import visitor.Evaluator;
 import visitor.Printer;
 import visitor.EvaluatorException;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.Scanner;
+
+import static calculator.Currency.stringToCurrency;
+import static calculator.Unit.stringToUnit;
 
 public class Calculator {
 
@@ -52,9 +66,61 @@ public class Calculator {
     }
 
     public Double convert(String inputUnit, String outputUnit, double inputAmount){
+        if(stringToUnit(inputUnit) != Unit.unknown_unit && stringToUnit(outputUnit) != Unit.unknown_unit)
+            return convertUnit(inputUnit, outputUnit, inputAmount);
+        else if(stringToCurrency(inputUnit) != Currency.unknown_currency && stringToCurrency(outputUnit) != Currency.unknown_currency)
+            return convertCurrency(inputUnit, outputUnit, inputAmount);
+        return null;
+    }
+
+    public Double convertCurrency(String inputUnit, String outputUnit, double inputAmount){
+        URL url = null;
+        try {
+            url = new URL("https://api.exchangeratesapi.io/latest?base=" + inputUnit + "&symbols=" + outputUnit);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpURLConnection conn = null;
+        try {
+            conn = (HttpURLConnection)url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            conn.setRequestMethod("GET");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        try {
+            conn.connect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int responseCode = 0;
+        try {
+            responseCode = conn.getResponseCode();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(responseCode != 200)
+            throw new RuntimeException("HttpResponseCode: " + responseCode);
+        Scanner sc = null;
+        try {
+            sc = new Scanner(url.openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String json = sc.nextLine();
+        JsonElement jsonElement = new JsonParser().parse(json);
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+        double rate = Double.parseDouble(jsonObject.get("rates").getAsJsonObject().get(outputUnit).toString());
+        return inputAmount * rate;
+    }
+
+    public Double convertUnit(String inputUnit, String outputUnit, double inputAmount){
         double result;
-        Unit InputUnit = Unit.stringToUnit(inputUnit);
-        Unit OutputUnit = Unit.stringToUnit(outputUnit);
+        Unit InputUnit = stringToUnit(inputUnit);
+        Unit OutputUnit = stringToUnit(outputUnit);
 
         result = (inputAmount + InputUnit.offset) * InputUnit.value;
         result = (result / OutputUnit.value) - OutputUnit.offset;
