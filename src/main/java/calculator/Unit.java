@@ -58,7 +58,8 @@ public enum Unit {
 
     }
 
-    //TODO check type of unit in case 2 different type have the same shorname for exemple nm for nautical miles and nanometer
+    //TODO check type of unit in case 2 different type have the same shortname for example nm for nautical miles and
+    // nanometer or throw ambiguous conversion error and ask the user to be more precise
     public static Unit stringToUnit(String s) {
         for (Unit a : Unit.values())
             if (s.equalsIgnoreCase(a.fullName) || s.equals(a.shortName))
