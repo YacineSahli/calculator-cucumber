@@ -33,9 +33,15 @@ public enum Unit {
     //Pressure
 
     //Speed
+    //TODO Is there a better way to write ms/s than mps ? how to write the / character
+    mps("speed","mps","meters/second", 1),
+    kph ("speed","kph","kilometers/hour", 0.2777777777778),
+    mph ("speed", "mph", "miles/hour", 0.44704),
+    kts("speed","kts", "knots", 0.514444444444444),
+    ftps("speed", "ftps", "feet/second", 0.3048),
 
     //Temperature
-    c ("temperature","C","degrees Celcius", 1, 0),
+    c ("temperature","C","degrees Celcius", 1),
     k ("temperature","K","Kelvins", 1, -273.15),
     f ("temperature","F","degrees Fahrenheit", 0.55555555555, -32),
 
