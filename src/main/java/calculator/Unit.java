@@ -2,6 +2,7 @@ package calculator;
 
 public enum Unit {
     //TODO Accept all symbols when a unit has multiple symbols
+    //TODO Accept plurals symbols
 
     unknown_unit("U/N", "U/N", "U/N", 0, 0),
 
@@ -40,11 +41,13 @@ public enum Unit {
 
     //weight
 
-    //Masses
+    //Mass
+    oz("mass", "oz", "ounzes", 28.34952,0),
+    lb("mass", "lb", "pounds", 453.5924,0),
     g("mass","g","grams", 1, 0),
+    mg("mass","mg","milligrams", 0.001, 0),
     kg("mass", "kg", "kilograms", 1000, 0),
     t("mass", "t", "tons", 1000000,0);
-
 
     public final String type, shortName, fullName;
     public final double value, offset;
