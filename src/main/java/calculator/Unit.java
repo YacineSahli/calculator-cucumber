@@ -35,6 +35,9 @@ public enum Unit {
     //Speed
 
     //Temperature
+    c ("temperature","C","degrees Celcius", 1, 0),
+    k ("temperature","K","Kelvins", 1, -273.15),
+    f ("temperature","F","degrees Fahrenheit", 0.55555555555, -32),
 
     //Time
     ps("time", "ps", "picoseconds", 0.000000000001),
