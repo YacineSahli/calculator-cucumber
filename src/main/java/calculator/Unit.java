@@ -3,26 +3,27 @@ package calculator;
 public enum Unit {
     //TODO Accept all symbols when a unit has multiple symbols
     //TODO Accept plurals symbols
+    //TODO We should round number to a certain decimal when printing the result to avoid double precision error
 
-    unknown_unit("U/N", "U/N", "U/N", 0, 0),
+    unknown_unit("U/N", "U/N", "U/N", 0),
 
     //TODO Add more length unit
     //Length
-    km("length", "km", "kilometers", 1000, 0),
-    m("length", "m", "meters", 1, 0),
-    dm("length", "dm", "decimeters", 0.1, 0),
-    cm("length", "cm", "centimeters", 0.01, 0),
-    mm("length", "mm", "millimeters", 0.001, 0),
-    nm("length", "nm", "nanometers", 0.000000001, 0),
-    in("length", "in", "inches", 0.0254, 0),
-    mi("length", "mi", "miles", 1609.334, 0),
-    nmi("length", "nmi", "nauticalMiles", 1852, 0),
-    ft("length", "ft", "feet", 0.3048, 0),
-    yd("length", "yd", "yard", 0.9144, 0),
+    km("length", "km", "kilometers", 1000),
+    m("length", "m", "meters", 1),
+    dm("length", "dm", "decimeters", 0.1),
+    cm("length", "cm", "centimeters", 0.01),
+    mm("length", "mm", "millimeters", 0.001),
+    nm("length", "nm", "nanometers", 0.000000001),
+    in("length", "in", "inches", 0.0254),
+    mi("length", "mi", "miles", 1609.334),
+    nmi("length", "nmi", "nauticalMiles", 1852),
+    ft("length", "ft", "feet", 0.3048),
+    yd("length", "yd", "yard", 0.9144),
 
     //Area
-    m2("area", "m^2", "square meters", 1, 0),
-    km2("area", "km^2", "square kilometers", 1000000,0),
+    m2("area", "m^2", "square meters", 1),
+    km2("area", "km^2", "square kilometers", 1000000),
     //currency
 
     //Power
@@ -39,15 +40,16 @@ public enum Unit {
 
     //Volume
 
-    //weight
+    //Weight
+    N("weight", "N", "newtons", 1),
 
     //Mass
-    oz("mass", "oz", "ounzes", 28.34952,0),
-    lb("mass", "lb", "pounds", 453.5924,0),
-    g("mass","g","grams", 1, 0),
-    mg("mass","mg","milligrams", 0.001, 0),
-    kg("mass", "kg", "kilograms", 1000, 0),
-    t("mass", "t", "tons", 1000000,0);
+    oz("mass", "oz", "ounzes", 28.34952),
+    lb("mass", "lb", "pounds", 453.5924),
+    g("mass","g","grams", 1),
+    mg("mass","mg","milligrams", 0.001),
+    kg("mass", "kg", "kilograms", 1000),
+    t("mass", "t", "tons", 1000000);
 
     public final String type, shortName, fullName;
     public final double value, offset;
@@ -58,6 +60,16 @@ public enum Unit {
         fullName = sfullName;
         value = dvalue;
         offset = doffset;
+
+    }
+
+    //Constructor without offset
+    Unit(String stype, String sshortName, String sfullName, double dvalue) {
+        type = stype;
+        shortName = sshortName;
+        fullName = sfullName;
+        value = dvalue;
+        offset = 0;
 
     }
 
