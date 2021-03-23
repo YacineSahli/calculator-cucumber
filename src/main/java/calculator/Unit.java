@@ -42,6 +42,9 @@ public enum Unit {
 
     //Weight
     N("weight", "N", "newtons", 1),
+    lbf("weight", "lbf", "pound-force", 4.448222),
+    dyn("weight", "dyn", "dyne", 0.00001),
+    pdl("weight", "pdl", "poundal", 0.1382550),
 
     //Mass
     oz("mass", "oz", "ounzes", 28.34952),
