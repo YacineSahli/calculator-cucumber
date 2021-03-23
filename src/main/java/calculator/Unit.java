@@ -39,6 +39,11 @@ public enum Unit {
     //Time
 
     //Volume
+    m3("volume", "m^3", "cubic meters", 1),
+    ft3("volume", "ft^3", "cubic foot", 0.02831685),
+    in3("volume", "in^3", "cubic inch", 0.000016387064),
+    cm3("volume", "cm^3", "cubic centimetre", 0.000001),
+    l("volume", "l", "litre", 0.001),
 
     //Weight
     N("weight", "N", "newtons", 1),
