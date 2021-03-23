@@ -27,9 +27,13 @@ public enum Unit {
     km2("area", "km^2", "square kilometers", 1000000),
 
     //TODO How to do currency conversion correctly without a base unit ? workaround
+    // I think we should create a new currency converter
     //currency
 
     //Power
+    W("power", "W", "Watt", 1),
+    hp("power", "hp", "horsepower", 745.7),
+    TR("power", "TR", "ton of refrigeration", 3516.85),
 
     //Energy
     J("energy", "J", "Joule", 1),
@@ -48,7 +52,7 @@ public enum Unit {
     Torr("pressure", "Torr", "Torr", 133.332),
 
     //Speed
-    //TODO Is there a better way to write ms/s than mps ? how to write the / character
+    //TODO Is there a better way to write m/s than mps ? how to write the / character
     mps("speed","mps","meters/second", 1),
     kph ("speed","kph","kilometers/hour", 0.2777777777778),
     mph ("speed", "mph", "miles/hour", 0.44704),
