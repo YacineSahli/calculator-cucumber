@@ -24,6 +24,8 @@ public enum Unit {
     //Area
     m2("area", "m^2", "square meters", 1),
     km2("area", "km^2", "square kilometers", 1000000),
+
+    //TODO How to do currency conversion correctly without a base unit ? workaround
     //currency
 
     //Power
@@ -31,6 +33,14 @@ public enum Unit {
     //Energy
 
     //Pressure
+    Pa("pressure", "Pa", "Pascal", 1),
+    bar("pressure", "bar", "bar", 100000),
+    kPa("pressure", "kPa", "kilo Pascal", 1000),
+    MPa("pressure", "MPa", "Mega Pascal", 1000000),
+    psi("pressure", "psi", "psi", 6894.76),
+    inHg("pressure", "inHg", "inches of mercury", 3386.39),
+    mmHg("pressure", "mmHg", "millimeters of mercury", 133.332),
+    Torr("pressure", "Torr", "Torr", 133.332),
 
     //Speed
     //TODO Is there a better way to write ms/s than mps ? how to write the / character

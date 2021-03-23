@@ -15,6 +15,6 @@ public class TestSpeedConverter {
 
     @Test
     public void testFeetPerSecondToKilometersPerHour() {
-        assertEquals(57.0586, c.convert("ftps", "kph", 52),  0.000001);
+        assertEquals(57.0586, c.convert("ftps", "kph", 52),  0.0001);
     }
 }
