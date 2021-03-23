@@ -37,6 +37,15 @@ public enum Unit {
     //Temperature
 
     //Time
+    ps("time", "ps", "picoseconds", 0.000000000001),
+    ns("time","ns","nanoseconds",0.000000001),
+    //Using u instead of the greek later mu for ease of use
+    us("time", "us", "microseconds", 0.000001),
+    ms("time", "ms", "milliseconds", 0.001),
+    s("time", "s", "seconds", 1),
+    min("time", "m", "minutes", 60),
+    h("time", "h", "hours", 3600),
+    day("time", "day", "days", 86400),
 
     //Volume
     m3("volume", "m^3", "cubic meters", 1),
