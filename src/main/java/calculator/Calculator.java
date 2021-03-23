@@ -37,7 +37,7 @@ public class Calculator {
         System.out.println();
     }
 
-    public Integer eval(Expression e){
+    public Integer eval(Expression e) {
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process
@@ -49,6 +49,17 @@ public class Calculator {
         }
         // and return the result of the evaluation at the end of the process
         return v.getResult();
+    }
+
+    public Double convert(String inputUnit, String outputUnit, double inputAmount) {
+        double result;
+        Unit InputUnit = Unit.stringToUnit(inputUnit);
+        Unit OutputUnit = Unit.stringToUnit(outputUnit);
+
+        result = (inputAmount + InputUnit.offset) * InputUnit.value;
+        result = (result / OutputUnit.value) - OutputUnit.offset;
+
+        return result;
     }
 
     /*
