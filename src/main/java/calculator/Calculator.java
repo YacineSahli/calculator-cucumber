@@ -75,41 +75,24 @@ public class Calculator {
 
     public Double convertCurrency(String inputUnit, String outputUnit, double inputAmount){
         URL url = null;
-        try {
-            url = new URL("https://api.exchangeratesapi.io/latest?base=" + inputUnit + "&symbols=" + outputUnit);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        HttpURLConnection conn = null;
-        try {
-            conn = (HttpURLConnection)url.openConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            conn.setRequestMethod("GET");
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        }
-        try {
-            conn.connect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int responseCode = 0;
-        try {
-            responseCode = conn.getResponseCode();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if(responseCode != 200)
-            throw new RuntimeException("HttpResponseCode: " + responseCode);
         Scanner sc = null;
         try {
+            url = new URL("https://api.exchangeratesapi.io/latest?base=" + inputUnit + "&symbols=" + outputUnit);
+            HttpURLConnection conn = null;
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            int responseCode = 0;
+            responseCode = conn.getResponseCode();
+            if (responseCode != 200)
+                throw new RuntimeException("HttpResponseCode: " + responseCode);
             sc = new Scanner(url.openStream());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
+
+
         String json = sc.nextLine();
         JsonElement jsonElement = new JsonParser().parse(json);
         JsonObject jsonObject = jsonElement.getAsJsonObject();
