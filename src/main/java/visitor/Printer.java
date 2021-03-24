@@ -1,9 +1,6 @@
 package visitor;
 
-import calculator.Expression;
-import calculator.MyNumber;
-import calculator.Notation;
-import calculator.Operation;
+import calculator.*;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -55,6 +52,12 @@ public class Printer extends Visitor {
             default:
                 result = "This case should never occur.";
         }
+    }
+
+    //TODO
+    @Override
+    public void visit(MyTime myTime) {
+        result = myTime.toString();
     }
 
     public void setSeparator(String separator) {

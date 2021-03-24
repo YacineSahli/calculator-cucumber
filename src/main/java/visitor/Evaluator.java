@@ -2,6 +2,7 @@ package visitor;
 
 import calculator.Expression;
 import calculator.MyNumber;
+import calculator.MyTime;
 import calculator.Operation;
 
 import java.util.ArrayList;
@@ -36,6 +37,10 @@ public class Evaluator extends Visitor {
         }
         // store the accumulated result
         computedValue = temp;
+    }
+
+    public void visit(MyTime myTime) {
+        computedValue = myTime.getValue();
     }
 
 }
