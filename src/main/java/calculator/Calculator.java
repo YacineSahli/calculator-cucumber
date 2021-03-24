@@ -71,6 +71,10 @@ public class Calculator {
         return convertor.convert(inputUnit, outputUnit, inputAmount);
     }
 
+    public Double convert(String input){
+        return convertor.convert(input);
+    }
+
     /*
      We could also have other methods, e.g. to verify whether an expression is syntactically correct
      public Boolean validate(Expression e)

@@ -14,6 +14,12 @@ import static calculator.Currency.stringToCurrency;
 import static calculator.Unit.stringToUnit;
 
 public class Convertor {
+    public Double convert(String input){
+        String inputList[] = input.split(" ");
+        if(inputList.length != 3)
+            throw new InvalidParameterException("The format should be 'inputUnit outputUnit value;");
+        return convert(inputList[0], inputList[1], Double.parseDouble(inputList[2]));
+    }
 
     public Double convert(String inputUnit, String outputUnit, double inputAmount){
         if(stringToUnit(inputUnit) != Unit.unknown_unit && stringToUnit(outputUnit) != Unit.unknown_unit)
