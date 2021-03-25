@@ -3,6 +3,8 @@ package calculator;
 import visitor.Visitor;
 import visitor.EvaluatorException;
 
+import java.time.Duration;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,4 +98,5 @@ public abstract class Operation implements Expression
 		return result;
 	}
 
+    public abstract Duration op(ZonedDateTime l, ZonedDateTime r);
 }

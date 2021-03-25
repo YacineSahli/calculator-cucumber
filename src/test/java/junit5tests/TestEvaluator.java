@@ -7,7 +7,11 @@ import org.junit.jupiter.api.*;
 import calculator.*;
 import visitor.Evaluator;
 
+import java.text.ParseException;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class TestEvaluator {
@@ -16,6 +20,7 @@ public class TestEvaluator {
     private Evaluator visitor;
     private Calculator calc;
     private int value1, value2, zero;
+    private String date1, date2;
     private Expression op;
 
     @BeforeEach
@@ -25,7 +30,46 @@ public class TestEvaluator {
         value1 = 8;
         value2 = 6;
         zero = 0;
+        date1 = "2020-12-10 10:10:12";
+        date2 = "2020-12-11 10:10:10";
     }
+
+
+    @Test
+    public void testEvaluatorDateDifference() {
+        try {
+            List<Expression> list = new ArrayList<>();
+            list.add(new MyTime(date1));
+            list.add(new MyTime(date2));
+            op = new Minus(list);
+            assertEquals( "2",
+                    calc.eval(op) );
+        }
+        catch(IllegalConstruction | ParseException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+
+    /*
+    @Test
+    public void testEvaluatorDatePlusTime() {
+        try {
+            List<Expression> list = new ArrayList<>();
+            list.add(new MyTime(date1));
+            list.add(new MyTime(date2));
+            op = new Plus(list);
+            assertEquals( date1 + date2,
+                    calc.eval(op) );
+        }
+        catch(IllegalConstruction | ParseException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+    */
+
 
     @Test
     public void testEvaluatorMyNumber() {
@@ -40,6 +84,7 @@ public class TestEvaluator {
             assertNull(calc.eval(op));
           }
         catch(IllegalConstruction e) {
+            e.printStackTrace();
             fail();
         }
     }
@@ -51,6 +96,7 @@ public class TestEvaluator {
 
         }
         catch(IllegalConstruction e) {
+            e.printStackTrace();
             fail();
         }
     }
@@ -62,6 +108,7 @@ public class TestEvaluator {
                     calc.eval(op) );
         }
         catch(IllegalConstruction e) {
+            e.printStackTrace();
             fail();
         }
     }
@@ -73,6 +120,7 @@ public class TestEvaluator {
                     calc.eval(op) );
         }
         catch(IllegalConstruction e) {
+            e.printStackTrace();
             fail();
         }
     }
@@ -84,6 +132,7 @@ public class TestEvaluator {
                     calc.eval(op) );
         }
         catch(IllegalConstruction e) {
+            e.printStackTrace();
             fail();
         }
     }

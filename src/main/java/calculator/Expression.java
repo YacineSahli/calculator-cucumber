@@ -1,10 +1,10 @@
 package calculator;
 
+import visitor.TimeVisitor;
 import visitor.Visitor;
 import visitor.EvaluatorException;
 
 public interface Expression {
-
    void accept(Visitor v) throws EvaluatorException;
 
    Integer countDepth(); // counts the depth of nested expressions in an arithmetic expression

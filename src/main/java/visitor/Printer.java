@@ -55,7 +55,6 @@ public class Printer extends Visitor {
     }
 
     //TODO
-    @Override
     public void visit(MyTime myTime) {
         result = myTime.toString();
     }

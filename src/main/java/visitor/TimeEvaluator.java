@@ -4,28 +4,34 @@ import calculator.Expression;
 import calculator.MyNumber;
 import calculator.MyTime;
 import calculator.Operation;
+import visitor.Evaluator;
 
+import java.time.Duration;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
-public class Evaluator extends Visitor {
+public class TimeEvaluator extends TimeVisitor {
+    private ZonedDateTime computedValue;
 
-    private int computedValue;
+    public ZonedDateTime getResult() { return computedValue; }
 
-    public Integer getResult() { return computedValue; }
-
-    public void visit(MyNumber n) {
+    public void visit(MyTime n) {
         computedValue = n.getValue();
     }
 
+
+    @Override
+    public void visit(MyNumber n) { }
+
     public void visit(Operation o) throws EvaluatorException {
-        ArrayList<Integer> evaluatedArgs = new ArrayList<>();
+        ArrayList<ZonedDateTime> evaluatedArgs = new ArrayList<>();
         //first loop to recursively evaluate each subexpression
         for(Expression a:o.args) {
             a.accept(this);
             evaluatedArgs.add(computedValue);
         }
         //second loop to accummulate all the evaluated subresults
-        int temp = evaluatedArgs.get(0);
+        ZonedDateTime temp = evaluatedArgs.get(0);
         int max = evaluatedArgs.size();
         for(int counter=1; counter<max; counter++) {
             try {
