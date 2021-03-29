@@ -1,7 +1,7 @@
 package visitor;
 
+import calculator.CalculatorValue;
 import calculator.Expression;
-import calculator.MyNumber;
 import calculator.Notation;
 import calculator.Operation;
 
@@ -21,7 +21,7 @@ public class Printer extends Visitor {
     }
 
     @Override
-    public void visit(MyNumber n) {
+    public void visit(CalculatorValue n) {
         result = n.toString();
     }
 

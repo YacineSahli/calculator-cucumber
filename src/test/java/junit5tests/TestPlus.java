@@ -21,7 +21,7 @@ public class TestPlus {
 
 	@BeforeEach
 	public void setUp() {
-		  params = new ArrayList<>(Arrays.asList(new MyNumber(value1),new MyNumber(value2)));
+		  params = new ArrayList<>(Arrays.asList(new IntegerNumber(value1),new IntegerNumber(value2)));
 		  try { op = new Plus(params); }
 		  catch(IllegalConstruction e) { fail(); }
 	}
@@ -46,12 +46,12 @@ public class TestPlus {
 	@Test
 	public void testEquals() {
 		// Two similar expressions, constructed separately (and using different constructors) should be equal
-		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
+		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
 		try {
 			Plus e = new Plus(p);
 			assertEquals(op, e);
 			assertEquals(e, e);
-			assertNotEquals(e, new Plus(new ArrayList<>(Arrays.asList(new MyNumber(5), new MyNumber(4)))));
+			assertNotEquals(e, new Plus(new ArrayList<>(Arrays.asList(new IntegerNumber(5), new IntegerNumber(4)))));
 		}
 		catch(IllegalConstruction e) { fail(); }
 	}
@@ -65,7 +65,7 @@ public class TestPlus {
 	@Test
 	public void testHashCode() {
 		// Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
-		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
+		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
 		try {
 			Plus e = new Plus(p);
 			assertEquals(e.hashCode(), op.hashCode());

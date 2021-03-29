@@ -21,7 +21,7 @@ public class TestDivides {
 	public void setUp() {
 
 		try {
-			params = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
+			params = new ArrayList<>(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
 			op = new Divides(params);
 		} catch(IllegalConstruction e) { fail(); }
 
@@ -48,7 +48,7 @@ public class TestDivides {
 	@Test
 	public void testEquals() {
 		// Two similar expressions, constructed separately (and using different constructors) should be equal
-		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
+		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
 		try {
 			Divides d = new Divides(p);
 			assertEquals(op, d);
@@ -65,7 +65,7 @@ public class TestDivides {
 	@Test
 	public void testHashCode() {
 		// Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
-		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
+		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
 		try {
 			Divides e = new Divides(p);
 			assertEquals(e.hashCode(), op.hashCode());
