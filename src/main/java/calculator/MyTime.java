@@ -12,41 +12,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MyTime implements Expression {
+public class MyTime extends CalculatorValue {
     private ZonedDateTime date = null;
-    private LocalTime time = null;
+    private Duration time = null;
     private DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
     private ZoneId zoneId;
+
+
+
+    public /*constructor*/ MyTime(String s) throws ParseException {
+        super(s, 3, false);
+        try {
+            date = parseDate(s);
+        }catch (ParseException e){}
+        try {
+            time = parseTime(s);
+        } catch (ParseException e){}
+        if (date == null && time == null) {
+            throw new ParseException("Cannot parse input", 0);
+        }
+    }
+
+    public /*constructor*/ MyTime(Duration d){
+        super(d.toString(), 3, false);
+        time = d;
+    }
+
+
+    public MyTime(ZonedDateTime dt) {
+        super(dt.toString(), 3,false);
+        date = dt;
+    }
+
 
     public MyTime getValue() {
         return this;
     }
 
-    public /*constructor*/ MyTime(String s) throws ParseException {
-        date = parseDate(s);
-        time = parseTime(s);
-        if( date == null && time == null){
-            throw new ParseException("Cannot parse input", 0);
-        }
+    public ZonedDateTime getZonedDateTime() {
+        return date;
     }
 
-    LocalTime parseTime(String s) throws ParseException {
-        List<DateTimeFormatter> knownPatterns = new ArrayList<DateTimeFormatter>();
-        knownPatterns.add(DateTimeFormatter.ofPattern("HH:mm:ss z"));
-        knownPatterns.add(DateTimeFormatter.ofPattern("HH:mm z"));
-        knownPatterns.add(DateTimeFormatter.ofPattern("HH z"));
-        knownPatterns.add(DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneOffset.UTC));
-        knownPatterns.add(DateTimeFormatter.ofPattern("HH:mm").withZone(ZoneOffset.UTC));
-        knownPatterns.add(DateTimeFormatter.ofPattern("HH").withZone(ZoneOffset.UTC));
+    public Duration getLocalTime() {
+        return time;
+    }
 
-        for (DateTimeFormatter formatter : knownPatterns) {
-            try {
-                return LocalTime.parse(s, formatter);
-            } catch(DateTimeParseException e){
-
-            }
+    Duration parseTime(String s) throws ParseException {
+        try{
+            return Duration.parse(s);
+        }catch (DateTimeParseException e){
+            return null;
         }
-        return null;
     }
 
     ZonedDateTime parseDate(String s) throws ParseException {
@@ -69,84 +85,57 @@ public class MyTime implements Expression {
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd hh a").withZone(ZoneOffset.UTC));
 
 
-
-
         for (DateTimeFormatter formatter : knownPatterns) {
             try {
                 return ZonedDateTime.parse(s, formatter);
-            } catch(DateTimeParseException e){
+            } catch (DateTimeParseException e) {
 
             }
         }
         return null;
     }
 
-    public Duration getAsDuration(){
+    public Duration getAsDuration() {
         long seconds;
         if (date == null) {
-            seconds = time.getLong(ChronoField.INSTANT_SECONDS);
-        }else{
-            seconds = date.getLong(ChronoField.INSTANT_SECONDS);
+            return this.time;
+        } else {
+            seconds = date.toEpochSecond();
+            Duration res = Duration.ofSeconds(seconds);
+            return res;
         }
-        Duration res = Duration.ofSeconds(seconds) ;
-        return res;
     }
-    @Override
-    public void accept(Visitor v) throws EvaluatorException {
 
-    public void formatDate(String s){
+
+    public void formatDate(String s) {
         DateTimeFormatter.ofPattern(s).format(date);
     }
 
-    public ZoneId getZoneId(){
+    public ZoneId getZoneId() {
         return this.zoneId;
     }
-    @Override
-    public void accept(Visitor v) throws EvaluatorException {
-
-    }
-
-    public Integer countDepth() {
-        return 0;
-    }
-
-    public Integer countOps() {
-        return 0;
-    }
-
-    public Integer countNbs() {
-        return 1;
-    }
 
     @Override
-    public String toString() {
-        return date.format(fmt);
-    }
-
-    //Two MyTime expressions are equal if the ZonedDateTime they contain are equal
-    @Override
-    public boolean equals(Object o) {
-        // No object should be equal to null (not including this check can result in an exception if a MyNumber is tested against null)
-        if (o == null) return false;
-
-        // If the object is compared to itself then return true
-        if (o == this) {
-            return true;
-        }
-
-        // If the object is of another type then return false
+    public boolean specificEquals(Object o) {
         if (!(o instanceof MyTime)) {
             return false;
         }
-        return this.date.equals(((MyTime) o).date);
-        // I used == above since the contained value is a primitive value
-        // If it had been a Java object, .equals() would be needed
+        MyTime oTime = (MyTime) o;
+        if (this.date == null) {
+            if (oTime.date != null) {
+                return false;
+            }
+            return this.time.equals(oTime.time);
+        } else {
+            if (oTime.time != null) {
+                return false;
+            }
+            return this.date.equals(oTime.date);
+        }
     }
 
-    // The method hashCode() needs to be overridden if the equals method is overridden; otherwise there may be problems when you use your object in hashed collections such as HashMap, HashSet, LinkedHashSet
-    @Override
-    public int hashCode() {
-        return date.getNano();
+    public MyTime toMyTime(){
+        return this;
     }
 }
 
