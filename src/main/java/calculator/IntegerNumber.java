@@ -3,13 +3,14 @@ package calculator;
 public class IntegerNumber extends CalculatorValue{
 
     private int value;
+    private final static int ACCURACY = 2;
 
     public IntegerNumber(String strValue){
-        super(strValue, 1, true);
+        super(strValue, ACCURACY, true);
     }
 
     public IntegerNumber(int value){
-        super(Integer.toString(value), 1, true);
+        super(Integer.toString(value), ACCURACY, true);
         this.value = value;
     }
 
