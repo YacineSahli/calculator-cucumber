@@ -5,5 +5,6 @@
 
 #idea directory
 .idea/
+.attach*
 
 target/
