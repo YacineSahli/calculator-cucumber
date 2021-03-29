@@ -2,12 +2,15 @@ package junit5tests;
 
 //Import Junit5 libraries for unit testing:
 import static org.junit.jupiter.api.Assertions.*;
+
+import io.cucumber.messages.Messages;
 import org.junit.jupiter.api.*;
 
 import calculator.*;
 import visitor.Evaluator;
 
 import java.text.ParseException;
+import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +23,7 @@ public class TestEvaluator {
     private Evaluator visitor;
     private Calculator calc;
     private int value1, value2, zero;
-    private String date1, date2;
+    private String date1, date2, duration1;
     private Expression op;
 
     @BeforeEach
@@ -32,6 +35,7 @@ public class TestEvaluator {
         zero = 0;
         date1 = "2020-12-10 10:10:12";
         date2 = "2020-12-11 10:10:10";
+        duration1 = "10:10";
     }
 
 
@@ -52,23 +56,37 @@ public class TestEvaluator {
     }
 
 
-    /*
+
     @Test
     public void testEvaluatorDatePlusTime() {
         try {
             List<Expression> list = new ArrayList<>();
-            list.add(new MyTime(date1));
-            list.add(new MyTime(date2));
+            MyTime timeToAdd = new MyTime(duration1);
             op = new Plus(list);
-            assertEquals( date1 + date2,
-                    calc.eval(op) );
+            assert(Duration.between(ZonedDateTime.now().plus(timeToAdd.getAsDuration()),
+                    calc.eval(op)) <2);
         }
         catch(IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
     }
-    */
+
+    @Test
+    public void testEvaluatorDateMinusTime() {
+        try {
+            List<Expression> list = new ArrayList<>();
+            MyTime timeToAdd = new MyTime(duration1);
+            op = new Minus(list);
+            assert(Duration.between(ZonedDateTime.now().minus(timeToAdd.getAsDuration()),
+                    calc.eval(op)) <2);
+        }
+        catch(IllegalConstruction | ParseException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
 
 
     @Test

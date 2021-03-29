@@ -4,7 +4,6 @@ package calculator;
 import visitor.Evaluator;
 import visitor.Printer;
 import visitor.EvaluatorException;
-import visitor.TimeEvaluator;
 
 import java.time.ZonedDateTime;
 
@@ -54,19 +53,6 @@ public class Calculator {
         return v.getResult();
     }
 
-    public ZonedDateTime evalTime(Expression e){
-        // create a new visitor to evaluate expressions
-        TimeEvaluator v = new TimeEvaluator();
-        // and ask the expression to accept this visitor to start the evaluation process
-        try {
-            e.accept(v);
-        } catch (EvaluatorException evaluatorException) {
-            System.out.println(evaluatorException.getMessage());
-            return null;
-        }
-        // and return the result of the evaluation at the end of the process
-        return v.getResult();
-    }
 
     /*
      We could also have other methods, e.g. to verify whether an expression is syntactically correct

@@ -97,6 +97,4 @@ public abstract class Operation implements Expression
 		result = prime * result + args.hashCode();
 		return result;
 	}
-
-    public abstract Duration op(ZonedDateTime l, ZonedDateTime r);
 }

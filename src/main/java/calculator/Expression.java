@@ -1,6 +1,5 @@
 package calculator;
 
-import visitor.TimeVisitor;
 import visitor.Visitor;
 import visitor.EvaluatorException;
 

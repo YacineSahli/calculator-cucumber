@@ -1,26 +1,33 @@
 package calculator;
 
-import visitor.TimeVisitor;
+import visitor.EvaluatorException;
 import visitor.Visitor;
 
 import java.text.ParseException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MyTime implements Expression {
-    private final ZonedDateTime date;
+    private ZonedDateTime date = null;
+    private LocalTime time = null;
     private DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
+    private ZoneId zoneId;
 
-    public ZonedDateTime getValue() {
-        return date;
+    public MyTime getValue() {
+        return this;
     }
 
     public /*constructor*/ MyTime(String s) throws ParseException {
         date = parseDate(s);
+        time = parseTime(s);
+        if( date == null && time == null){
+            throw new ParseException("Cannot parse input", 0);
+        }
     }
 
     LocalTime parseTime(String s) throws ParseException {
@@ -39,7 +46,7 @@ public class MyTime implements Expression {
 
             }
         }
-        throw new ParseException("Cannot parse input", 0);
+        return null;
     }
 
     ZonedDateTime parseDate(String s) throws ParseException {
@@ -71,17 +78,33 @@ public class MyTime implements Expression {
 
             }
         }
-        throw new ParseException("Cannot parse input", 0);
+        return null;
     }
+
+    public Duration getAsDuration(){
+        long seconds;
+        if (date == null) {
+            seconds = time.getLong(ChronoField.INSTANT_SECONDS);
+        }else{
+            seconds = date.getLong(ChronoField.INSTANT_SECONDS);
+        }
+        Duration res = Duration.ofSeconds(seconds) ;
+        return res;
+    }
+    @Override
+    public void accept(Visitor v) throws EvaluatorException {
 
     public void formatDate(String s){
         DateTimeFormatter.ofPattern(s).format(date);
     }
 
-    public void accept(TimeVisitor v) {
-        v.visit(this);
+    public ZoneId getZoneId(){
+        return this.zoneId;
     }
+    @Override
+    public void accept(Visitor v) throws EvaluatorException {
 
+    }
 
     public Integer countDepth() {
         return 0;
