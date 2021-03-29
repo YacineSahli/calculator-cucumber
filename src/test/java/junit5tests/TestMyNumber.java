@@ -11,20 +11,20 @@ import java.util.ArrayList;
 public class TestMyNumber {
 
 	private final int value =8;
-	private MyNumber number;
+	private IntegerNumber number;
 	
 	@BeforeEach
 	public void setUp() {
-		number = new MyNumber(value);
+		number = new IntegerNumber(value);
 	}
 
 	@Test
 	public void testEquals() {
 		// Two distinct MyNumber, constructed separately (using a different constructor) but containing the same value should be equal
-		assertEquals(new MyNumber(value), number);
+		assertEquals(new IntegerNumber(value), number);
 		// Two MyNumbers containing a distinct value should not be equal:
 		int otherValue = 7;
-		assertNotEquals(new MyNumber(otherValue),number);
+		assertNotEquals(new IntegerNumber(otherValue),number);
 		assertEquals(number, number); // Identity check (for coverage, as this should always be true)
 		assertNotEquals(number, value);
 		try {

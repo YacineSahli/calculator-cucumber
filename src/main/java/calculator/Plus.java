@@ -9,9 +9,13 @@ final public class Plus extends Operation
 	super(elist);
 	symbol = "+";
 	neutral = 0;
-	}
-
+  }
+/*
   public int op(int l, int r) {
   	return (l+r);
   }
+  */
+	public CalculatorValue op(IntegerNumber l, IntegerNumber r){
+		return new IntegerNumber(l.getValue()+r.getValue());
+	}
 }

@@ -30,7 +30,7 @@ public abstract class Operation implements Expression
   	return args;
   }
   
-  abstract public int op(int l, int r) throws ArithmeticException;
+  //abstract public int op(int l, int r) throws ArithmeticException;
     // the operation itself is specified in the subclasses
 
   // add more arguments to the existing list of arguments args
