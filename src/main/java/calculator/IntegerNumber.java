@@ -19,8 +19,11 @@ public class IntegerNumber extends CalculatorValue{
 
     @Override
     public boolean specificEquals(Object o) {
-        //todo
-        return false;
+        if (!(o instanceof IntegerNumber)) {
+            return false;
+        }
+        IntegerNumber oInt = (IntegerNumber) o;
+        return this.value == oInt.getValue();
     }
 
     public IntegerNumber toIntegerNumber(){
