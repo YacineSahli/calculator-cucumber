@@ -30,12 +30,12 @@ public class TestEvaluator {
     @Test
     public void testEvaluatorMyNumber() {
         assertEquals( value1,
-                      calc.eval(new MyNumber(value1)));
+                      calc.eval(new IntegerNumber(value1)));
     }
 
     @Test
     public void testEvaluatorDividesPerZero() {
-        try { op = new Divides(Arrays.asList(new MyNumber(value1), new MyNumber(zero)));
+        try { op = new Divides(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(zero)));
             //assertThrows(ArithmeticException.class, () -> calc.eval(op));
             assertNull(calc.eval(op));
           }
@@ -45,7 +45,7 @@ public class TestEvaluator {
     }
     @Test
     public void testEvaluatorDivides() {
-        try { op = new Divides(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
+        try { op = new Divides(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
             assertEquals( value1 / value2,
                     calc.eval(op) );
 
@@ -57,7 +57,7 @@ public class TestEvaluator {
 
     @Test
     public void testEvaluatorPlus() {
-        try { op = new Plus(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
+        try { op = new Plus(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
             assertEquals( value1 + value2,
                     calc.eval(op) );
         }
@@ -68,7 +68,7 @@ public class TestEvaluator {
 
     @Test
     public void testEvaluatorMinus() {
-        try { op = new Minus(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
+        try { op = new Minus(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
             assertEquals( value1 - value2,
                     calc.eval(op) );
         }
@@ -79,7 +79,7 @@ public class TestEvaluator {
 
     @Test
     public void testEvaluatorTimes() {
-        try { op = new Times(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
+        try { op = new Times(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
             assertEquals( value1 * value2,
                     calc.eval(op) );
         }

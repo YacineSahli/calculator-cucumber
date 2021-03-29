@@ -20,16 +20,16 @@ public class TestPrinter {
     @BeforeEach
     public void SetUp(){
         List<Expression> params = new ArrayList<>();//plus
-        Collections.addAll(params, new MyNumber(3), new MyNumber(4), new MyNumber(5));
+        Collections.addAll(params, new IntegerNumber(3), new IntegerNumber(4), new IntegerNumber(5));
         List<Expression> params2 = new ArrayList<>();//minus
-        Collections.addAll(params2, new MyNumber(5), new MyNumber(3));
+        Collections.addAll(params2, new IntegerNumber(5), new IntegerNumber(3));
         List<Expression> params3 = new ArrayList<>();//devide
 
         try {
             e1 = new Plus(params); // level 1
             Expression eComp = new Minus(params2);
 
-            Collections.addAll(params3, e1, eComp, new MyNumber(2));
+            Collections.addAll(params3, e1, eComp, new IntegerNumber(2));
             e2 = new Divides(params3); // level 2
 
         } catch (IllegalConstruction illegalConstruction) {

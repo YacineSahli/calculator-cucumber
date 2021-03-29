@@ -23,13 +23,13 @@ public class Main {
 	try{
 		// Here is an example of how to use the calculator:
 
-		e = new MyNumber(8);
+		e = new IntegerNumber(8);
 		c.print(e);
 		c.eval(e);
 		System.out.println("---");
 
 	    List<Expression> params = new ArrayList<>();
-	    Collections.addAll(params, new MyNumber(3), new MyNumber(4), new MyNumber(5));
+	    Collections.addAll(params, new IntegerNumber(3), new IntegerNumber(4), new IntegerNumber(5));
 	    e = new Plus(params);
 		c.printExpressionDetails(e);
 		c.eval(e);
@@ -37,7 +37,7 @@ public class Main {
 
 	
 		List<Expression> params2 = new ArrayList<>();
-		Collections.addAll(params2, new MyNumber(5), new MyNumber(3));
+		Collections.addAll(params2, new IntegerNumber(5), new IntegerNumber(3));
 		e = new Minus(params2);
 		c.print(e);
 		c.eval(e);
@@ -51,14 +51,14 @@ public class Main {
 		System.out.println("---");
 
 		List<Expression> params4 = new ArrayList<>();
-		Collections.addAll(params4, new Plus(params), new Minus(params2), new MyNumber(5));
+		Collections.addAll(params4, new Plus(params), new Minus(params2), new IntegerNumber(5));
 		e = new Divides(params4);
 		c.print(e);
 		c.eval(e);
 		System.out.println("---");
 
 		List<Expression> params5 = new ArrayList<>();
-		Collections.addAll(params5, new MyNumber(5), new MyNumber(0));
+		Collections.addAll(params5, new IntegerNumber(5), new IntegerNumber(0));
 		e = new Divides(params5);
 		c.print(e);
 		c.eval(e);
