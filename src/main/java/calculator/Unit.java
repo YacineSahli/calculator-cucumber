@@ -28,7 +28,7 @@ public enum Unit {
 
     //Energy
     J("energy", "J", "Joule", 1),
-    eV("energy", "eV", "electronvolt", Math.pow(1.60217653, -19)),
+    eV("energy", "eV", "electronvolt", 1.6021774e-19),
     ftlbf("energy", "ftlbf", "foot-pound force", 1.355818),
     hph("energy", "hph", "horsepower-hour", 2_684_519.54),
 
