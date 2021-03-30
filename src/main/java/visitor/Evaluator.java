@@ -44,8 +44,10 @@ public class Evaluator extends Visitor {
                 }
 
             }catch (ArithmeticException e){
-                // If a problem is encountered during the evaluation, throw a VisitorException
-                throw new EvaluatorException("Impossible to evaluate Operation: "+e.getMessage(), o);
+                // If a problem is encountered during the evaluation, throw a EvaluatorException
+                throw new EvaluatorException("Impossible to evaluate the operation: "+e.getMessage(), o);
+            } catch (InvocationTargetException e) {
+                throw new EvaluatorException("Impossible to evaluate the expression: "+e.getMessage(), o);
             }
         }
         // store the accumulated result
@@ -67,8 +69,7 @@ public class Evaluator extends Visitor {
      * @param o Operation to apply
      * @return the result of the operation on v1 and v2
      */
-
-    public CalculatorValue applyOp(CalculatorValue v1, CalculatorValue v2, Operation o, boolean inverted){
+    public CalculatorValue applyOp(CalculatorValue v1, CalculatorValue v2, Operation o, boolean inverted) throws ArithmeticException, InvocationTargetException {
         Class[] arg_types = new Class[]{v1.getClass(), v1.getClass()};
 
         String[] v1CLassName = v1.getClass().getName().split("\\.");//get the subclass name of v1
@@ -92,18 +93,17 @@ public class Evaluator extends Visitor {
             }else{
                 result = (CalculatorValue) op.invoke(o, v1, convertMethod.invoke(v2));
             }
-        } catch (NoSuchMethodException e) {//todo exception handling
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (NoSuchMethodException | IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            if(e.getCause() instanceof  ArithmeticException);
+            if(e.getCause() instanceof  ArithmeticException){
+                throw (ArithmeticException) e.getCause();
+            }
             else{
-                e.getCause().printStackTrace();
+                throw e;
             }
         }
         return result;
     }
-
 
 }
