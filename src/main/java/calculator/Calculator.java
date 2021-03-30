@@ -10,6 +10,8 @@ import visitor.Evaluator;
 import visitor.Printer;
 import visitor.EvaluatorException;
 
+import java.time.ZonedDateTime;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -53,7 +55,7 @@ public class Calculator {
         System.out.println();
     }
 
-    public Integer eval(Expression e){
+    public CalculatorValue eval(Expression e){
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process
@@ -66,6 +68,7 @@ public class Calculator {
         // and return the result of the evaluation at the end of the process
         return v.getResult();
     }
+
 
     public Double convert(String inputUnit, String outputUnit, double inputAmount){
         return convertor.convert(inputUnit, outputUnit, inputAmount);

@@ -1,7 +1,8 @@
 package visitor;
 
+import calculator.*;
+import calculator.CalculatorValue;
 import calculator.Expression;
-import calculator.MyNumber;
 import calculator.Notation;
 import calculator.Operation;
 
@@ -21,7 +22,7 @@ public class Printer extends Visitor {
     }
 
     @Override
-    public void visit(MyNumber n) {
+    public void visit(CalculatorValue n) {
         result = n.toString();
     }
 
@@ -55,6 +56,11 @@ public class Printer extends Visitor {
             default:
                 result = "This case should never occur.";
         }
+    }
+
+    //TODO
+    public void visit(MyTime myTime) {
+        result = myTime.toString();
     }
 
     public void setSeparator(String separator) {
