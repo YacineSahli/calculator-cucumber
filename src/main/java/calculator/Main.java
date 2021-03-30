@@ -62,6 +62,12 @@ public class Main {
 		e = new Divides(params5);
 		c.print(e);
 		c.eval(e);
+
+		List<Expression> params6 = new ArrayList<>();
+		Collections.addAll(params6, new IntegerNumber(5), new RationalNumber(1, 2));
+		e = new Plus(params6);
+		c.print(e);
+		c.eval(e);
 	}
 
 	catch(IllegalConstruction exception) {

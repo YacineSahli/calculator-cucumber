@@ -1,22 +1,40 @@
 package calculator;
 
-public class RationalNumber extends CalculatorValue{
+public class RationalNumber extends CalculatorValue {
 
     private final static int ACCURACY = 1;
-    private int num;
-    private int denum;
+
+    private final int num;
+    private final int denum;
 
 
-    public RationalNumber(String strValue) {
-        super(strValue, 1, true);
-    }
-
-    public RationalNumber(int num, int denum){
-        super(num+"/"+denum, 1, true);
+    public RationalNumber(int num, int denum) {
+        super(num + "/" + denum, ACCURACY, true);
+        if (denum == 0) {
+            throw new ArithmeticException("Numerator is zero");
+        }
+        this.num = num;
+        this.denum = denum;
     }
 
     @Override
     public boolean specificEquals(Object o) {
-        return false;
+        if (!(o instanceof RationalNumber)) {
+            return false;
+        }
+        RationalNumber oRat = (RationalNumber) o;
+        return this.num == oRat.getNum() && this.denum == oRat.getDenum();
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public int getDenum() {
+        return denum;
+    }
+
+    public RationalNumber toRationalNumber() {
+        return this;
     }
 }
