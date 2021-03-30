@@ -1,5 +1,8 @@
 package calculator;
 
+import visitor.EvaluatorException;
+import visitor.Visitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,20 +12,38 @@ import java.util.List;
  */
 public abstract class Function implements Expression{
 
-    public List<Expression> args;
+    public Expression arg;
 
-    public Function(List<Expression> elist) throws IllegalConstruction {
-        if (elist == null) {
+    public Function(Expression arg) throws IllegalConstruction {
+        if (arg == null) {
             throw new IllegalConstruction(); }
         else {
-            args = new ArrayList<>(elist);
+            this.arg = arg;
         }
     }
 
-    public List<Expression> getArgs() {
-        return args;
+    public Expression getArg() {
+        return arg;
     }
 
-    abstract public Object apply(Object o);
+    @Override
+    public void accept(Visitor v) throws EvaluatorException {
+        arg.accept(v);
+        v.visit(this);
+    }
 
+    @Override
+    public Integer countDepth() {
+        return 1 + arg.countDepth();
+    }
+
+    @Override
+    public Integer countOps() {
+        return arg.countOps();
+    }
+
+    @Override
+    public Integer countNbs() {
+        return arg.countNbs();
+    }
 }

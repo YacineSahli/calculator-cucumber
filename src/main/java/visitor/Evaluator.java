@@ -2,6 +2,7 @@ package visitor;
 
 import calculator.CalculatorValue;
 import calculator.Expression;
+import calculator.Function;
 import calculator.Operation;
 
 import java.lang.reflect.InvocationTargetException;
@@ -51,6 +52,14 @@ public class Evaluator extends Visitor {
         computedValue = temp;
     }
 
+    @Override
+    public void visit(Function f) throws EvaluatorException {
+        CalculatorValue evaluatedArg;
+        f.arg.accept(this);
+        evaluatedArg = computedValue;
+        // TODO
+    }
+
     /**
      *
      * @param v1 Value downcasted
@@ -58,6 +67,7 @@ public class Evaluator extends Visitor {
      * @param o Operation to apply
      * @return the result of the operation on v1 and v2
      */
+
     public CalculatorValue applyOp(CalculatorValue v1, CalculatorValue v2, Operation o, boolean inverted){
         Class[] arg_types = new Class[]{v1.getClass(), v1.getClass()};
 
@@ -94,5 +104,6 @@ public class Evaluator extends Visitor {
         }
         return result;
     }
+
 
 }
