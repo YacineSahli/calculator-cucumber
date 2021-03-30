@@ -1,20 +1,19 @@
 package junit5tests;
 
 //Import Junit5 libraries for unit testing:
-import static org.junit.jupiter.api.Assertions.*;
-
-import io.cucumber.messages.Messages;
-import org.junit.jupiter.api.*;
 
 import calculator.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import visitor.Evaluator;
 
 import java.text.ParseException;
-import java.time.Duration;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class TestEvaluator {
@@ -39,6 +38,37 @@ public class TestEvaluator {
         duration2 = "PT5H23M31S";
     }
 
+    /* Unary MyTime operation tests
+    @Test
+    public void testEvaluatorDurationUnaryMinus() {
+        try {
+            List<Expression> list = new ArrayList<>();
+            list.add(new MyTime(duration1));
+            op = new Minus(list);
+            assertEquals( "PT23H59M58S",
+                    ((MyTime) calc.eval(op)).toString() );
+        }
+        catch(IllegalConstruction | ParseException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testEvaluatorDurationUnaryPlus() {
+        try {
+            List<Expression> list = new ArrayList<>();
+            list.add(new MyTime(duration1));
+            op = new Minus(list);
+            assertEquals( "PT23H59M58S",
+                    ((MyTime) calc.eval(op)).toString() );
+        }
+        catch(IllegalConstruction | ParseException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+     */
 
     @Test
     public void testEvaluatorDateDifference() {

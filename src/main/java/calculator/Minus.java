@@ -12,11 +12,15 @@ final public class Minus extends Operation {
         neutral = 0;
     }
 
-    public int op(int l, int r) {
-        return (l - r);
+    /*
+        public int op(int l, int r) {
+            return (l - r);
+        }*/
+    public CalculatorValue op(IntegerNumber l, IntegerNumber r) {
+        return new IntegerNumber(l.getValue() - r.getValue());
     }
 
-    public MyTime op(MyTime l, MyTime r) {
+    public CalculatorValue op(MyTime l, MyTime r) {
         if (l.getZonedDateTime() != null) {
             if (r.getZonedDateTime() != null) {
                 return new MyTime(Duration.between(r.getZonedDateTime(), l.getZonedDateTime()));
@@ -33,5 +37,10 @@ final public class Minus extends Operation {
                 return new MyTime(l.getLocalTime().minus(r.getLocalTime()));
             }
         }
+    }
+
+    public CalculatorValue op(MyTime r) {
+        MyTime l = new MyTime(ZonedDateTime.now());
+        return op(l, r);
     }
 }

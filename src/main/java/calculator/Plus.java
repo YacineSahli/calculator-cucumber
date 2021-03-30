@@ -20,7 +20,7 @@ final public class Plus extends Operation
 		return new IntegerNumber(l.getValue()+r.getValue());
 	}
 
-	public MyTime op(MyTime l, MyTime r) {
+	public CalculatorValue op(MyTime l, MyTime r) {
 		if (l.getZonedDateTime() != null) {
 			// Not meaningful to add two ZonedDateTime
 			if (r.getZonedDateTime() != null) {

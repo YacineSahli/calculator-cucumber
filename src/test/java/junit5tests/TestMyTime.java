@@ -17,7 +17,7 @@ public class TestMyTime {
     @Test
     public void testParseIsoDate() throws ParseException {
         time = new MyTime("2020-12-10 10:10:10");
-        assertEquals("2020-12-10 10:10:10 Z",time.toString());
+        assertEquals("2020-12-10 10:10:10",time.toString());
     }
 
     @Test
