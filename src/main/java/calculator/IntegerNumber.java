@@ -1,15 +1,13 @@
 package calculator;
 
-public class IntegerNumber extends CalculatorValue{
+public class IntegerNumber extends CalculatorValue {
 
-    private int value;
+    private final static int ACCURACY = 2;
+    private final int value;
 
-    public IntegerNumber(String strValue){
-        super(strValue, 1, true);
-    }
 
-    public IntegerNumber(int value){
-        super(Integer.toString(value), 1, true);
+    public IntegerNumber(int value) {
+        super(Integer.toString(value), ACCURACY, true);
         this.value = value;
     }
 
@@ -26,7 +24,11 @@ public class IntegerNumber extends CalculatorValue{
         return this.value == oInt.getValue();
     }
 
-    public IntegerNumber toIntegerNumber(){
+    public IntegerNumber toIntegerNumber() {
         return this;
+    }
+
+    public RationalNumber toRationalNumber(){
+        return new RationalNumber(this.value, 1);
     }
 }

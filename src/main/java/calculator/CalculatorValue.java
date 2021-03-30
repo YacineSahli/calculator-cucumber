@@ -6,9 +6,9 @@ public abstract class CalculatorValue implements Expression {
 
     private String strValue;
     protected int accuracyLevel;// ex: 1 is more accurate than 2
-    protected boolean canInteract;
+    protected boolean canInteract;// true if we can apply an operation with other types
 
-    public CalculatorValue(String strValue, int accuracy, boolean canInteract) {
+    protected CalculatorValue(String strValue, int accuracy, boolean canInteract) {
         this.strValue = strValue;
     }
 

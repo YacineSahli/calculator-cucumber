@@ -10,19 +10,14 @@ final public class Divides extends Operation {
         neutral = 1;
     }
 
-    /*
-        public int op(int l, int r) throws ArithmeticException {
-            if (r == 0) {
-                throw new ArithmeticException("Division per zero");
-            } else {
-                return (l / r);
-            }
-        }
-     */
     public CalculatorValue op(IntegerNumber l, IntegerNumber r) throws ArithmeticException {
         if (r.getValue() == 0) {
             throw new ArithmeticException("Division per zero");
         }
         return new IntegerNumber(l.getValue() / r.getValue());
+    }
+
+    public CalculatorValue op(RationalNumber l, RationalNumber r) {
+        return NumberBuilder.builder().build(l.getNum() * r.getDenum(), l.getDenum() * r.getNum());
     }
 }

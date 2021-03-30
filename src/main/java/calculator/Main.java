@@ -65,13 +65,18 @@ public class Main {
 		c.eval(e);
 		System.out.println("---");
 
-
 		List<Expression> params6 = new ArrayList<>();
 		Collections.addAll(params6, new MyTime("2020-12-11 10:10:10"), new MyTime("2020-12-11 10:10:12"));
 		e = new Minus(params6);
 		c.print(e);
 		c.eval(e);
 
+
+		List<Expression> params7 = new ArrayList<>();
+		Collections.addAll(params7, new IntegerNumber(5), new RationalNumber(1, 2));
+		e = new Plus(params7);
+		c.print(e);
+		c.eval(e);
 	}
 
 	catch(IllegalConstruction | ParseException exception) {
