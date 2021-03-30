@@ -58,11 +58,6 @@ public class Printer extends Visitor {
         }
     }
 
-    //TODO
-    public void visit(MyTime myTime) {
-        result = myTime.toString();
-    }
-
     public void setSeparator(String separator) {
         this.separator = separator;
     }

@@ -1,14 +1,9 @@
 package calculator;
 
 public enum Unit {
-    //TODO Accept all symbols when a unit has multiple symbols
-    //TODO Accept plurals symbols
-    //TODO We should use BigDecimal instead of double to avoid precision error, see eV to Joule for example in the
-    // energyConverter test
 
     unknown_unit("U/N", "U/N", "U/N", 0),
 
-    //TODO Add more length unit
     //Length
     km("length", "km", "kilometers", 1000),
     m("length", "m", "meters", 1),
@@ -48,9 +43,8 @@ public enum Unit {
     Torr("pressure", "Torr", "Torr", 133.332),
 
     //Speed
-    //TODO Is there a better way to write m/s than mps ? how to write the / character
     mps("speed","mps","meters/second", 1),
-    kph ("speed","kph","kilometers/hour", 0.2777777777778),
+    kmph ("speed","kph","kilometers/hour", 0.2777777777778),
     mph ("speed", "mph", "miles/hour", 0.44704),
     kts("speed","kts", "knots", 0.514444444444444),
     ftps("speed", "ftps", "feet/second", 0.3048),
@@ -114,8 +108,6 @@ public enum Unit {
 
     }
 
-    //TODO check type of unit in case 2 different type have the same shortname for example nm for nautical miles and
-    // nanometer or throw ambiguous conversion error and ask the user to be more precise
     public static Unit stringToUnit(String s) {
         for (Unit a : Unit.values())
             if (s.equalsIgnoreCase(a.fullName) || s.equals(a.shortName))

@@ -6,14 +6,14 @@ import calculator.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import visitor.Evaluator;
+import visitor.EvaluatorException;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class TestEvaluator {
@@ -222,15 +222,14 @@ public class TestEvaluator {
 
     @Test
     public void testEvaluatorDividesPerZero() {
-        /*try {
+        try {
             op = new Divides(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(zero)));
-            assertThrows(ArithmeticException.class, () -> calc.eval(op)); //todo use when exception fix in evaluator
             assertNull(calc.eval(op));
           }
         catch(IllegalConstruction e) {
             e.printStackTrace();
             fail();
-        }*/
+        }
 
 
     }
