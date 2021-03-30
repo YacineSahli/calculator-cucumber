@@ -22,7 +22,7 @@ public class TestEvaluator {
     private Evaluator visitor;
     private Calculator calc;
     private int value1, value2, zero;
-    private String date1, date2, duration1, duration2;
+    private String date1, date2, duration1, duration2, dateWithTimeZone1, dateWithTimeZone2, dateAMPM1, dateAMPM2;
     private Expression op;
 
     @BeforeEach
@@ -34,6 +34,10 @@ public class TestEvaluator {
         zero = 0;
         date1 = "2020-12-11 10:10:10";
         date2 = "2020-12-10 10:10:12";
+        dateAMPM1 = "2020-12-10 10:10:10 AM";
+        dateAMPM2 = "2020-12-10 10:10:10 PM";
+        dateWithTimeZone1= "2020-12-10 10:10:10 PRC";
+        dateWithTimeZone2= "2020-12-10 10:10:10 CET";
         duration1 = "PT3H40M";
         duration2 = "PT5H23M31S";
     }
@@ -150,7 +154,53 @@ public class TestEvaluator {
         }
     }
 
+    @Test
+    public void testEvaluatorDateWithZoneDifference() {
+        try {
+            List<Expression> list = new ArrayList<>();
+            list.add(new MyTime(dateWithTimeZone1));
+            list.add(new MyTime(dateWithTimeZone2));
+            op = new Minus(list);
+            assertEquals( "PT-7H",
+                    ((MyTime) calc.eval(op)).toString() );
+        }
+        catch(IllegalConstruction | ParseException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
 
+    @Test
+    public void testEvaluatorDateAMPMDifference() {
+        try {
+            List<Expression> list = new ArrayList<>();
+            list.add(new MyTime(dateAMPM1));
+            list.add(new MyTime(dateAMPM2));
+            op = new Minus(list);
+            assertEquals( "PT-12H",
+                    ((MyTime) calc.eval(op)).toString() );
+        }
+        catch(IllegalConstruction | ParseException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testEvaluatorDateAMPMMixedWithDateZoneDifference() {
+        try {
+            List<Expression> list = new ArrayList<>();
+            list.add(new MyTime(dateAMPM1));
+            list.add(new MyTime(dateWithTimeZone2));
+            op = new Minus(list);
+            assertEquals( "PT1H",
+                    ((MyTime) calc.eval(op)).toString() );
+        }
+        catch(IllegalConstruction | ParseException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
 
 
 
