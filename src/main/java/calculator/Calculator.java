@@ -1,13 +1,29 @@
 package calculator;
 
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.eclipse.core.internal.utils.Convert;
 import visitor.Evaluator;
 import visitor.Printer;
 import visitor.EvaluatorException;
 
 import java.time.ZonedDateTime;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.Scanner;
+
+import static calculator.Currency.stringToCurrency;
+import static calculator.Unit.stringToUnit;
+
 public class Calculator {
+    Convertor convertor = new Convertor();
 
     /*
      For the moment the calculator only contains a print method and an eval method
@@ -53,6 +69,14 @@ public class Calculator {
         return v.getResult();
     }
 
+
+    public Double convert(String inputUnit, String outputUnit, double inputAmount){
+        return convertor.convert(inputUnit, outputUnit, inputAmount);
+    }
+
+    public Double convert(String input){
+        return convertor.convert(input);
+    }
 
     /*
      We could also have other methods, e.g. to verify whether an expression is syntactically correct
