@@ -1,5 +1,6 @@
 package calculator;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -62,9 +63,18 @@ public class Main {
 		e = new Divides(params5);
 		c.print(e);
 		c.eval(e);
+		System.out.println("---");
+
+
+		List<Expression> params6 = new ArrayList<>();
+		Collections.addAll(params6, new MyTime("2020-12-11 10:10:10"), new MyTime("2020-12-11 10:10:12"));
+		e = new Minus(params6);
+		c.print(e);
+		c.eval(e);
+
 	}
 
-	catch(IllegalConstruction exception) {
+	catch(IllegalConstruction | ParseException exception) {
 		System.out.println("cannot create operations without parameters");
 		}
  	}

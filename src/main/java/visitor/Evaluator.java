@@ -87,9 +87,10 @@ public class Evaluator extends Visitor {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            //todo check what kind of exception is it.
-            //for example, this exception is throw when the ArithmeticException is throw in divide
-            e.printStackTrace();
+            if(e.getCause() instanceof  ArithmeticException);
+            else{
+                e.getCause().printStackTrace();
+            }
         }
         return result;
     }
