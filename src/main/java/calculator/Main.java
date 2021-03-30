@@ -67,10 +67,16 @@ public class Main {
 
 
 		List<Expression> params6 = new ArrayList<>();
-		Collections.addAll(params6, new MyTime("2020-12-11 10:10:10"), new MyTime("2020-12-11 10:10:12"));
+		Collections.addAll(params6, new MyTime("2020-12-24 10:10:10"), new MyTime("2020-12-11 15:41:12"));
 		e = new Minus(params6);
 		c.print(e);
-		c.eval(e);
+		MyTime res = (MyTime) c.eval(e);
+		System.out.println("Formatted result: " + res.toHumanFormat("d"));
+		System.out.println("Formatted result: " + res.toHumanFormat("hours"));
+		System.out.println("Formatted result: " + res.toHumanFormat("Minutes"));
+		System.out.println("Formatted result: " + res.toHumanFormat("SECONDS"));
+
+
 
 	}
 
