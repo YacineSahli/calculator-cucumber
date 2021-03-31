@@ -59,7 +59,23 @@ public class Evaluator extends Visitor {
         CalculatorValue evaluatedArg;
         f.arg.accept(this);
         evaluatedArg = computedValue;
-        // TODO
+        Class valueType = evaluatedArg.getClass();
+        CalculatorValue temp = null;
+        try {
+            Method fun = f.getClass().getMethod("apply", valueType);
+
+            temp = (CalculatorValue) fun.invoke(f,evaluatedArg);
+        } catch (NoSuchMethodException | IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            if(e.getCause() instanceof  ArithmeticException){
+                throw new EvaluatorException("Impossible to evaluate the operation: "+e.getMessage(), f);
+            }
+            else{
+                throw new EvaluatorException("Impossible to evaluate the operation: "+e.getMessage(), f);
+            }
+        }
+        computedValue = temp;
     }
 
     /**

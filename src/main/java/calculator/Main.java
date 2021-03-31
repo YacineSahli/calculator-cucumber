@@ -1,5 +1,8 @@
 package calculator;
 
+import calculator.Boolean.MyBoolean;
+import calculator.Boolean.Not;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -75,14 +78,17 @@ public class Main {
 		System.out.println("Formatted result: " + res.toHumanFormat("Minutes"));
 		System.out.println("Formatted result: " + res.toHumanFormat("SECONDS"));
 
-
-
-
 		List<Expression> params7 = new ArrayList<>();
 		Collections.addAll(params7, new IntegerNumber(5), new RationalNumber(1, 2));
 		e = new Plus(params7);
 		c.print(e);
 		c.eval(e);
+
+		MyBoolean params8 = new MyBoolean(0);
+		e = new Not(params8);
+		c.print(e);
+		c.eval(e);
+
 	}
 
 	catch(IllegalConstruction | ParseException exception) {
