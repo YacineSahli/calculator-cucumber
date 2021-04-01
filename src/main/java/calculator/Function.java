@@ -3,14 +3,10 @@ package calculator;
 import visitor.EvaluatorException;
 import visitor.Visitor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
 
-/**
- * TODO EXPERIMENTAL
- * TO complete
- */
-public abstract class Function implements Expression{
+
+public abstract class Function extends ComputableExpression implements Expression{
 
     public Expression arg;
 
@@ -19,11 +15,16 @@ public abstract class Function implements Expression{
             throw new IllegalConstruction(); }
         else {
             this.arg = arg;
+            funcName = "apply";
         }
     }
 
     public Expression getArg() {
         return arg;
+    }
+
+    public CalculatorValue apply(CalculatorValue ... args) throws InvocationTargetException{
+        return op(args);
     }
 
     @Override
@@ -39,7 +40,7 @@ public abstract class Function implements Expression{
 
     @Override
     public Integer countOps() {
-        return arg.countOps();
+        return 1+arg.countOps();
     }
 
     @Override

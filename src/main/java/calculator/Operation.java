@@ -3,12 +3,17 @@ package calculator;
 import visitor.EvaluatorException;
 import visitor.Visitor;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
-public abstract class Operation implements Expression {
+public abstract class Operation extends ComputableExpression implements Expression {
     public List<Expression> args;
     protected String symbol;
     protected int neutral; // the neutral element of the operation (e.g. 1 for *, 0 for +)
@@ -21,6 +26,7 @@ public abstract class Operation implements Expression {
             throw new IllegalConstruction();
         } else {
             args = new ArrayList<>(elist);
+            funcName = "op";
         }
     }
 

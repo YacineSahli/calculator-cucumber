@@ -10,6 +10,8 @@ public abstract class CalculatorValue implements Expression {
 
     protected CalculatorValue(String strValue, int accuracy, boolean canInteract) {
         this.strValue = strValue;
+        this.canInteract = canInteract;
+        this.accuracyLevel = accuracy;
     }
 
     public void accept(Visitor v) {
