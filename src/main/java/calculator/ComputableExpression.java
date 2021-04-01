@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.stream.Stream;
 
 public abstract class ComputableExpression {
-
+    public String symbol;
     protected String funcName;
 
     public CalculatorValue op(CalculatorValue... args) throws InvocationTargetException {
