@@ -9,6 +9,7 @@ import visitor.Evaluator;
 import visitor.EvaluatorException;
 
 import java.text.ParseException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,15 +44,15 @@ public class TestEvaluator {
         duration2 = "PT5H23M31S";
     }
 
-    /* Unary MyTime operation tests
+    // Unary MyTime operation tests
     @Test
     public void testEvaluatorDurationUnaryMinus() {
         try {
             List<Expression> list = new ArrayList<>();
-            list.add(new MyTime(duration1));
-            op = new Minus(list);
-            assertEquals( "PT23H59M58S",
-                    ((MyTime) calc.eval(op)).toString() );
+            MyTime time = new MyTime(duration1);
+            op = new MinusFunction(time);
+            assertEquals(ZonedDateTime.now().minus(time.getAsDuration()).toEpochSecond(),
+                    ((MyTime) calc.eval(op)).getZonedDateTime().toEpochSecond(),0.01);
         }
         catch(IllegalConstruction | ParseException e) {
             e.printStackTrace();
@@ -63,17 +64,17 @@ public class TestEvaluator {
     public void testEvaluatorDurationUnaryPlus() {
         try {
             List<Expression> list = new ArrayList<>();
-            list.add(new MyTime(duration1));
-            op = new Minus(list);
-            assertEquals( "PT23H59M58S",
-                    ((MyTime) calc.eval(op)).toString() );
+            MyTime time = new MyTime(duration1);
+            op = new PlusFunction(time);
+            assertEquals(ZonedDateTime.now().plus(time.getAsDuration()).toEpochSecond(),
+                    ((MyTime) calc.eval(op)).getZonedDateTime().toEpochSecond(),0.01);
         }
         catch(IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
     }
-     */
+
 
     @Test
     public void testEvaluatorDateDifference() {
