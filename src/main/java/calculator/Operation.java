@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 public abstract class Operation extends ComputableExpression implements Expression {
     public List<Expression> args;
     protected String symbol;
-    protected int neutral; // the neutral element of the operation (e.g. 1 for *, 0 for +)
+    protected Integer neutral; // the neutral element of the operation (e.g. 1 for *, 0 for +)
 
     // It is not allowed to create operation that have a null list of arguments.
     // Note that it is allowed to have an EMPTY list of arguments.
