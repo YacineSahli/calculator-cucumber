@@ -22,7 +22,7 @@ public abstract class Function extends ComputableExpression implements Expressio
         return arg;
     }
 
-    public CalculatorValue apply(CalculatorValue ... args) throws InvocationTargetException{
+    public CalculatorValue apply(CalculatorValue ... args) throws InvocationTargetException, NoSuchMethodException {
         return op(args);
     }
 
@@ -45,5 +45,23 @@ public abstract class Function extends ComputableExpression implements Expressio
     @Override
     public Integer countNbs() {
         return arg.countNbs();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Function function = (Function) o;
+
+        return arg.equals(function.arg);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + arg.hashCode();
+        return result;
     }
 }

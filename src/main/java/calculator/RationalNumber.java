@@ -11,7 +11,7 @@ public class RationalNumber extends CalculatorValue {
     public RationalNumber(int num, int denum) {
         super(num + "/" + denum, ACCURACY, true);
         if (denum == 0) {
-            throw new ArithmeticException("Numerator is zero");
+            throw new ArithmeticException("Denominator is zero");
         }
         this.num = num;
         this.denum = denum;
