@@ -48,7 +48,6 @@ public class TestEvaluator {
     @Test
     public void testEvaluatorDurationUnaryMinus() {
         try {
-            List<Expression> list = new ArrayList<>();
             MyTime time = new MyTime(duration1);
             op = new MinusFunction(time);
             assertEquals(ZonedDateTime.now().minus(time.getAsDuration()).toEpochSecond(),
@@ -63,7 +62,6 @@ public class TestEvaluator {
     @Test
     public void testEvaluatorDurationUnaryPlus() {
         try {
-            List<Expression> list = new ArrayList<>();
             MyTime time = new MyTime(duration1);
             op = new PlusFunction(time);
             assertEquals(ZonedDateTime.now().plus(time.getAsDuration()).toEpochSecond(),
