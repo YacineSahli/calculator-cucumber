@@ -4,6 +4,7 @@ public class Invert extends Function{
 
     public Invert(Expression arg) throws IllegalConstruction {
         super(arg);
+        symbol = "<>";
     }
 
     public CalculatorValue apply(IntegerNumber i){
