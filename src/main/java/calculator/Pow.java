@@ -15,7 +15,10 @@ public class Pow extends Operation{
         return new IntegerNumber((int) pow(a.getValue(), b.getValue()));
     }
 
-    public CalculatorValue op(RationalNumber a, IntegerNumber b){
-        return NumberBuilder.builder().build((int) pow(a.getNum(), b.getValue()), (int) pow(a.getDenum(), b.getValue()));
+    public CalculatorValue op(RationalNumber a, RationalNumber b){
+        if(b.getDenum() != 1)
+            throw new IllegalArgumentException("Can't use rational number as exponent");
+        IntegerNumber bInt = new IntegerNumber(b.getNum());
+        return NumberBuilder.builder().build((int) pow(a.getNum(), bInt.getValue()), (int) pow(a.getDenum(), bInt.getValue()));
     }
 }

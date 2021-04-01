@@ -1,7 +1,6 @@
 package calculator;
 
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class MyRandom {
 
@@ -15,25 +14,16 @@ public class MyRandom {
         generator = new Random();
     }
 
-    public CalculatorValue generate(Class<IntegerNumber> c, IntegerNumber bound){
-        return new IntegerNumber(generator.nextInt(bound.getValue()+1));
+    public CalculatorValue nextInt(){
+        return new IntegerNumber(generator.nextInt());
     }
 
-    public CalculatorValue generate(Class<RationalNumber> c, RationalNumber bound){
+    public CalculatorValue nextRational(){
         int num, denum = 0;
         num = generator.nextInt();
-        int bNum = bound.getNum();
-        Integer threshold = null;
-        if(bNum == 0){
-            denum = -generator.nextInt();
-        }else{
-            threshold = num * bound.getDenum() / bound.getNum();
-        }
-        if (bNum > 0){
-            denum = generator.ints(1, threshold, Integer.MAX_VALUE).toArray()[0];
-
-        }else if(bNum < 0){
-            denum = generator.nextInt(threshold);
+        denum = generator.nextInt();
+        while(denum ==0){
+            denum = generator.nextInt();
         }
         return new RationalNumber(num, denum);
     }

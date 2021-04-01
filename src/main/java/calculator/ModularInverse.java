@@ -1,6 +1,5 @@
 package calculator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ModularInverse extends Operation{
@@ -23,7 +22,7 @@ public class ModularInverse extends Operation{
         return result;
     }
 
-    public CalculatorValue apply(IntegerNumber a, IntegerNumber m){
+    public CalculatorValue op(IntegerNumber a, IntegerNumber m){
         int[] egcd = egcd(a.getValue(), m.getValue());
         if(egcd[0] !=1){
             throw new ArithmeticException("modular inverse does not exist");

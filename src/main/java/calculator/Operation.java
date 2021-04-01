@@ -99,7 +99,10 @@ public abstract class Operation extends ComputableExpression implements Expressi
 	public int hashCode()
 	{
 		int result = 5, prime = 31;
-		result = prime * result + neutral;
+		if(neutral != null)
+		    result = prime * result + neutral;
+		else
+		    result = prime * result + "null".hashCode();
 		result = prime * result + symbol.hashCode();
 		result = prime * result + args.hashCode();
 		return result;

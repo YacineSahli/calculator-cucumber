@@ -31,6 +31,8 @@ public class Evaluator extends Visitor {
             computedValue = f.apply(evaluatedArg);
         } catch (InvocationTargetException e) {
             throw new EvaluatorException("Impossible to evaluate the expression: "+e.getCause().getMessage(), f);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
         }
     }
 
@@ -48,7 +50,11 @@ public class Evaluator extends Visitor {
             try {
                 temp = o.op(temp,evaluatedArgs.get(counter));
             }catch (InvocationTargetException e) {
+                e.printStackTrace();
                 throw new EvaluatorException("Impossible to evaluate the expression: "+e.getCause().getMessage(), o);
+            }catch (NoSuchMethodException e){
+                throw new EvaluatorException("Operation "+o.toString()+" don't exist for: "+ temp.getClass().getName()
+                        +" and "+evaluatedArgs.get(counter).getClass().getName(), o);
             }
         }
         // store the accumulated result
