@@ -48,12 +48,15 @@ public class Convertor {
             e.printStackTrace();
         }
 
-
         String json = sc.nextLine();
+        double rate = getRateFromJson(json, outputUnit);
+        return inputAmount * rate;
+    }
+
+    public double getRateFromJson(String json, String outputUnit){
         JsonElement jsonElement = new JsonParser().parse(json);
         JsonObject jsonObject = jsonElement.getAsJsonObject();
-        double rate = Double.parseDouble(jsonObject.get("rates").getAsJsonObject().get(outputUnit).toString());
-        return inputAmount * rate;
+        return Double.parseDouble(jsonObject.get("rates").getAsJsonObject().get(outputUnit).toString());
     }
 
     public Double convertUnit(String inputUnit, String outputUnit, double inputAmount){
