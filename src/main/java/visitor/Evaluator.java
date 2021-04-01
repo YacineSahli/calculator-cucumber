@@ -50,7 +50,6 @@ public class Evaluator extends Visitor {
             try {
                 temp = o.op(temp,evaluatedArgs.get(counter));
             }catch (InvocationTargetException e) {
-                e.printStackTrace();
                 throw new EvaluatorException("Impossible to evaluate the expression: "+e.getCause().getMessage(), o);
             }catch (NoSuchMethodException e){
                 throw new EvaluatorException("Operation "+o.toString()+" don't exist for: "+ temp.getClass().getName()
