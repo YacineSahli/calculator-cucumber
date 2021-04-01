@@ -33,7 +33,7 @@ public class Convertor {
         URL url = null;
         Scanner sc = null;
         try {
-            url = new URL("https://api.exchangeratesapi.io/latest?base=" + inputUnit + "&symbols=" + outputUnit);
+            url = new URL("https://api.exchangerate.host/latest&base=" + inputUnit + "&symbols=" + outputUnit);
             HttpURLConnection conn = null;
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
