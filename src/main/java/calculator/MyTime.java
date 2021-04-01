@@ -17,6 +17,7 @@ public class MyTime extends CalculatorValue {
     private ZonedDateTime date = null;
     private Duration time = null;
     private DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
+    private ZoneId zoneId;
     private final static int ACCURACY = 1;
 
 
