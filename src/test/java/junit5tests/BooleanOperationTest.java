@@ -8,7 +8,6 @@ import calculator.Expression;
 import calculator.IllegalConstruction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import visitor.Evaluator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BooleanOperationTest {
-    private Evaluator visitor;
     private Calculator calc;
     private MyBoolean first, second;
     private List<Expression> args;
@@ -24,7 +22,6 @@ public class BooleanOperationTest {
 
     @BeforeEach
     public void setUp() {
-        visitor = new Evaluator();
         calc = new Calculator();
 
 

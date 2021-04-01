@@ -59,7 +59,7 @@ public class MyTime extends CalculatorValue {
         return time;
     }
 
-    Duration parseTime(String s) throws ParseException {
+    private Duration parseTime(String s) throws ParseException {
         try {
             return Duration.parse(s);
         } catch (DateTimeParseException e) {
@@ -67,7 +67,7 @@ public class MyTime extends CalculatorValue {
         }
     }
 
-    ZonedDateTime parseDate(String s) throws ParseException {
+    private ZonedDateTime parseDate(String s) throws ParseException {
         List<DateTimeFormatter> knownPatterns = new ArrayList<DateTimeFormatter>();
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z"));
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm z"));
@@ -198,7 +198,6 @@ public class MyTime extends CalculatorValue {
 
         if (fractional) return toHumanFormat(outputUnit);
         Duration d = this.getAsDuration();
-        Double res;
         switch (outputUnit) {
             case "DAYS":
                 return formatDays.apply("%sDAYS %sHOURS %sMINUTES %sSECONDS", d);

@@ -62,7 +62,7 @@ public class TestTimes {
     @SuppressWarnings("ConstantConditions")
     @Test
     public void testEquals2() {
-        assertDoesNotThrow(() -> op.equals(null)); // Direct way to to test if the null case is handled.
+        assertDoesNotThrow(() -> op == null); // Direct way to to test if the null case is handled.
     }
 
     @Test
