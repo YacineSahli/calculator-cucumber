@@ -7,7 +7,6 @@ import java.lang.reflect.InvocationTargetException;
 
 
 public abstract class Function extends ComputableExpression implements Expression{
-
     public Expression arg;
 
     public Function(Expression arg) throws IllegalConstruction {
