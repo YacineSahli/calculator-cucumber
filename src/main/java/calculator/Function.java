@@ -27,6 +27,12 @@ public abstract class Function extends ComputableExpression implements Expressio
     }
 
     @Override
+    public String toString() {
+        return symbol;
+    }
+
+
+    @Override
     public void accept(Visitor v) throws EvaluatorException {
         arg.accept(v);
         v.visit(this);

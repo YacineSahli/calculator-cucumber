@@ -10,6 +10,7 @@ public class Not extends Function {
 
     public Not(Expression exp) throws IllegalConstruction {
         super(exp);
+        symbol = "!";
     }
 
 
