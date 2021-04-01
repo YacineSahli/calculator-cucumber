@@ -77,6 +77,7 @@ public class Main {
 		System.out.println("Formatted result: " + res.toHumanFormat("hours"));
 		System.out.println("Formatted result: " + res.toHumanFormat("Minutes"));
 		System.out.println("Formatted result: " + res.toHumanFormat("SECONDS"));
+		System.out.println("");
 
 		List<Expression> params7 = new ArrayList<>();
 		Collections.addAll(params7, new IntegerNumber(5), new RationalNumber(1, 2));

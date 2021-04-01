@@ -1,13 +1,16 @@
 package visitor;
 
-import calculator.CalculatorValue;
-import calculator.Expression;
-import calculator.Function;
-import calculator.Operation;
+import calculator.*;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Evaluator extends Visitor {
 
@@ -17,6 +20,18 @@ public class Evaluator extends Visitor {
 
     public void visit(CalculatorValue v){
         computedValue = v;
+    }
+
+    @Override
+    public void visit(Function f) throws EvaluatorException {
+        CalculatorValue evaluatedArg;
+        f.arg.accept(this);
+        evaluatedArg = computedValue;
+        try {
+            computedValue = f.apply(evaluatedArg);
+        } catch (InvocationTargetException e) {
+            throw new EvaluatorException("Impossible to evaluate the expression: "+e.getCause().getMessage(), f);
+        }
     }
 
     public void visit(Operation o) throws EvaluatorException {
@@ -29,97 +44,14 @@ public class Evaluator extends Visitor {
         //second loop to accummulate all the evaluated subresults
         CalculatorValue temp = evaluatedArgs.get(0);
         int max = evaluatedArgs.size();
-        CalculatorValue evaluated;
         for(int counter=1; counter<max; counter++) {
             try {
-                //temp = o.op(temp, evaluatedArgs.get(counter));
-                evaluated = evaluatedArgs.get(counter);
-                if((temp.getAccuracyLevel()>=evaluated.getAccuracyLevel()) || (temp.canInteract() && evaluated.canInteract())){
-                    temp = applyOp(evaluated,temp,o, true);
-                }else if(temp.getAccuracyLevel()<evaluated.getAccuracyLevel()){
-                    temp = applyOp(temp, evaluated,o, false);
-                }else{
-                    throw new EvaluatorException("cannot apply an operation between "+temp.toString()+" and "+
-                            evaluated.toString(), o);
-                }
-
-            }catch (ArithmeticException e){
-                // If a problem is encountered during the evaluation, throw a EvaluatorException
-                throw new EvaluatorException("Impossible to evaluate the operation: "+e.getMessage(), o);
-            } catch (InvocationTargetException e) {
-                throw new EvaluatorException("Impossible to evaluate the expression: "+e.getMessage(), o);
+                temp = o.op(temp,evaluatedArgs.get(counter));
+            }catch (InvocationTargetException e) {
+                throw new EvaluatorException("Impossible to evaluate the expression: "+e.getCause().getMessage(), o);
             }
         }
         // store the accumulated result
         computedValue = temp;
     }
-
-    @Override
-    public void visit(Function f) throws EvaluatorException {
-        CalculatorValue evaluatedArg;
-        f.arg.accept(this);
-        evaluatedArg = computedValue;
-        Class valueType = evaluatedArg.getClass();
-        CalculatorValue temp = null;
-        try {
-            Method fun = f.getClass().getMethod("apply", valueType);
-
-            temp = (CalculatorValue) fun.invoke(f,evaluatedArg);
-        } catch (NoSuchMethodException | IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            if(e.getCause() instanceof  ArithmeticException){
-                throw new EvaluatorException("Impossible to evaluate the operation: "+e.getMessage(), f);
-            }
-            else{
-                throw new EvaluatorException("Impossible to evaluate the operation: "+e.getMessage(), f);
-            }
-        }
-        computedValue = temp;
-    }
-
-    /**
-     *
-     * @param v1 Value downcasted
-     * @param v2 Value converted to v1 Class
-     * @param o Operation to apply
-     * @return the result of the operation on v1 and v2
-     */
-    public CalculatorValue applyOp(CalculatorValue v1, CalculatorValue v2, Operation o, boolean inverted) throws ArithmeticException, InvocationTargetException {
-        Class[] arg_types = new Class[]{v1.getClass(), v1.getClass()};
-
-        String[] v1CLassName = v1.getClass().getName().split("\\.");//get the subclass name of v1
-
-        /* Generate the name of the convert method
-         * WARNING: this method must be implemented in v2 !!
-         */
-        String convertFuncName = "to"+v1CLassName[v1CLassName.length-1];
-
-        Method convertMethod = null;
-        CalculatorValue result = null;
-        try {
-            // get the convert method
-            convertMethod = v2.getClass().getMethod(convertFuncName);
-
-            //apply the opeperation on v1 and v2 that have the same type
-            //result = (CalculatorValue) o.getClass().getMethod("op", arg_types).invoke(o, v1, convertMethod.invoke(v2));
-            Method op = o.getClass().getMethod("op", arg_types);
-            if(inverted){
-                result = (CalculatorValue) op.invoke(o, convertMethod.invoke(v2), v1);
-            }else{
-                result = (CalculatorValue) op.invoke(o, v1, convertMethod.invoke(v2));
-            }
-        } catch (NoSuchMethodException | IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            if(e.getCause() instanceof  ArithmeticException){
-                throw (ArithmeticException) e.getCause();
-            }
-            else{
-                throw e;
-            }
-        }
-        return result;
-    }
-
 }
