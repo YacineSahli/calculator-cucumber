@@ -10,7 +10,7 @@ public abstract class ComputableExpression {
     protected String symbol;
     protected String funcName;
 
-    public CalculatorValue op(CalculatorValue... args) throws InvocationTargetException {
+    public CalculatorValue op(CalculatorValue... args) throws InvocationTargetException, NoSuchMethodException {
         CalculatorValue most_accurate_item = Arrays.stream(args).max((o1, o2) -> o2.accuracyLevel - o1.accuracyLevel).get();
 
         Class targetClass = most_accurate_item.getClass();
@@ -37,9 +37,26 @@ public abstract class ComputableExpression {
             return (CalculatorValue) fun.invoke(this, convertedArgs);
         } catch (InvocationTargetException e) {
             throw e;
+        } catch (NoSuchMethodException e){
+            throw e;
         } catch (Exception error) {
             error.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ComputableExpression that = (ComputableExpression) o;
+
+        return funcName.equals(that.funcName);
+    }
+
+    @Override
+    public int hashCode() {
+        return funcName.hashCode();
     }
 }

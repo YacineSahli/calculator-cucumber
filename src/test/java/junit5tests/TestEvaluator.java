@@ -3,11 +3,13 @@ package junit5tests;
 //Import Junit5 libraries for unit testing:
 
 import calculator.*;
+import io.cucumber.java.sl.In;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import visitor.Evaluator;
 import visitor.EvaluatorException;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +26,8 @@ public class TestEvaluator {
     private int value1, value2, value3, zero;
     private String date1, date2, duration1, duration2, dateWithTimeZone1, dateWithTimeZone2, dateAMPM1, dateAMPM2;
     private Expression op;
+    private IntegerNumber i1, i2, minusI2;
+    private RationalNumber r1, r2, minusR2;
 
     @BeforeEach
     public void setUp() {
@@ -41,6 +45,13 @@ public class TestEvaluator {
         dateWithTimeZone2= "2020-12-10 10:10:10 CET";
         duration1 = "PT3H40M";
         duration2 = "PT5H23M31S";
+        i1 = new IntegerNumber(value1);
+        i2 = new IntegerNumber(value2);
+        minusI2 = new IntegerNumber(-value2);
+        r1 = new RationalNumber(value1, value2);
+        r2 = new RationalNumber(value3, value1);
+        minusR2 = new RationalNumber(-value3, value1);
+
     }
 
     /* Unary MyTime operation tests
@@ -337,4 +348,80 @@ public class TestEvaluator {
             fail();
         }
     }
+
+    @Test
+    public void testAbs(){
+        try {
+            op = new Abs(minusI2);
+            assertEquals(i2,calc.eval(op));
+            op = new Abs(minusR2);
+            assertEquals(r2, calc.eval(op));
+            op = new Abs(r2);
+            assertEquals(r2, calc.eval(op));
+            op = new Abs(i2);
+            assertEquals(i2, calc.eval(op));
+
+        } catch (IllegalConstruction illegalConstruction) {
+            illegalConstruction.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testInvert(){
+        try {
+            op = new Invert(i1);
+            assertEquals(new RationalNumber(1, i1.getValue()), calc.eval(op));
+            op = new Invert(r1);
+            assertEquals(new RationalNumber(r1.getDenum(), r1.getNum()), calc.eval(op));
+        } catch (IllegalConstruction illegalConstruction) {
+            illegalConstruction.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testModularInverse(){
+        try {
+            op = new ModularInverse(Arrays.asList(i1, i2));
+            assertNull(calc.eval(op));
+            op = new ModularInverse(Arrays.asList(i1, r2));
+            assertNull(calc.eval(op));
+            op = new ModularInverse(Arrays.asList(new IntegerNumber(3),new IntegerNumber(11)));
+            assertEquals(new IntegerNumber(4), calc.eval(op));
+
+        } catch (IllegalConstruction illegalConstruction) {
+            illegalConstruction.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testModulo(){
+        try {
+            op = new Modulo(Arrays.asList(i1, i2));
+            assertEquals(new IntegerNumber(i1.getValue()%i2.getValue()), calc.eval(op));
+            op = new Modulo(Arrays.asList(i1, r2));
+            assertNull(calc.eval(op));
+
+        } catch (IllegalConstruction illegalConstruction) {
+            illegalConstruction.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testPow(){
+        try {
+            op = new Pow(Arrays.asList(i1, i2));
+            assertEquals(new IntegerNumber((int) Math.pow(i1.getValue(), i2.getValue())), calc.eval(op));
+
+            op = new Pow(Arrays.asList(r1, i2));
+            assertEquals(new RationalNumber((int)Math.pow(r1.getNum(), i2.getValue()), (int)Math.pow(r1.getDenum(), i2.getValue())), calc.eval(op));
+        } catch (IllegalConstruction illegalConstruction) {
+            illegalConstruction.printStackTrace();
+            fail();
+        }
+    }
+
 }
