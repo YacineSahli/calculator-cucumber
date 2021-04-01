@@ -5,7 +5,8 @@ import calculator.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class IntegerNumberTest {
 
@@ -31,7 +32,7 @@ class IntegerNumberTest {
     }
 
     @Test
-    void toRationalNumber(){
+    void toRationalNumber() {
         assertEquals(new RationalNumber(value1, 1), number.toRationalNumber());
     }
 

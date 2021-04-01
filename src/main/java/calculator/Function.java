@@ -6,13 +6,13 @@ import visitor.Visitor;
 import java.lang.reflect.InvocationTargetException;
 
 
-public abstract class Function extends ComputableExpression implements Expression{
+public abstract class Function extends ComputableExpression implements Expression {
     public Expression arg;
 
     public Function(Expression arg) throws IllegalConstruction {
         if (arg == null) {
-            throw new IllegalConstruction(); }
-        else {
+            throw new IllegalConstruction();
+        } else {
             this.arg = arg;
             funcName = "apply";
         }
@@ -22,7 +22,7 @@ public abstract class Function extends ComputableExpression implements Expressio
         return arg;
     }
 
-    public CalculatorValue apply(CalculatorValue ... args) throws InvocationTargetException, NoSuchMethodException {
+    public CalculatorValue apply(CalculatorValue... args) throws InvocationTargetException, NoSuchMethodException {
         return op(args);
     }
 
@@ -45,7 +45,7 @@ public abstract class Function extends ComputableExpression implements Expressio
 
     @Override
     public Integer countOps() {
-        return 1+arg.countOps();
+        return 1 + arg.countOps();
     }
 
     @Override

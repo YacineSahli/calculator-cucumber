@@ -40,7 +40,7 @@ public enum Currency {
 
     public final String ticker;
 
-    Currency(String sticker){
+    Currency(String sticker) {
         ticker = sticker;
     }
 

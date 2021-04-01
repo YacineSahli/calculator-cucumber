@@ -7,16 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class TestMassConverter {
-    private Calculator c = new Calculator();
+    private final Calculator c = new Calculator();
 
 
     @Test
     public void testTonToGrams() {
-        assertEquals(1000000, c.convert("t", "g", 1),  0);
+        assertEquals(1000000, c.convert("t", "g", 1), 0);
     }
 
     @Test
     public void testPoundsToOunzes() {
-        assertEquals(16, c.convert("lb", "ounzes", 1),  0.0001);
+        assertEquals(16, c.convert("lb", "ounzes", 1), 0.0001);
     }
 }

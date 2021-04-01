@@ -1,16 +1,16 @@
 package junit5tests;
 
 import calculator.*;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.*;
-import visitor.Printer;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import visitor.EvaluatorException;
+import visitor.Printer;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestPrinter {
 
@@ -18,11 +18,11 @@ public class TestPrinter {
     private Expression e1, e2;
 
     @BeforeEach
-    public void SetUp(){
+    public void SetUp() {
         List<Expression> params = new ArrayList<>();//plus
         Collections.addAll(params, new IntegerNumber(3), new RationalNumber(4, 3), new IntegerNumber(5));
         List<Expression> params2 = new ArrayList<>();//minus
-        Collections.addAll(params2, new RationalNumber(5,7), new IntegerNumber(3));
+        Collections.addAll(params2, new RationalNumber(5, 7), new IntegerNumber(3));
         List<Expression> params3 = new ArrayList<>();//devide
 
         try {
@@ -39,13 +39,13 @@ public class TestPrinter {
     }
 
     @Test
-    public void testPrefix(){
+    public void testPrefix() {
         printer = new Printer(Notation.PREFIX, "#");
         String r;
         try {
             e1.accept(printer);
             r = printer.getResult();
-            assertEquals("+ (3#4/3#5)",r);
+            assertEquals("+ (3#4/3#5)", r);
 
             e2.accept(printer);
             r = printer.getResult();
@@ -57,13 +57,13 @@ public class TestPrinter {
     }
 
     @Test
-    public void testInfix(){
+    public void testInfix() {
         printer = new Printer(Notation.INFIX, "#");
         String r;
         try {
             e1.accept(printer);
             r = printer.getResult();
-            assertEquals("( 3 + 4/3 + 5 )",r);
+            assertEquals("( 3 + 4/3 + 5 )", r);
 
             e2.accept(printer);
             r = printer.getResult();
@@ -75,13 +75,13 @@ public class TestPrinter {
     }
 
     @Test
-    public void testPostfix(){
+    public void testPostfix() {
         printer = new Printer(Notation.POSTFIX, "#");
         String r;
         try {
             e1.accept(printer);
             r = printer.getResult();
-            assertEquals("(3#4/3#5) +",r);
+            assertEquals("(3#4/3#5) +", r);
 
             printer.setSeparator("@");
 

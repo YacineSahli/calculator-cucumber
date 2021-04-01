@@ -37,7 +37,7 @@ public abstract class ComputableExpression {
             return (CalculatorValue) fun.invoke(this, convertedArgs);
         } catch (InvocationTargetException e) {
             throw e;
-        } catch (NoSuchMethodException e){
+        } catch (NoSuchMethodException e) {
             throw e;
         } catch (Exception error) {
             error.printStackTrace();

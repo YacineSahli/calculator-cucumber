@@ -2,19 +2,18 @@ package junit5tests;
 
 //Import Junit5 libraries for unit testing:
 
-import calculator.*;
 import calculator.Boolean.*;
+import calculator.Calculator;
+import calculator.Expression;
+import calculator.IllegalConstruction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import visitor.Evaluator;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class BooleanOperationTest {
     private Evaluator visitor;
@@ -29,10 +28,10 @@ public class BooleanOperationTest {
         calc = new Calculator();
 
 
-
     }
+
     @Test
-    public void testAnd(){
+    public void testAnd() {
         first = new MyBoolean(0);
         second = new MyBoolean(1);
         args = new ArrayList<>();
@@ -45,8 +44,9 @@ public class BooleanOperationTest {
             illegalConstruction.printStackTrace();
         }
     }
+
     @Test
-    public void testOr(){
+    public void testOr() {
         first = new MyBoolean(0);
         second = new MyBoolean(1);
         args = new ArrayList<>();
@@ -59,8 +59,9 @@ public class BooleanOperationTest {
             illegalConstruction.printStackTrace();
         }
     }
+
     @Test
-    public void testXor(){
+    public void testXor() {
         first = new MyBoolean(0);
         second = new MyBoolean(1);
         args = new ArrayList<>();
@@ -73,8 +74,9 @@ public class BooleanOperationTest {
             illegalConstruction.printStackTrace();
         }
     }
+
     @Test
-    public void testImplication(){
+    public void testImplication() {
         first = new MyBoolean(0);
         second = new MyBoolean(1);
         args = new ArrayList<>();
@@ -87,8 +89,9 @@ public class BooleanOperationTest {
             illegalConstruction.printStackTrace();
         }
     }
+
     @Test
-    public void testEquivalence(){
+    public void testEquivalence() {
         first = new MyBoolean(0);
         second = new MyBoolean(1);
         args = new ArrayList<>();
@@ -101,8 +104,6 @@ public class BooleanOperationTest {
             illegalConstruction.printStackTrace();
         }
     }
-
-
 
 
 }

@@ -3,15 +3,8 @@ package calculator;
 import visitor.EvaluatorException;
 import visitor.Visitor;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.time.Duration;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public abstract class Operation extends ComputableExpression implements Expression {
     public List<Expression> args;
@@ -94,16 +87,15 @@ public abstract class Operation extends ComputableExpression implements Expressi
     }
 
     // The method hashCode also needs to be overridden it the equals method is overridden; otherwise there may be problems when you use your object in hashed collections such as HashMap, HashSet, LinkedHashSet
-	@Override
-	public int hashCode()
-	{
-		int result = 5, prime = 31;
-		if(neutral != null)
-		    result = prime * result + neutral;
-		else
-		    result = prime * result + "null".hashCode();
-		result = prime * result + symbol.hashCode();
-		result = prime * result + args.hashCode();
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        int result = 5, prime = 31;
+        if (neutral != null)
+            result = prime * result + neutral;
+        else
+            result = prime * result + "null".hashCode();
+        result = prime * result + symbol.hashCode();
+        result = prime * result + args.hashCode();
+        return result;
+    }
 }

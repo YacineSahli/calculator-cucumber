@@ -1,9 +1,9 @@
 package junit5tests;
 
-import calculator.*;
-import io.cucumber.java.bs.A;
-import io.cucumber.java.sl.In;
-import org.junit.jupiter.api.AfterEach;
+import calculator.CalculatorValue;
+import calculator.IntegerNumber;
+import calculator.MyRandom;
+import calculator.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ class MyRandomTest {
 
     @Test
     void nextRational() {
-        assertDoesNotThrow(()->generator.nextRational());
+        assertDoesNotThrow(() -> generator.nextRational());
         CalculatorValue val = generator.nextRational();
         assertNotNull(val);
         assertEquals(RationalNumber.class, val.getClass());

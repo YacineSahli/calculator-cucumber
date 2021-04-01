@@ -2,11 +2,11 @@ package junit5tests;
 
 import calculator.IntegerNumber;
 import calculator.RationalNumber;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class CalculatorValueTest {
 
@@ -46,7 +46,7 @@ class CalculatorValueTest {
     @Test
     void testEquals() {
         assertNotEquals(integerNumber, null);
-        assertNotEquals(rationalNumber, new String("Hello World !"));
+        assertNotEquals(rationalNumber, "Hello World !");
         assertEquals(integerNumber, integerNumber);
     }
 }

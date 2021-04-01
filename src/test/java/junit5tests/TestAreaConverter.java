@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class TestAreaConverter {
-    private Calculator c = new Calculator();
+    private final Calculator c = new Calculator();
 
 
     @Test

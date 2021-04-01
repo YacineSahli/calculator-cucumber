@@ -1,13 +1,10 @@
 package junit5tests;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-//Import Junit5 libraries for unit testing:
-import static org.junit.jupiter.api.Assertions.*;
-
 import calculator.*;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class AbsTest {
@@ -16,13 +13,16 @@ public class AbsTest {
     private final int value2 = 6;
     private Abs func;
     private Expression param;
-    private Calculator c = new Calculator();
+    private final Calculator c = new Calculator();
 
     @BeforeEach
     public void setUp() {
         param = new IntegerNumber(value1);
-        try { func = new Abs(param); }
-        catch(IllegalConstruction e) { fail(); }
+        try {
+            func = new Abs(param);
+        } catch (IllegalConstruction e) {
+            fail();
+        }
     }
 
     @Test
@@ -47,8 +47,9 @@ public class AbsTest {
             assertEquals(func, e);
             assertEquals(e, e);
             assertNotEquals(e, new Abs(new IntegerNumber(value2)));
+        } catch (IllegalConstruction e) {
+            fail();
         }
-        catch(IllegalConstruction e) { fail(); }
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -62,8 +63,9 @@ public class AbsTest {
         try {
             Abs e = new Abs(param);
             assertEquals(e.hashCode(), func.hashCode());
+        } catch (IllegalConstruction e) {
+            fail();
         }
-        catch(IllegalConstruction e) { fail(); }
     }
 
     @Test

@@ -43,20 +43,20 @@ public enum Unit {
     Torr("pressure", "Torr", "Torr", 133.332),
 
     //Speed
-    mps("speed","mps","meters/second", 1),
-    kmph ("speed","kph","kilometers/hour", 0.2777777777778),
-    mph ("speed", "mph", "miles/hour", 0.44704),
-    kts("speed","kts", "knots", 0.514444444444444),
+    mps("speed", "mps", "meters/second", 1),
+    kmph("speed", "kph", "kilometers/hour", 0.2777777777778),
+    mph("speed", "mph", "miles/hour", 0.44704),
+    kts("speed", "kts", "knots", 0.514444444444444),
     ftps("speed", "ftps", "feet/second", 0.3048),
 
     //Temperature
-    c ("temperature","C","degrees Celcius", 1),
-    k ("temperature","K","Kelvins", 1, -273.15),
-    f ("temperature","F","degrees Fahrenheit", 0.55555555555, -32),
+    c("temperature", "C", "degrees Celcius", 1),
+    k("temperature", "K", "Kelvins", 1, -273.15),
+    f("temperature", "F", "degrees Fahrenheit", 0.55555555555, -32),
 
     //Time
     ps("time", "ps", "picoseconds", 0.000000000001),
-    ns("time","ns","nanoseconds",0.000000001),
+    ns("time", "ns", "nanoseconds", 0.000000001),
     //Using u instead of the greek later mu for ease of use
     us("time", "us", "microseconds", 0.000001),
     ms("time", "ms", "milliseconds", 0.001),
@@ -81,8 +81,8 @@ public enum Unit {
     //Mass
     oz("mass", "oz", "ounzes", 28.34952),
     lb("mass", "lb", "pounds", 453.5924),
-    g("mass","g","grams", 1),
-    mg("mass","mg","milligrams", 0.001),
+    g("mass", "g", "grams", 1),
+    mg("mass", "mg", "milligrams", 0.001),
     kg("mass", "kg", "kilograms", 1000),
     t("mass", "t", "tons", 1000000);
 

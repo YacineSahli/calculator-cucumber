@@ -1,26 +1,9 @@
 package calculator;
 
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.eclipse.core.internal.utils.Convert;
 import visitor.Evaluator;
-import visitor.Printer;
 import visitor.EvaluatorException;
-
-import java.time.ZonedDateTime;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.util.Scanner;
-
-import static calculator.Currency.stringToCurrency;
-import static calculator.Unit.stringToUnit;
+import visitor.Printer;
 
 public class Calculator {
     Convertor convertor = new Convertor();
@@ -55,7 +38,7 @@ public class Calculator {
         System.out.println();
     }
 
-    public CalculatorValue eval(Expression e){
+    public CalculatorValue eval(Expression e) {
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process
@@ -70,11 +53,11 @@ public class Calculator {
     }
 
 
-    public Double convert(String inputUnit, String outputUnit, double inputAmount){
+    public Double convert(String inputUnit, String outputUnit, double inputAmount) {
         return convertor.convert(inputUnit, outputUnit, inputAmount);
     }
 
-    public Double convert(String input){
+    public Double convert(String input) {
         return convertor.convert(input);
     }
 

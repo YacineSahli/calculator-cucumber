@@ -2,7 +2,6 @@ package junit5tests;
 
 import calculator.IntegerNumber;
 import calculator.RationalNumber;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +36,7 @@ class RationalNumberTest {
     }
 
     @Test
-    void constructor(){
+    void constructor() {
         assertThrows(ArithmeticException.class, () -> new RationalNumber(value1, 0));
         assertDoesNotThrow(() -> new RationalNumber(value1, value2));
     }

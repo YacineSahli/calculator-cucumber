@@ -1,14 +1,14 @@
 package junit5tests;
 
+import calculator.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//Import Junit5 libraries for unit testing:
 import static org.junit.jupiter.api.Assertions.*;
-
-import calculator.*;
-import org.junit.jupiter.api.*;
 
 
 public class PowTest {
@@ -17,13 +17,16 @@ public class PowTest {
     private final int value2 = 6;
     private Pow op;
     private List<Expression> params;
-    private Calculator c = new Calculator();
+    private final Calculator c = new Calculator();
 
     @BeforeEach
     public void setUp() {
-        params = new ArrayList<>(Arrays.asList(new IntegerNumber(value1),new IntegerNumber(value2)));
-        try { op = new Pow(params); }
-        catch(IllegalConstruction e) { fail(); }
+        params = new ArrayList<>(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
+        try {
+            op = new Pow(params);
+        } catch (IllegalConstruction e) {
+            fail();
+        }
     }
 
     @Test
@@ -52,8 +55,9 @@ public class PowTest {
             assertEquals(op, e);
             assertEquals(e, e);
             assertNotEquals(e, new Pow(new ArrayList<>(Arrays.asList(new IntegerNumber(5), new IntegerNumber(4)))));
+        } catch (IllegalConstruction e) {
+            fail();
         }
-        catch(IllegalConstruction e) { fail(); }
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -69,8 +73,9 @@ public class PowTest {
         try {
             Pow e = new Pow(p);
             assertEquals(e.hashCode(), op.hashCode());
+        } catch (IllegalConstruction e) {
+            fail();
         }
-        catch(IllegalConstruction e) { fail(); }
     }
 
     @Test

@@ -13,13 +13,13 @@ public class Implication extends Operation {
         super(elist);
         symbol = ">";
     }
+
     public CalculatorValue op(MyBoolean l, MyBoolean r) {
         int lval = l.getValue();
         int rval = r.getValue();
-        if (lval == 0 && rval == 1){
+        if (lval == 0 && rval == 1) {
             return new MyBoolean(1);
-        }
-        else {
+        } else {
             return new MyBoolean(0);
         }
     }

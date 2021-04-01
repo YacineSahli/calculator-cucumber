@@ -5,16 +5,15 @@ import visitor.Printer;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Memory {
-    private Calculator calculator;
-    private Printer printer;
-    private Expression[] expressions;
+    private final Calculator calculator;
+    private final Printer printer;
+    private final Expression[] expressions;
     private int pointer;
     private int load;
-    private HashMap<Expression, CalculatorValue> expressValueBinding;
+    private final HashMap<Expression, CalculatorValue> expressValueBinding;
 
     public Memory(Calculator calculator, int size) {
         this.calculator = calculator;
@@ -50,10 +49,9 @@ public class Memory {
     public void displayLog() {
         for (Expression e :
                 expressions) {
-            if ( e== null){
+            if (e == null) {
                 break;
-            }
-            else{
+            } else {
                 try {
                     e.accept(printer);
                     System.out.println(printer.getResult());
@@ -66,10 +64,9 @@ public class Memory {
     }
 
     public Expression undo() {
-        if (load == 0){
+        if (load == 0) {
             return null;
-        }
-        else if (pointer - 1 >= 0) {
+        } else if (pointer - 1 >= 0) {
             pointer--;
             return expressions[pointer];
         } else {
@@ -84,16 +81,15 @@ public class Memory {
         return expressions[pointer];
     }
 
-    public void history(){
+    public void history() {
         try {
             FileWriter fileWriter = new FileWriter("history.txt");
-            for (Expression e : expressions){
-                if ( e == null){
+            for (Expression e : expressions) {
+                if (e == null) {
                     break;
-                }
-                else{
+                } else {
                     e.accept(printer);
-                    fileWriter.write(printer.getResult()+'\n');
+                    fileWriter.write(printer.getResult() + '\n');
                 }
             }
             fileWriter.close();

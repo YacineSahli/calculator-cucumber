@@ -1,47 +1,48 @@
 package calculator;
 
-import visitor.EvaluatorException;
-import visitor.Visitor;
-
 import java.text.ParseException;
-import java.time.*;
+import java.time.Duration;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 
 public class MyTime extends CalculatorValue {
+    private final static int ACCURACY = 1;
     private ZonedDateTime date = null;
     private Duration time = null;
-    private DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
+    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
     private ZoneId zoneId;
-    private final static int ACCURACY = 1;
 
 
     public /*constructor*/ MyTime(String s) throws ParseException {
         super(s, 3, false);
         try {
             date = parseDate(s);
-        }catch (ParseException e){}
+        } catch (ParseException e) {
+        }
         try {
             time = parseTime(s);
-        } catch (ParseException e){}
+        } catch (ParseException e) {
+        }
         if (date == null && time == null) {
             throw new ParseException("Cannot parse input", 0);
         }
     }
 
-    public /*constructor*/ MyTime(Duration d){
+    public /*constructor*/ MyTime(Duration d) {
         super(d.toString(), 3, false);
         time = d;
     }
 
 
     public MyTime(ZonedDateTime dt) {
-        super(dt.toString(), 3,false);
+        super(dt.toString(), 3, false);
         date = dt;
     }
 
@@ -59,9 +60,9 @@ public class MyTime extends CalculatorValue {
     }
 
     Duration parseTime(String s) throws ParseException {
-        try{
+        try {
             return Duration.parse(s);
-        }catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             return null;
         }
     }
@@ -135,7 +136,7 @@ public class MyTime extends CalculatorValue {
         }
     }
 
-    public String toHumanFormat(){
+    public String toHumanFormat() {
         Duration d = this.getAsDuration();
         return String.format("%sd %sh %sm %ss",
                 d.toDaysPart(),
@@ -144,10 +145,10 @@ public class MyTime extends CalculatorValue {
                 d.toSecondsPart());
     }
 
-    public String toHumanFormat(String outputUnit){
+    public String toHumanFormat(String outputUnit) {
         Duration d = this.getAsDuration();
         Double res;
-        switch (outputUnit){
+        switch (outputUnit) {
             case "DAYS":
             case "Days":
             case "days":
@@ -178,27 +179,27 @@ public class MyTime extends CalculatorValue {
         return String.format("%.3f %s", res, outputUnit);
     }
 
-    public String toHumanFormat(String outputUnit, boolean fractional){
+    public String toHumanFormat(String outputUnit, boolean fractional) {
         BiFunction<String, Duration, String> formatDays = (format, d) -> String.format(format,
                 d.toDaysPart(),
                 d.toHoursPart(),
                 d.toMinutesPart(),
                 d.toSecondsPart());
         BiFunction<String, Duration, String> formatHours = (format, d) -> String.format(format,
-                d.toDaysPart()*24 + d.toHoursPart(),
+                d.toDaysPart() * 24 + d.toHoursPart(),
                 d.toMinutesPart(),
                 d.toSecondsPart());
         BiFunction<String, Duration, String> formatMinutes = (format, d) -> String.format(format,
-                (d.toDaysPart()*24 + d.toHoursPart())*60 + d.toMinutesPart(),
+                (d.toDaysPart() * 24 + d.toHoursPart()) * 60 + d.toMinutesPart(),
                 d.toSecondsPart());
         BiFunction<String, Duration, String> formatSeconds = (format, d) -> String.format(format,
                 d.toSeconds());
 
 
-        if(fractional) return toHumanFormat(outputUnit);
+        if (fractional) return toHumanFormat(outputUnit);
         Duration d = this.getAsDuration();
         Double res;
-        switch (outputUnit){
+        switch (outputUnit) {
             case "DAYS":
                 return formatDays.apply("%sDAYS %sHOURS %sMINUTES %sSECONDS", d);
             case "Days":
@@ -214,7 +215,7 @@ public class MyTime extends CalculatorValue {
             case "hours":
                 return formatHours.apply("%shours %sminutes %sseconds", d);
             case "h":
-                 return formatHours.apply("%sh %sm %ss", d);
+                return formatHours.apply("%sh %sm %ss", d);
             case "MINUTES":
                 return formatMinutes.apply("%sMINUTES %sSECONDS", d);
             case "Minutes":
@@ -236,7 +237,7 @@ public class MyTime extends CalculatorValue {
         }
     }
 
-    public MyTime toMyTime(){
+    public MyTime toMyTime() {
         return this;
     }
 }

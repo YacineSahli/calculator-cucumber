@@ -1,16 +1,13 @@
 package junit5tests;
 
-import calculator.*;
-import org.junit.jupiter.api.BeforeEach;
+import calculator.MyTime;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.time.Duration;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestMyTime {
     private MyTime time;
@@ -19,7 +16,7 @@ public class TestMyTime {
     @Test
     public void testParseIsoDate() throws ParseException {
         time = new MyTime("2020-12-10 10:10:10");
-        assertEquals("2020-12-10 10:10:10",time.toString());
+        assertEquals("2020-12-10 10:10:10", time.toString());
     }
 
     @Test

@@ -10,11 +10,11 @@ public class TestPressureConverter {
 
     @Test
     public void testPascalToPsi() {
-        assertEquals(0.2091444, c.convert("Pa", "psi", 1442),  0.0001);
+        assertEquals(0.2091444, c.convert("Pa", "psi", 1442), 0.0001);
     }
 
     @Test
     public void testFeetPerSecondToKilometersPerHour() {
-        assertEquals(2.045165, c.convert("mmHg", "bar", 1534),  0.001);
+        assertEquals(2.045165, c.convert("mmHg", "bar", 1534), 0.001);
     }
 }

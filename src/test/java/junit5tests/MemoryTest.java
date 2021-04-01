@@ -1,23 +1,21 @@
 package junit5tests;
 
 import calculator.*;
-import calculator.Boolean.MyBoolean;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import visitor.Evaluator;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class MemoryTest {
-    private Calculator calc = new Calculator();
+    private final Calculator calc = new Calculator();
     private Memory memory;
     private Expression expr1, expr2, expr3, expr4, expr5;
     private CalculatorValue arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10;
+
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
 
         try {
             arg1 = new IntegerNumber(1);
@@ -56,16 +54,18 @@ public class MemoryTest {
         }
 
     }
+
     @Test
-    public void testAdd(){
+    public void testAdd() {
         memory = new Memory(calc, 5);
         memory.add(expr1);
         memory.add(expr2);
         assertEquals(1, memory.getPointer());
         assertEquals(2, memory.getLoad());
     }
+
     @Test
-    public void testUndo(){
+    public void testUndo() {
         memory = new Memory(calc, 5);
         memory.add(expr1);
         memory.add(expr2);
@@ -75,8 +75,9 @@ public class MemoryTest {
         assertEquals(1, memory.getPointer());
         assertEquals(3, memory.getLoad());
     }
+
     @Test
-    public void testSupplementaryUndo(){
+    public void testSupplementaryUndo() {
         memory = new Memory(calc, 5);
         memory.add(expr1);
         memory.add(expr2);
@@ -88,8 +89,9 @@ public class MemoryTest {
         assertEquals(0, memory.getPointer());
         assertEquals(3, memory.getLoad());
     }
+
     @Test
-    public void testRedo(){
+    public void testRedo() {
         memory = new Memory(calc, 5);
         memory.add(expr1);
         memory.add(expr2);
@@ -101,8 +103,9 @@ public class MemoryTest {
         assertEquals(1, memory.getPointer());
         assertEquals(3, memory.getLoad());
     }
+
     @Test
-    public void testSupplementaryRedo(){
+    public void testSupplementaryRedo() {
         memory = new Memory(calc, 5);
         memory.add(expr1);
         memory.add(expr2);
@@ -114,8 +117,9 @@ public class MemoryTest {
         assertEquals(2, memory.getPointer());
         assertEquals(3, memory.getLoad());
     }
+
     @Test
-    public void testAddAfterUndo(){
+    public void testAddAfterUndo() {
         memory = new Memory(calc, 5);
         memory.add(expr1);
         memory.add(expr2);
@@ -126,7 +130,7 @@ public class MemoryTest {
         assertEquals(expr4, memory.getExpressions()[1]);
         assertEquals(1, memory.getPointer());
         assertEquals(2, memory.getLoad());
-        assertEquals(null, memory.getExpressions()[memory.getPointer()+1]);
+        assertEquals(null, memory.getExpressions()[memory.getPointer() + 1]);
     }
     /*@Test
     public void testDisplayLog(){
@@ -144,9 +148,6 @@ public class MemoryTest {
         memory.add(expr4);
         memory.history();
     }*/
-
-
-
 
 
 }

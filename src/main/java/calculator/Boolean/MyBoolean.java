@@ -1,28 +1,24 @@
 package calculator.Boolean;
 
 import calculator.CalculatorValue;
-import calculator.Expression;
-import calculator.IntegerNumber;
-import visitor.EvaluatorException;
-import visitor.Visitor;
 
 public class MyBoolean extends CalculatorValue {
-    private final int value;
     private final static int ACCURACY = 3;
-
-    public Integer getValue() { return value; }
+    private final int value;
 
     public MyBoolean(int v) throws IllegalArgumentException {
         super(Integer.toString(v), ACCURACY, true);
-        if(v > 1 || v < 0){
+        if (v > 1 || v < 0) {
             throw new IllegalArgumentException("Expected one or zero");
-        }
-        else {
-            value=v;
+        } else {
+            value = v;
 
         }
     }
 
+    public Integer getValue() {
+        return value;
+    }
 
     @Override
     public boolean specificEquals(Object o) {
@@ -32,7 +28,8 @@ public class MyBoolean extends CalculatorValue {
         MyBoolean oInt = (MyBoolean) o;
         return this.value == oInt.getValue();
     }
-    public MyBoolean toMyBoolean(){
+
+    public MyBoolean toMyBoolean() {
         return this;
     }
 }

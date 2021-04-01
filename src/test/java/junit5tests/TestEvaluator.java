@@ -3,13 +3,10 @@ package junit5tests;
 //Import Junit5 libraries for unit testing:
 
 import calculator.*;
-import io.cucumber.java.sl.In;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import visitor.Evaluator;
-import visitor.EvaluatorException;
 
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,8 +38,8 @@ public class TestEvaluator {
         date2 = "2020-12-10 10:10:12";
         dateAMPM1 = "2020-12-10 10:10:10 AM";
         dateAMPM2 = "2020-12-10 10:10:10 PM";
-        dateWithTimeZone1= "2020-12-10 10:10:10 PRC";
-        dateWithTimeZone2= "2020-12-10 10:10:10 CET";
+        dateWithTimeZone1 = "2020-12-10 10:10:10 PRC";
+        dateWithTimeZone2 = "2020-12-10 10:10:10 CET";
         duration1 = "PT3H40M";
         duration2 = "PT5H23M31S";
         i1 = new IntegerNumber(value1);
@@ -93,10 +90,9 @@ public class TestEvaluator {
             list.add(new MyTime(date1));
             list.add(new MyTime(date2));
             op = new Minus(list);
-            assertEquals( "PT23H59M58S",
-                    ((MyTime) calc.eval(op)).toString() );
-        }
-        catch(IllegalConstruction | ParseException e) {
+            assertEquals("PT23H59M58S",
+                    calc.eval(op).toString());
+        } catch (IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
@@ -111,8 +107,7 @@ public class TestEvaluator {
             op = new Minus(list);
             assertEquals("2020-12-11T06:30:10Z",
                     ((MyTime) calc.eval(op)).getZonedDateTime().toString());
-        }
-        catch(IllegalConstruction | ParseException e) {
+        } catch (IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
@@ -127,8 +122,7 @@ public class TestEvaluator {
             op = new Minus(list);
             assertEquals("PT-1H-43M-31S",
                     ((MyTime) calc.eval(op)).getLocalTime().toString());
-        }
-        catch(IllegalConstruction | ParseException e) {
+        } catch (IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
@@ -143,8 +137,7 @@ public class TestEvaluator {
             op = new Plus(list);
             assertEquals("2020-12-11T13:50:10Z",
                     ((MyTime) calc.eval(op)).getZonedDateTime().toString());
-        }
-        catch(IllegalConstruction | ParseException e) {
+        } catch (IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
@@ -159,8 +152,7 @@ public class TestEvaluator {
             op = new Plus(list);
             assertEquals("PT9H3M31S",
                     ((MyTime) calc.eval(op)).getLocalTime().toString());
-        }
-        catch(IllegalConstruction | ParseException e) {
+        } catch (IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
@@ -173,10 +165,9 @@ public class TestEvaluator {
             list.add(new MyTime(dateWithTimeZone1));
             list.add(new MyTime(dateWithTimeZone2));
             op = new Minus(list);
-            assertEquals( "PT-7H",
-                    ((MyTime) calc.eval(op)).toString() );
-        }
-        catch(IllegalConstruction | ParseException e) {
+            assertEquals("PT-7H",
+                    calc.eval(op).toString());
+        } catch (IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
@@ -189,10 +180,9 @@ public class TestEvaluator {
             list.add(new MyTime(dateAMPM1));
             list.add(new MyTime(dateAMPM2));
             op = new Minus(list);
-            assertEquals( "PT-12H",
-                    ((MyTime) calc.eval(op)).toString() );
-        }
-        catch(IllegalConstruction | ParseException e) {
+            assertEquals("PT-12H",
+                    calc.eval(op).toString());
+        } catch (IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
@@ -205,15 +195,13 @@ public class TestEvaluator {
             list.add(new MyTime(dateAMPM1));
             list.add(new MyTime(dateWithTimeZone2));
             op = new Minus(list);
-            assertEquals( "PT1H",
-                    ((MyTime) calc.eval(op)).toString() );
-        }
-        catch(IllegalConstruction | ParseException e) {
+            assertEquals("PT1H",
+                    calc.eval(op).toString());
+        } catch (IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
     }
-
 
 
     @Test
@@ -226,7 +214,7 @@ public class TestEvaluator {
     public void testEvaluatorCalculatorValue() {
         int resultInt = ((IntegerNumber) calc.eval(new IntegerNumber(value1))).getValue();
         RationalNumber rationalNumber = ((RationalNumber) calc.eval(new RationalNumber(value1, value2)));
-        assertEquals( value1, resultInt);
+        assertEquals(value1, resultInt);
         assertEquals(value1, rationalNumber.getNum());
         assertEquals(value2, rationalNumber.getDenum());
     }
@@ -236,36 +224,35 @@ public class TestEvaluator {
         try {
             op = new Divides(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(zero)));
             assertNull(calc.eval(op));
-          }
-        catch(IllegalConstruction e) {
+        } catch (IllegalConstruction e) {
             e.printStackTrace();
             fail();
         }
 
 
     }
+
     @Test
     public void testEvaluatorDivides() {
         try {
             // int int
             op = new Divides(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
-            int result = ((IntegerNumber)calc.eval(op)).getValue();
-            assertEquals( value1 / value2, result );
+            int result = ((IntegerNumber) calc.eval(op)).getValue();
+            assertEquals(value1 / value2, result);
 
             //rational rational
             op = new Divides(Arrays.asList(new RationalNumber(value1, value2), new RationalNumber(value3, value1)));
             RationalNumber result2 = ((RationalNumber) calc.eval(op));
-            assertEquals(value1*value1, result2.getNum());
-            assertEquals(value2*value3, result2.getDenum());
+            assertEquals(value1 * value1, result2.getNum());
+            assertEquals(value2 * value3, result2.getDenum());
 
             //rational integer
             op = new Divides(Arrays.asList(new IntegerNumber(value2), new RationalNumber(value3, value1)));
             RationalNumber result3 = ((RationalNumber) calc.eval(op));
-            assertEquals(value2*value1, result3.getNum());
+            assertEquals(value2 * value1, result3.getNum());
             assertEquals(value3, result3.getDenum());
 
-        }
-        catch(IllegalConstruction e) {
+        } catch (IllegalConstruction e) {
             e.printStackTrace();
             fail();
         }
@@ -276,22 +263,21 @@ public class TestEvaluator {
         try {
             // int int
             op = new Plus(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
-            int result = ((IntegerNumber)calc.eval(op)).getValue();
-            assertEquals( value1 + value2, result);
+            int result = ((IntegerNumber) calc.eval(op)).getValue();
+            assertEquals(value1 + value2, result);
 
             //rational rational
             op = new Plus(Arrays.asList(new RationalNumber(value1, value2), new RationalNumber(value1, value3)));
-            RationalNumber result2 = ((RationalNumber)calc.eval(op));
-            assertEquals((value1*value3)+(value1*value2), result2.getNum());
-            assertEquals(value2*value3, result2.getDenum());
+            RationalNumber result2 = ((RationalNumber) calc.eval(op));
+            assertEquals((value1 * value3) + (value1 * value2), result2.getNum());
+            assertEquals(value2 * value3, result2.getDenum());
 
             //int rational
             op = new Plus(Arrays.asList(new IntegerNumber(value1), new RationalNumber(value1, value3)));
-            RationalNumber result3 = ((RationalNumber)calc.eval(op));
-            assertEquals((value1*value3)+(value1), result3.getNum());
+            RationalNumber result3 = ((RationalNumber) calc.eval(op));
+            assertEquals((value1 * value3) + (value1), result3.getNum());
             assertEquals(value3, result3.getDenum());
-        }
-        catch(IllegalConstruction e) {
+        } catch (IllegalConstruction e) {
             e.printStackTrace();
             fail();
         }
@@ -302,22 +288,21 @@ public class TestEvaluator {
         try {
             // int int
             op = new Minus(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
-            int result = ((IntegerNumber)calc.eval(op)).getValue();
-            assertEquals( value1 - value2, result);
+            int result = ((IntegerNumber) calc.eval(op)).getValue();
+            assertEquals(value1 - value2, result);
 
             //rational rational
             op = new Minus(Arrays.asList(new RationalNumber(value1, value2), new RationalNumber(value1, value3)));
-            RationalNumber result2 = ((RationalNumber)calc.eval(op));
-            assertEquals((value1*value3)-(value1*value2), result2.getNum());
-            assertEquals(value2*value3, result2.getDenum());
+            RationalNumber result2 = ((RationalNumber) calc.eval(op));
+            assertEquals((value1 * value3) - (value1 * value2), result2.getNum());
+            assertEquals(value2 * value3, result2.getDenum());
 
             //int rational
             op = new Minus(Arrays.asList(new IntegerNumber(value1), new RationalNumber(value1, value3)));
-            RationalNumber result3 = ((RationalNumber)calc.eval(op));
-            assertEquals((value1*value3)-(value1), result3.getNum());
+            RationalNumber result3 = ((RationalNumber) calc.eval(op));
+            assertEquals((value1 * value3) - (value1), result3.getNum());
             assertEquals(value3, result3.getDenum());
-        }
-        catch(IllegalConstruction e) {
+        } catch (IllegalConstruction e) {
             e.printStackTrace();
             fail();
         }
@@ -328,32 +313,31 @@ public class TestEvaluator {
         try {
             //int int
             op = new Times(Arrays.asList(new IntegerNumber(value1), new IntegerNumber(value2)));
-            int result = ((IntegerNumber)calc.eval(op)).getValue();
-            assertEquals( value1 * value2, result);
+            int result = ((IntegerNumber) calc.eval(op)).getValue();
+            assertEquals(value1 * value2, result);
 
             //rational rational
             op = new Times(Arrays.asList(new RationalNumber(value1, value2), new RationalNumber(value1, value3)));
-            RationalNumber result2 = ((RationalNumber)calc.eval(op));
-            assertEquals((value1*value1), result2.getNum());
-            assertEquals(value2*value3, result2.getDenum());
+            RationalNumber result2 = ((RationalNumber) calc.eval(op));
+            assertEquals((value1 * value1), result2.getNum());
+            assertEquals(value2 * value3, result2.getDenum());
 
             //int rational
             op = new Times((Arrays.asList(new IntegerNumber(value1), new RationalNumber(value1, value3))));
-            RationalNumber result3 = ((RationalNumber)calc.eval(op));
-            assertEquals((value1*value1), result3.getNum());
+            RationalNumber result3 = ((RationalNumber) calc.eval(op));
+            assertEquals((value1 * value1), result3.getNum());
             assertEquals(value3, result3.getDenum());
-        }
-        catch(IllegalConstruction e) {
+        } catch (IllegalConstruction e) {
             e.printStackTrace();
             fail();
         }
     }
 
     @Test
-    public void testAbs(){
+    public void testAbs() {
         try {
             op = new Abs(minusI2);
-            assertEquals(i2,calc.eval(op));
+            assertEquals(i2, calc.eval(op));
             op = new Abs(minusR2);
             assertEquals(r2, calc.eval(op));
             op = new Abs(r2);
@@ -368,7 +352,7 @@ public class TestEvaluator {
     }
 
     @Test
-    public void testInvert(){
+    public void testInvert() {
         try {
             op = new Invert(i1);
             assertEquals(new RationalNumber(1, i1.getValue()), calc.eval(op));
@@ -381,13 +365,13 @@ public class TestEvaluator {
     }
 
     @Test
-    public void testModularInverse(){
+    public void testModularInverse() {
         try {
             op = new ModularInverse(Arrays.asList(i1, i2));
             assertNull(calc.eval(op));
             op = new ModularInverse(Arrays.asList(i1, r2));
             assertNull(calc.eval(op));
-            op = new ModularInverse(Arrays.asList(new IntegerNumber(3),new IntegerNumber(11)));
+            op = new ModularInverse(Arrays.asList(new IntegerNumber(3), new IntegerNumber(11)));
             assertEquals(new IntegerNumber(4), calc.eval(op));
 
         } catch (IllegalConstruction illegalConstruction) {
@@ -397,10 +381,10 @@ public class TestEvaluator {
     }
 
     @Test
-    public void testModulo(){
+    public void testModulo() {
         try {
             op = new Modulo(Arrays.asList(i1, i2));
-            assertEquals(new IntegerNumber(i1.getValue()%i2.getValue()), calc.eval(op));
+            assertEquals(new IntegerNumber(i1.getValue() % i2.getValue()), calc.eval(op));
             op = new Modulo(Arrays.asList(i1, r2));
             assertNull(calc.eval(op));
 
@@ -411,13 +395,13 @@ public class TestEvaluator {
     }
 
     @Test
-    public void testPow(){
+    public void testPow() {
         try {
             op = new Pow(Arrays.asList(i1, i2));
             assertEquals(new IntegerNumber((int) Math.pow(i1.getValue(), i2.getValue())), calc.eval(op));
 
             op = new Pow(Arrays.asList(r1, i2));
-            assertEquals(new RationalNumber((int)Math.pow(r1.getNum(), i2.getValue()), (int)Math.pow(r1.getDenum(), i2.getValue())), calc.eval(op));
+            assertEquals(new RationalNumber((int) Math.pow(r1.getNum(), i2.getValue()), (int) Math.pow(r1.getDenum(), i2.getValue())), calc.eval(op));
         } catch (IllegalConstruction illegalConstruction) {
             illegalConstruction.printStackTrace();
             fail();
