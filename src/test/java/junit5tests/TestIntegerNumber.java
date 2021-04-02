@@ -20,19 +20,19 @@ class TestIntegerNumber {
     }
 
     @Test
-    void specificEquals() {
+    void testSpecificEquals() {
         assertEquals(number, new IntegerNumber(value1));
         assertNotEquals(number, new IntegerNumber(value2));
         assertNotEquals(number, new RationalNumber(value1, value2));
     }
 
     @Test
-    void toIntegerNumber() {
+    void testToIntegerNumber() {
         assertEquals(number, number.toIntegerNumber());
     }
 
     @Test
-    void toRationalNumber() {
+    void testToRationalNumber() {
         assertEquals(new RationalNumber(value1, 1), number.toRationalNumber());
     }
 

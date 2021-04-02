@@ -19,14 +19,14 @@ class TestMyRandom {
     }
 
     @Test
-    void nextInt() {
+    void testNextInt() {
         CalculatorValue val = generator.nextInt();
         assertNotNull(val);
         assertEquals(IntegerNumber.class, val.getClass());
     }
 
     @Test
-    void nextRational() {
+    void testNextRational() {
         assertDoesNotThrow(() -> generator.nextRational());
         CalculatorValue val = generator.nextRational();
         assertNotNull(val);

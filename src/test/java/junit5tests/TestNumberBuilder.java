@@ -14,14 +14,14 @@ class TestNumberBuilder {
 
 
     @Test
-    void builder() {
+    void testBuilder() {
         NumberBuilder builder = NumberBuilder.builder();
         assertNotNull(builder);
         assertSame(builder, NumberBuilder.builder());
     }
 
     @Test
-    void build() {
+    void testBuild() {
         NumberBuilder builder = NumberBuilder.builder();
         assertEquals(new IntegerNumber(value1), builder.build(value1, 1));
         assertEquals(new RationalNumber(value1, value2), builder.build(value1, value2));

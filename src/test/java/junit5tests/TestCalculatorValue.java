@@ -22,21 +22,21 @@ class TestCalculatorValue {
     }
 
     @Test
-    void countDepth() {
+    void testCountDepth() {
         //test whether a value has zero depth (i.e. no nested expressions)
         assertEquals(Integer.valueOf(0), integerNumber.countDepth());
         assertEquals(Integer.valueOf(0), rationalNumber.countDepth());
     }
 
     @Test
-    void countOps() {
+    void testCountOps() {
         //test whether a value contains zero operations
         assertEquals(Integer.valueOf(0), integerNumber.countOps());
         assertEquals(Integer.valueOf(0), rationalNumber.countOps());
     }
 
     @Test
-    void countNbs() {
+    void testCountNbs() {
         //test whether a value contains 1 number
         assertEquals(Integer.valueOf(1), integerNumber.countNbs());
         assertEquals(Integer.valueOf(1), rationalNumber.countNbs());

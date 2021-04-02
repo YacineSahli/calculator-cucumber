@@ -19,30 +19,30 @@ class TestRationalNumber {
     }
 
     @Test
-    void specificEquals() {
+    void testSpecificEquals() {
         assertEquals(number, new RationalNumber(value1, value2));
         assertNotEquals(number, new RationalNumber(value2, value1));
         assertNotEquals(number, new IntegerNumber(value1));
     }
 
     @Test
-    void getNum() {
+    void testGetNum() {
         assertEquals(value1, number.getNum());
     }
 
     @Test
-    void getDenum() {
+    void testGetDenum() {
         assertEquals(value2, number.getDenum());
     }
 
     @Test
-    void constructor() {
+    void testConstructor() {
         assertThrows(ArithmeticException.class, () -> new RationalNumber(value1, 0));
         assertDoesNotThrow(() -> new RationalNumber(value1, value2));
     }
 
     @Test
-    void toRationalNumber() {
+    void testToRationalNumber() {
         assertEquals(number, number.toRationalNumber());
     }
 }
