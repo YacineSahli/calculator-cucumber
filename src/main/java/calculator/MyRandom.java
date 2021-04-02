@@ -16,6 +16,10 @@ public class MyRandom {
         generator = new Random();
     }
 
+    public CalculatorValue nextInt(IntegerNumber bound){
+        return new IntegerNumber(generator.nextInt(bound.getValue()));
+    }
+
     public CalculatorValue nextInt() {
         return new IntegerNumber(generator.nextInt());
     }

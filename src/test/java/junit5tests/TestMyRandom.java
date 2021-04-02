@@ -12,11 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class TestMyRandom {
 
     private MyRandom generator;
-    private int seed;
+    private int seed, bound;
 
     @BeforeEach
     void setUp() {
         seed = 42;
+        bound = 13;
         generator = new MyRandom(seed);
     }
 
@@ -36,6 +37,12 @@ class TestMyRandom {
         CalculatorValue val = generator.nextInt();
         assertNotNull(val);
         assertEquals(IntegerNumber.class, val.getClass());
+    }
+
+    @Test
+    void testNextIntBound() {
+        MyRandom generator = new MyRandom(seed);
+        assertTrue(((IntegerNumber)generator.nextInt(new IntegerNumber(bound))).getValue()<bound);
     }
 
     @Test
