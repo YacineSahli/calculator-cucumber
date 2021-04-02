@@ -1,7 +1,5 @@
 package junit5tests.variable;
 
-import calculator.variables.IntegerNumber;
-import calculator.variables.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
