@@ -4,7 +4,6 @@ import calculator.variables.CalculatorVariable;
 import calculator.Expression;
 import calculator.Notation;
 import calculator.operation.Operation;
-import calculator.function.Function;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -26,10 +25,6 @@ public class Printer extends Visitor {
         result = n.toString();
     }
 
-    @Override
-    public void visit(Function f) throws EvaluatorException {
-
-    }
 
     @Override
     public void visit(Operation o) throws EvaluatorException {
