@@ -16,7 +16,7 @@ final public class Minus extends Operation {
         return new IntegerNumber(l.getValue() - r.getValue());
     }
 
-    public CalculatorValue op(MyTime l, MyTime r) {
+    public static CalculatorValue op(MyTime l, MyTime r) {
         if (l.getZonedDateTime() != null) {
             if (r.getZonedDateTime() != null) {
                 return new MyTime(Duration.between(r.getZonedDateTime(), l.getZonedDateTime()));

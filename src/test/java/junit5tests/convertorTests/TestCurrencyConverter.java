@@ -1,4 +1,4 @@
-package junit5tests;
+package junit5tests.convertorTests;
 
 import calculator.Convertor;
 import org.junit.jupiter.api.Test;

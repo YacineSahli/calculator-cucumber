@@ -10,11 +10,7 @@ final public class Plus extends Operation {
         neutral = 0;
     }
 
-    public CalculatorValue op(IntegerNumber l, IntegerNumber r) {
-        return new IntegerNumber(l.getValue() + r.getValue());
-    }
-
-    public CalculatorValue op(MyTime l, MyTime r) {
+    public static CalculatorValue op(MyTime l, MyTime r) {
         if (l.getZonedDateTime() != null) {
             // Not meaningful to add two ZonedDateTime
             if (r.getZonedDateTime() != null) {
@@ -32,6 +28,10 @@ final public class Plus extends Operation {
                 return new MyTime(l.getLocalTime().plus(r.getLocalTime()));
             }
         }
+    }
+
+    public CalculatorValue op(IntegerNumber l, IntegerNumber r) {
+        return new IntegerNumber(l.getValue() + r.getValue());
     }
 
     public CalculatorValue op(RationalNumber l, RationalNumber r) {
