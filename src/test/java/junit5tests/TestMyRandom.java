@@ -12,10 +12,23 @@ import static org.junit.jupiter.api.Assertions.*;
 class TestMyRandom {
 
     private MyRandom generator;
+    private int seed;
 
     @BeforeEach
     void setUp() {
-        generator = new MyRandom(42);
+        seed = 42;
+        generator = new MyRandom(seed);
+    }
+
+    @Test
+    void testConstructor(){
+        MyRandom r2 = new MyRandom();
+        MyRandom r3 = new MyRandom(seed);
+        assertNotNull(r2);
+        assertNotNull(r3);
+        assertEquals(r3, generator);
+        assertNotEquals(r2, generator);
+        assertNotEquals(r2, r3);
     }
 
     @Test

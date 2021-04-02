@@ -5,9 +5,11 @@ import java.util.Random;
 public class MyRandom {
 
     private final Random generator;
+    private Long seed;
 
     public MyRandom(long seed) {
         generator = new Random(seed);
+        this.seed = seed;
     }
 
     public MyRandom() {
@@ -26,5 +28,24 @@ public class MyRandom {
             denum = generator.nextInt();
         }
         return new RationalNumber(num, denum);
+    }
+
+    public Long getSeed() {
+        return seed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MyRandom myRandom = (MyRandom) o;
+
+        return seed == myRandom.getSeed();
+    }
+
+    @Override
+    public int hashCode() {
+        return generator.hashCode();
     }
 }
