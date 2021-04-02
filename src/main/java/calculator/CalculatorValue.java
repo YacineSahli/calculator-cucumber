@@ -2,11 +2,16 @@ package calculator;
 
 import visitor.Visitor;
 
+/**
+ * Represent a value in the calculator.
+ *
+ * @author Arnaud.P
+ */
 public abstract class CalculatorValue implements Expression {
 
+    private final String strValue;
     protected int accuracyLevel;// ex: 1 is more accurate than 2
     protected boolean canInteract;// true if we can apply an operation with other types
-    private final String strValue;
 
     protected CalculatorValue(String strValue, int accuracy, boolean canInteract) {
         this.strValue = strValue;

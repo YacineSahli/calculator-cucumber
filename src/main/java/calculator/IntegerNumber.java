@@ -1,16 +1,24 @@
 package calculator;
 
+/**
+ * An Integer number in the calculator.
+ *
+ * @author Arnaud.P
+ */
 public class IntegerNumber extends CalculatorValue {
 
     private final static int ACCURACY = 2;
     private final int value;
 
 
-    public IntegerNumber(int value) {
+    public /*constructor*/ IntegerNumber(int value) {
         super(Integer.toString(value), ACCURACY, true);
         this.value = value;
     }
 
+    /**
+     * @return the value of this integer.
+     */
     public int getValue() {
         return value;
     }
@@ -28,6 +36,9 @@ public class IntegerNumber extends CalculatorValue {
         return this;
     }
 
+    /**
+     * @return the number converted to a rational number.
+     */
     public RationalNumber toRationalNumber() {
         return new RationalNumber(this.value, 1);
     }

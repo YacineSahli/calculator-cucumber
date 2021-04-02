@@ -1,5 +1,10 @@
 package calculator;
 
+/**
+ * Rational number in the calculator.
+ *
+ * @author Arnaud.P
+ */
 public class RationalNumber extends CalculatorValue {
 
     private final static int ACCURACY = 1;

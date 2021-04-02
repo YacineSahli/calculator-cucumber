@@ -6,16 +6,27 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Stream;
 
+/**
+ * Expression that can be evaluated in the calculator
+ *
+ * @author Arnaud.P
+ */
 public abstract class ComputableExpression {
     protected String symbol;
-    protected String funcName;
+    protected String funcName; // the name of the function to apply
 
     public CalculatorValue op(CalculatorValue... args) throws InvocationTargetException, NoSuchMethodException {
-        CalculatorValue most_accurate_item = Arrays.stream(args).max((o1, o2) -> o2.accuracyLevel - o1.accuracyLevel).get();
 
-        Class targetClass = most_accurate_item.getClass();
-        String convert_fun_name = "to" + targetClass.getName().substring(targetClass.getName().lastIndexOf(".") + 1);
+        //retreive the most accurate level. i.e. with the lowest accuracy value
+        CalculatorValue most_accurate_item = Arrays.stream(args)
+                .max((o1, o2) -> o2.accuracyLevel - o1.accuracyLevel)
+                .get();
 
+        Class targetClass = most_accurate_item.getClass(); // The class to which all arguments will be converted
+        String convert_fun_name = "to" + targetClass.getName()
+                .substring(targetClass.getName().lastIndexOf(".") + 1);
+
+        // convert all args to the targetClass
         final Exception[] exception = new Exception[1];
         try {
             Stream<Object> streamConvertedArgs = Arrays.stream(args).map(i -> {
@@ -33,7 +44,9 @@ public abstract class ComputableExpression {
 
             Method fun = null;
 
-            fun = this.getClass().getMethod(funcName, Collections.nCopies(args.length, targetClass).toArray(new Class[args.length]));
+            // apply the function funcName.
+            fun = this.getClass().getMethod(funcName, Collections.nCopies(args.length, targetClass)
+                    .toArray(new Class[args.length]));
             return (CalculatorValue) fun.invoke(this, convertedArgs);
         } catch (InvocationTargetException e) {
             throw e;

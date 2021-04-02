@@ -2,6 +2,11 @@ package calculator;
 
 import java.util.Random;
 
+/**
+ * A pseudorandom generator.
+ *
+ * @author Arnaud.P
+ */
 public class MyRandom {
 
     private final Random generator;
@@ -16,7 +21,7 @@ public class MyRandom {
         generator = new Random();
     }
 
-    public CalculatorValue nextInt(IntegerNumber bound){
+    public CalculatorValue nextInt(IntegerNumber bound) {
         return new IntegerNumber(generator.nextInt(bound.getValue()));
     }
 

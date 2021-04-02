@@ -1,6 +1,12 @@
 package calculator;
 
 
+/**
+ * A number builder which will be mainly used for the CLI.
+ * todo The implementation will be done at the same time as the CLI
+ *
+ * @author Arnaud.P
+ */
 public class NumberBuilder {
 
     private static NumberBuilder instance;
@@ -12,7 +18,6 @@ public class NumberBuilder {
         return instance;
     }
     /*
-    //todo implement for CLI
 
     private final ArrayList<Class> numberTypes;
     private NumberBuilder() {
