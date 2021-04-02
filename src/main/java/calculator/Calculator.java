@@ -1,14 +1,11 @@
 package calculator;
 
-
-import calculator.utils.convertor.Convertor;
 import calculator.variables.CalculatorVariable;
 import visitor.Evaluator;
 import visitor.EvaluatorException;
 import visitor.Printer;
 
 public class Calculator {
-    Convertor convertor = new Convertor();
 
     /*
      For the moment the calculator only contains a print method and an eval method
@@ -52,15 +49,6 @@ public class Calculator {
         }
         // and return the result of the evaluation at the end of the process
         return v.getResult();
-    }
-
-
-    public Double convert(String inputUnit, String outputUnit, double inputAmount) {
-        return convertor.convert(inputUnit, outputUnit, inputAmount);
-    }
-
-    public Double convert(String input) {
-        return convertor.convert(input);
     }
 
     /*

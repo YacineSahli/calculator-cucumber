@@ -1,13 +1,10 @@
 package calculator;
 
-import calculator.function.Not;
 import calculator.operation.Divides;
 import calculator.operation.Minus;
 import calculator.operation.Plus;
 import calculator.operation.Times;
 import calculator.variables.IntegerNumber;
-import calculator.variables.MyBoolean;
-import calculator.variables.MyTime;
 import calculator.variables.RationalNumber;
 
 import java.text.ParseException;
@@ -75,29 +72,7 @@ public class Main {
             c.eval(e);
             System.out.println("---");
 
-            List<Expression> params6 = new ArrayList<>();
-            Collections.addAll(params6, new MyTime("2020-12-24 10:10:10"), new MyTime("2020-12-11 15:41:12"));
-            e = new Minus(params6);
-            c.print(e);
-            MyTime res = (MyTime) c.eval(e);
-            System.out.println("Formatted result: " + res.toHumanFormat("d"));
-            System.out.println("Formatted result: " + res.toHumanFormat("hours"));
-            System.out.println("Formatted result: " + res.toHumanFormat("Minutes"));
-            System.out.println("Formatted result: " + res.toHumanFormat("SECONDS"));
-            System.out.println();
-
-            List<Expression> params7 = new ArrayList<>();
-            Collections.addAll(params7, new IntegerNumber(5), new RationalNumber(1, 2));
-            e = new Plus(params7);
-            c.print(e);
-            c.eval(e);
-
-            MyBoolean params8 = new MyBoolean(0);
-            e = new Not(params8);
-            c.print(e);
-            c.eval(e);
-
-        } catch (IllegalConstruction | ParseException exception) {
+        } catch (IllegalConstruction i) {
             System.out.println("cannot create operations without parameters");
         }
     }
