@@ -3,6 +3,7 @@ package junit5tests;
 import calculator.MyTime;
 import org.junit.jupiter.api.Test;
 
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.time.Duration;
 
@@ -40,7 +41,7 @@ public class TestMyTime {
     @Test
     public void testToHumanFormatChosenTemporal() throws ParseException {
         time = new MyTime(Duration.ofSeconds(3912322));
-        assertEquals("1086.756 HOURS", time.toHumanFormat("HOURS"));
+        assertEquals("1086"+  DecimalFormatSymbols.getInstance().getDecimalSeparator() +"756 HOURS", time.toHumanFormat("HOURS"));
     }
 
     @Test
