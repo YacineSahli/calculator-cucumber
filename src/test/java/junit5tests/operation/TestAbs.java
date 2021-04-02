@@ -1,6 +1,7 @@
-package junit5tests;
+package junit5tests.operation;
 
 import calculator.*;
+import calculator.function.Abs;
 import calculator.function.Invert;
 import calculator.variables.IntegerNumber;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,11 +10,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class TestInvert {
+public class TestAbs {
 
     private final int value1 = -8;
     private final int value2 = 6;
-    private Invert func;
+    private Abs func;
     private Expression param;
     private final Calculator c = new Calculator();
 
@@ -21,7 +22,7 @@ public class TestInvert {
     public void setUp() {
         param = new IntegerNumber(value1);
         try {
-            func = new Invert(param);
+            func = new Abs(param);
         } catch (IllegalConstruction e) {
             fail();
         }
@@ -29,7 +30,7 @@ public class TestInvert {
 
     @Test
     public void testConstructor1() {
-        assertThrows(IllegalConstruction.class, () -> func = new Invert(null));
+        assertThrows(IllegalConstruction.class, () -> func = new Abs(null));
     }
 
     @SuppressWarnings("AssertBetweenInconvertibleTypes")
@@ -45,10 +46,10 @@ public class TestInvert {
     @Test
     public void testEquals() {
         try {
-            Invert e = new Invert(new IntegerNumber(value1));
+            Abs e = new Abs(new IntegerNumber(value1));
             assertEquals(func, e);
             assertEquals(e, e);
-            assertNotEquals(e, new Invert(new IntegerNumber(value2)));
+            assertNotEquals(e, new Abs(new IntegerNumber(value2)));
         } catch (IllegalConstruction e) {
             fail();
         }
@@ -63,7 +64,7 @@ public class TestInvert {
     @Test
     public void testHashCode() {
         try {
-            Invert e = new Invert(param);
+            Abs e = new Abs(param);
             assertEquals(e.hashCode(), func.hashCode());
         } catch (IllegalConstruction e) {
             fail();
@@ -73,7 +74,7 @@ public class TestInvert {
     @Test
     public void testNullParamList() {
         param = null;
-        assertThrows(IllegalConstruction.class, () -> func = new Invert(param));
+        assertThrows(IllegalConstruction.class, () -> func = new Abs(param));
     }
 
     @Test

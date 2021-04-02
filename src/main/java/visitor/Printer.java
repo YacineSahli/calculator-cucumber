@@ -1,10 +1,10 @@
 package visitor;
 
-import calculator.*;
-import calculator.CalculatorValue;
+import calculator.variables.CalculatorVariable;
 import calculator.Expression;
 import calculator.Notation;
-import calculator.Operation;
+import calculator.operation.Operation;
+import calculator.function.Function;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -22,7 +22,7 @@ public class Printer extends Visitor {
     }
 
     @Override
-    public void visit(CalculatorValue n) {
+    public void visit(CalculatorVariable n) {
         result = n.toString();
     }
 

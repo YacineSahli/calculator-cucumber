@@ -1,6 +1,11 @@
 package junit5tests;
 
 import calculator.*;
+import calculator.operation.Divides;
+import calculator.operation.Minus;
+import calculator.operation.Plus;
+import calculator.variables.IntegerNumber;
+import calculator.variables.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import visitor.EvaluatorException;

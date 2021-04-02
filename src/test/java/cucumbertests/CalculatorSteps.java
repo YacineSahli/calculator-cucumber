@@ -1,6 +1,8 @@
 package cucumbertests;
 
 import calculator.*;
+import calculator.operation.*;
+import calculator.variables.IntegerNumber;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

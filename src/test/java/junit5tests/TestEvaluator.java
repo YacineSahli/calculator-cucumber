@@ -3,6 +3,14 @@ package junit5tests;
 //Import Junit5 libraries for unit testing:
 
 import calculator.*;
+import calculator.function.Abs;
+import calculator.function.Invert;
+import calculator.function.MinusFunction;
+import calculator.function.PlusFunction;
+import calculator.operation.*;
+import calculator.variables.IntegerNumber;
+import calculator.variables.MyTime;
+import calculator.variables.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import visitor.Evaluator;

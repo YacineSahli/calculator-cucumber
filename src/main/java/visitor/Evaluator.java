@@ -1,9 +1,9 @@
 package visitor;
 
-import calculator.CalculatorValue;
+import calculator.variables.CalculatorVariable;
 import calculator.Expression;
-import calculator.Function;
-import calculator.Operation;
+import calculator.function.Function;
+import calculator.operation.Operation;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -11,19 +11,19 @@ import java.util.ArrayList;
 
 public class Evaluator extends Visitor {
 
-    private CalculatorValue computedValue;
+    private CalculatorVariable computedValue;
 
-    public CalculatorValue getResult() {
+    public CalculatorVariable getResult() {
         return computedValue;
     }
 
-    public void visit(CalculatorValue v) {
+    public void visit(CalculatorVariable v) {
         computedValue = v;
     }
 
     @Override
     public void visit(Function f) throws EvaluatorException {
-        CalculatorValue evaluatedArg;
+        CalculatorVariable evaluatedArg;
         f.arg.accept(this);
         evaluatedArg = computedValue;
         try {
@@ -36,14 +36,14 @@ public class Evaluator extends Visitor {
     }
 
     public void visit(Operation o) throws EvaluatorException {
-        ArrayList<CalculatorValue> evaluatedArgs = new ArrayList<>();
+        ArrayList<CalculatorVariable> evaluatedArgs = new ArrayList<>();
         //first loop to recursively evaluate each subexpression
         for (Expression a : o.args) {
             a.accept(this);
             evaluatedArgs.add(computedValue);
         }
         //second loop to accummulate all the evaluated subresults
-        CalculatorValue temp = evaluatedArgs.get(0);
+        CalculatorVariable temp = evaluatedArgs.get(0);
         int max = evaluatedArgs.size();
         for (int counter = 1; counter < max; counter++) {
             try {

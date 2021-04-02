@@ -1,6 +1,10 @@
 package calculator;
 
 
+import calculator.variables.CalculatorVariable;
+import calculator.variables.IntegerNumber;
+import calculator.variables.RationalNumber;
+
 /**
  * A number builder which will be mainly used for the CLI.
  * todo The implementation will be done at the same time as the CLI
@@ -49,7 +53,7 @@ public class NumberBuilder {
     }
  */
 
-    public CalculatorValue build(int num, int denum) {
+    public CalculatorVariable build(int num, int denum) {
         if (denum == 1) {
             return new IntegerNumber(num);
         }

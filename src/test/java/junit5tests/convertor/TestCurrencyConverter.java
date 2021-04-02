@@ -1,6 +1,6 @@
 package junit5tests.convertor;
 
-import calculator.Convertor;
+import calculator.utils.convertor.Convertor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

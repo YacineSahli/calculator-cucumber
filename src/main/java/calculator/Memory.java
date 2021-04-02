@@ -1,5 +1,6 @@
 package calculator;
 
+import calculator.variables.CalculatorVariable;
 import visitor.EvaluatorException;
 import visitor.Printer;
 
@@ -13,7 +14,7 @@ public class Memory {
     private final Expression[] expressions;
     private int pointer;
     private int load;
-    private final HashMap<Expression, CalculatorValue> expressValueBinding;
+    private final HashMap<Expression, CalculatorVariable> expressValueBinding;
 
     public Memory(Calculator calculator, int size) {
         this.calculator = calculator;

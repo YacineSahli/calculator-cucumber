@@ -1,8 +1,8 @@
 package junit5tests;
 
-import calculator.IntegerNumber;
+import calculator.variables.IntegerNumber;
 import calculator.NumberBuilder;
-import calculator.RationalNumber;
+import calculator.variables.RationalNumber;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

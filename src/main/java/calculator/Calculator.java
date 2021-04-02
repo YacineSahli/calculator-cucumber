@@ -1,6 +1,8 @@
 package calculator;
 
 
+import calculator.utils.convertor.Convertor;
+import calculator.variables.CalculatorVariable;
 import visitor.Evaluator;
 import visitor.EvaluatorException;
 import visitor.Printer;
@@ -38,7 +40,7 @@ public class Calculator {
         System.out.println();
     }
 
-    public CalculatorValue eval(Expression e) {
+    public CalculatorVariable eval(Expression e) {
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process

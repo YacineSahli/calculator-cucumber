@@ -1,7 +1,14 @@
 package calculator;
 
-import calculator.Boolean.MyBoolean;
-import calculator.Boolean.Not;
+import calculator.function.Not;
+import calculator.operation.Divides;
+import calculator.operation.Minus;
+import calculator.operation.Plus;
+import calculator.operation.Times;
+import calculator.variables.IntegerNumber;
+import calculator.variables.MyBoolean;
+import calculator.variables.MyTime;
+import calculator.variables.RationalNumber;
 
 import java.text.ParseException;
 import java.util.ArrayList;

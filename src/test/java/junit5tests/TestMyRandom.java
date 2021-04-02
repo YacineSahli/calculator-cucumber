@@ -1,9 +1,9 @@
 package junit5tests;
 
-import calculator.CalculatorValue;
-import calculator.IntegerNumber;
-import calculator.MyRandom;
-import calculator.RationalNumber;
+import calculator.variables.CalculatorVariable;
+import calculator.variables.IntegerNumber;
+import calculator.utils.MyRandom;
+import calculator.variables.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +34,7 @@ class TestMyRandom {
 
     @Test
     void testNextInt() {
-        CalculatorValue val = generator.nextInt();
+        CalculatorVariable val = generator.nextInt();
         assertNotNull(val);
         assertEquals(IntegerNumber.class, val.getClass());
     }
@@ -48,7 +48,7 @@ class TestMyRandom {
     @Test
     void testNextRational() {
         assertDoesNotThrow(() -> generator.nextRational());
-        CalculatorValue val = generator.nextRational();
+        CalculatorVariable val = generator.nextRational();
         assertNotNull(val);
         assertEquals(RationalNumber.class, val.getClass());
     }

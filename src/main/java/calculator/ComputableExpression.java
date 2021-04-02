@@ -1,5 +1,7 @@
 package calculator;
 
+import calculator.variables.CalculatorVariable;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -15,11 +17,11 @@ public abstract class ComputableExpression {
     protected String symbol;
     protected String funcName; // the name of the function to apply
 
-    public CalculatorValue op(CalculatorValue... args) throws InvocationTargetException, NoSuchMethodException {
+    public CalculatorVariable op(CalculatorVariable... args) throws InvocationTargetException, NoSuchMethodException {
 
-        //retreive the most accurate level. i.e. with the lowest accuracy value
-        CalculatorValue most_accurate_item = Arrays.stream(args)
-                .max((o1, o2) -> o2.accuracyLevel - o1.accuracyLevel)
+        //retrieve the most accurate level. i.e. with the lowest accuracy value
+        CalculatorVariable most_accurate_item = Arrays.stream(args)
+                .max((o1, o2) -> o2.getAccuracyLevel() - o1.getAccuracyLevel())
                 .get();
 
         Class targetClass = most_accurate_item.getClass(); // The class to which all arguments will be converted
@@ -47,7 +49,7 @@ public abstract class ComputableExpression {
             // apply the function funcName.
             fun = this.getClass().getMethod(funcName, Collections.nCopies(args.length, targetClass)
                     .toArray(new Class[args.length]));
-            return (CalculatorValue) fun.invoke(this, convertedArgs);
+            return (CalculatorVariable) fun.invoke(this, convertedArgs);
         } catch (InvocationTargetException e) {
             throw e;
         } catch (NoSuchMethodException e) {
