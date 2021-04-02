@@ -2,7 +2,6 @@ package junit5tests.operation;
 
 import calculator.*;
 import calculator.function.Abs;
-import calculator.function.Invert;
 import calculator.variables.IntegerNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,16 +30,6 @@ public class TestAbs {
     @Test
     public void testConstructor1() {
         assertThrows(IllegalConstruction.class, () -> func = new Abs(null));
-    }
-
-    @SuppressWarnings("AssertBetweenInconvertibleTypes")
-    @Test
-    public void testConstructor2() {
-        try {
-            assertNotEquals(func, new Invert(new IntegerNumber(value2)));
-        } catch (IllegalConstruction e) {
-            fail();
-        }
     }
 
     @Test

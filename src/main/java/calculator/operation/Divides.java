@@ -3,8 +3,6 @@ package calculator.operation;
 import calculator.*;
 import calculator.variables.CalculatorVariable;
 import calculator.variables.IntegerNumber;
-import calculator.variables.RationalNumber;
-
 import java.util.List;
 
 final public class Divides extends Operation {
@@ -20,9 +18,5 @@ final public class Divides extends Operation {
             throw new ArithmeticException("Division per zero");
         }
         return new IntegerNumber(l.getValue() / r.getValue());
-    }
-
-    public CalculatorVariable op(RationalNumber l, RationalNumber r) {
-        return NumberBuilder.builder().build(l.getNum() * r.getDenum(), l.getDenum() * r.getNum());
     }
 }

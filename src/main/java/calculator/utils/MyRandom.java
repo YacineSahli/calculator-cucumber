@@ -2,7 +2,6 @@ package calculator.utils;
 
 import calculator.variables.CalculatorVariable;
 import calculator.variables.IntegerNumber;
-import calculator.variables.RationalNumber;
 
 import java.util.Random;
 
@@ -31,16 +30,6 @@ public class MyRandom {
 
     public CalculatorVariable nextInt() {
         return new IntegerNumber(generator.nextInt());
-    }
-
-    public CalculatorVariable nextRational() {
-        int num, denum = 0;
-        num = generator.nextInt();
-        denum = generator.nextInt();
-        while (denum == 0) {
-            denum = generator.nextInt();
-        }
-        return new RationalNumber(num, denum);
     }
 
     public Long getSeed() {

@@ -35,11 +35,4 @@ public class IntegerNumber extends CalculatorVariable {
     public IntegerNumber toIntegerNumber() {
         return this;
     }
-
-    /**
-     * @return the number converted to a rational number.
-     */
-    public RationalNumber toRationalNumber() {
-        return new RationalNumber(this.value, 1);
-    }
 }

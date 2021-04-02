@@ -3,7 +3,6 @@ package junit5tests;
 import calculator.variables.CalculatorVariable;
 import calculator.variables.IntegerNumber;
 import calculator.utils.MyRandom;
-import calculator.variables.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,13 +42,5 @@ class TestMyRandom {
     void testNextIntBound() {
         MyRandom generator = new MyRandom(seed);
         assertTrue(((IntegerNumber)generator.nextInt(new IntegerNumber(bound))).getValue()<bound);
-    }
-
-    @Test
-    void testNextRational() {
-        assertDoesNotThrow(() -> generator.nextRational());
-        CalculatorVariable val = generator.nextRational();
-        assertNotNull(val);
-        assertEquals(RationalNumber.class, val.getClass());
     }
 }

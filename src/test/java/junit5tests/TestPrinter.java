@@ -5,7 +5,6 @@ import calculator.operation.Divides;
 import calculator.operation.Minus;
 import calculator.operation.Plus;
 import calculator.variables.IntegerNumber;
-import calculator.variables.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import visitor.EvaluatorException;
@@ -25,9 +24,9 @@ public class TestPrinter {
     @BeforeEach
     public void SetUp() {
         List<Expression> params = new ArrayList<>();//plus
-        Collections.addAll(params, new IntegerNumber(3), new RationalNumber(4, 3), new IntegerNumber(5));
+        Collections.addAll(params, new IntegerNumber(3), new IntegerNumber(4), new IntegerNumber(5));
         List<Expression> params2 = new ArrayList<>();//minus
-        Collections.addAll(params2, new RationalNumber(5, 7), new IntegerNumber(3));
+        Collections.addAll(params2, new IntegerNumber(5), new IntegerNumber(3));
         List<Expression> params3 = new ArrayList<>();//devide
 
         try {
@@ -50,11 +49,11 @@ public class TestPrinter {
         try {
             e1.accept(printer);
             r = printer.getResult();
-            assertEquals("+ (3#4/3#5)", r);
+            assertEquals("+ (3#4#5)", r);
 
             e2.accept(printer);
             r = printer.getResult();
-            assertEquals("/ (+ (3#4/3#5)#- (5/7#3)#2)", r);
+            assertEquals("/ (+ (3#4#5)#- (5#3)#2)", r);
 
         } catch (EvaluatorException e) {
             e.printStackTrace();
@@ -68,11 +67,11 @@ public class TestPrinter {
         try {
             e1.accept(printer);
             r = printer.getResult();
-            assertEquals("( 3 + 4/3 + 5 )", r);
+            assertEquals("( 3 + 4 + 5 )", r);
 
             e2.accept(printer);
             r = printer.getResult();
-            assertEquals("( ( 3 + 4/3 + 5 ) / ( 5/7 - 3 ) / 2 )", r);
+            assertEquals("( ( 3 + 4 + 5 ) / ( 5 - 3 ) / 2 )", r);
 
         } catch (EvaluatorException e) {
             e.printStackTrace();
@@ -86,13 +85,13 @@ public class TestPrinter {
         try {
             e1.accept(printer);
             r = printer.getResult();
-            assertEquals("(3#4/3#5) +", r);
+            assertEquals("(3#4#5) +", r);
 
             printer.setSeparator("@");
 
             e2.accept(printer);
             r = printer.getResult();
-            assertEquals("((3@4/3@5) +@(5/7@3) -@2) /", r);
+            assertEquals("((3@4@5) +@(5@3) -@2) /", r);
 
         } catch (EvaluatorException e) {
             e.printStackTrace();
