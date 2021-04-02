@@ -17,7 +17,4 @@ final public class Divides extends Operation {
         return new IntegerNumber(l.getValue() / r.getValue());
     }
 
-    public CalculatorValue op(RationalNumber l, RationalNumber r) {
-        return NumberBuilder.builder().build(l.getNum() * r.getDenum(), l.getDenum() * r.getNum());
-    }
 }

@@ -27,8 +27,4 @@ public class IntegerNumber extends CalculatorValue {
     public IntegerNumber toIntegerNumber() {
         return this;
     }
-
-    public RationalNumber toRationalNumber(){
-        return new RationalNumber(this.value, 1);
-    }
 }
