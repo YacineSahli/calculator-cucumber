@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class ModularInverseTest {
+public class TestModularInverse {
 
     private final int value1 = 8;
     private final int value2 = 6;

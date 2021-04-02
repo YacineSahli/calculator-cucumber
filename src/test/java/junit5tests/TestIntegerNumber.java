@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-class IntegerNumberTest {
+class TestIntegerNumber {
 
     private final int value1 = 7;
     private final int value2 = 42;

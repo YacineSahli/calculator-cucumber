@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class PowTest {
+public class TestPow {
 
     private final int value1 = 8;
     private final int value2 = 6;

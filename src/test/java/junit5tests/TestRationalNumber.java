@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RationalNumberTest {
+class TestRationalNumber {
 
     private final int value1 = 7;
     private final int value2 = 42;

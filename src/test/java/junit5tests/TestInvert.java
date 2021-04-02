@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class AbsTest {
+public class TestInvert {
 
     private final int value1 = -8;
     private final int value2 = 6;
-    private Abs func;
+    private Invert func;
     private Expression param;
     private final Calculator c = new Calculator();
 
@@ -19,7 +19,7 @@ public class AbsTest {
     public void setUp() {
         param = new IntegerNumber(value1);
         try {
-            func = new Abs(param);
+            func = new Invert(param);
         } catch (IllegalConstruction e) {
             fail();
         }
@@ -27,7 +27,7 @@ public class AbsTest {
 
     @Test
     public void testConstructor1() {
-        assertThrows(IllegalConstruction.class, () -> func = new Abs(null));
+        assertThrows(IllegalConstruction.class, () -> func = new Invert(null));
     }
 
     @SuppressWarnings("AssertBetweenInconvertibleTypes")
@@ -43,10 +43,10 @@ public class AbsTest {
     @Test
     public void testEquals() {
         try {
-            Abs e = new Abs(new IntegerNumber(value1));
+            Invert e = new Invert(new IntegerNumber(value1));
             assertEquals(func, e);
             assertEquals(e, e);
-            assertNotEquals(e, new Abs(new IntegerNumber(value2)));
+            assertNotEquals(e, new Invert(new IntegerNumber(value2)));
         } catch (IllegalConstruction e) {
             fail();
         }
@@ -61,7 +61,7 @@ public class AbsTest {
     @Test
     public void testHashCode() {
         try {
-            Abs e = new Abs(param);
+            Invert e = new Invert(param);
             assertEquals(e.hashCode(), func.hashCode());
         } catch (IllegalConstruction e) {
             fail();
@@ -71,7 +71,7 @@ public class AbsTest {
     @Test
     public void testNullParamList() {
         param = null;
-        assertThrows(IllegalConstruction.class, () -> func = new Abs(param));
+        assertThrows(IllegalConstruction.class, () -> func = new Invert(param));
     }
 
     @Test
