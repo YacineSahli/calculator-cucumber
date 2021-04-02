@@ -101,6 +101,17 @@ public class BooleanOperationTest {
             illegalConstruction.printStackTrace();
         }
     }
+    @Test
+    public void testNot() {
+        first = new MyBoolean(0);
+
+        try {
+            op = new Not(first);
+            assertEquals(new MyBoolean(1), calc.eval(op));
+        } catch (IllegalConstruction illegalConstruction) {
+            illegalConstruction.printStackTrace();
+        }
+    }
 
 
 }
