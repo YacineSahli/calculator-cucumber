@@ -26,10 +26,6 @@ public class Printer extends Visitor {
         result = n.toString();
     }
 
-    @Override
-    public void visit(Function f) throws EvaluatorException {
-
-    }
 
     @Override
     public void visit(Operation o) throws EvaluatorException {

@@ -13,8 +13,4 @@ final public class Times extends Operation {
     public CalculatorValue op(IntegerNumber l, IntegerNumber r) {
         return new IntegerNumber(l.getValue() * r.getValue());
     }
-
-    public CalculatorValue op(RationalNumber l, RationalNumber r) {
-        return new RationalNumber(l.getNum() * r.getNum(), l.getDenum() * r.getDenum());
-    }
 }

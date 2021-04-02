@@ -49,11 +49,4 @@ public class NumberBuilder {
     }
  */
 
-    public CalculatorValue build(int num, int denum) {
-        if (denum == 1) {
-            return new IntegerNumber(num);
-        }
-        return new RationalNumber(num, denum);
-    }
-
 }

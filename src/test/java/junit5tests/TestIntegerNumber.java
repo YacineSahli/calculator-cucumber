@@ -1,7 +1,6 @@
 package junit5tests;
 
 import calculator.IntegerNumber;
-import calculator.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,17 +22,6 @@ class TestIntegerNumber {
     void testSpecificEquals() {
         assertEquals(number, new IntegerNumber(value1));
         assertNotEquals(number, new IntegerNumber(value2));
-        assertNotEquals(number, new RationalNumber(value1, value2));
-    }
-
-    @Test
-    void testToIntegerNumber() {
-        assertEquals(number, number.toIntegerNumber());
-    }
-
-    @Test
-    void testToRationalNumber() {
-        assertEquals(new RationalNumber(value1, 1), number.toRationalNumber());
     }
 
     @Test

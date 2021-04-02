@@ -22,19 +22,6 @@ public class Evaluator extends Visitor {
         computedValue = v;
     }
 
-    @Override
-    public void visit(Function f) throws EvaluatorException {
-        CalculatorValue evaluatedArg;
-        f.arg.accept(this);
-        evaluatedArg = computedValue;
-        try {
-            computedValue = f.apply(evaluatedArg);
-        } catch (InvocationTargetException e) {
-            throw new EvaluatorException("Impossible to evaluate the expression: "+e.getCause().getMessage(), f);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void visit(Operation o) throws EvaluatorException {
         ArrayList<CalculatorValue> evaluatedArgs = new ArrayList<>();

@@ -39,7 +39,4 @@ public class IntegerNumber extends CalculatorValue {
     /**
      * @return the number converted to a rational number.
      */
-    public RationalNumber toRationalNumber() {
-        return new RationalNumber(this.value, 1);
-    }
 }
