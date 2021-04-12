@@ -9,6 +9,8 @@ import calculator.variables.IntegerNumber;
 import calculator.variables.MyBoolean;
 import calculator.variables.MyTime;
 import calculator.variables.RationalNumber;
+import cli.CommandLineInterface;
+import cli.Mode;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -26,7 +28,9 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-
+        CommandLineInterface cal_interface = new CommandLineInterface(Mode.CALCULATOR);
+        cal_interface.run();
+        /*
         Expression e;
         Calculator c = new Calculator();
 
@@ -99,7 +103,7 @@ public class Main {
 
         } catch (IllegalConstruction | ParseException exception) {
             System.out.println("cannot create operations without parameters");
-        }
+        }*/
     }
 
 }
