@@ -28,7 +28,6 @@ public class CommandLineInterface {
             if(input.equals("HELP")) {
                 displayHelp();
             }
-
         }
     }
 
