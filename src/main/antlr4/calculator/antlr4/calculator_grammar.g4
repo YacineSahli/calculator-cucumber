@@ -1,5 +1,29 @@
 // Define a grammar called Hello
 grammar calculator_grammar;
-r  : 'hello' ID ;         // match keyword hello followed by an identifier
-ID : [a-z]+ ;             // match lower-case identifiers
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+
+//| binaryOp LPAREN expression (SEPARATOR expression)* RPAREN
+
+expression
+    : expression binaryOp expression # Operation
+    | variable                       # Number
+    | LPAREN expression RPAREN       # Parents
+    ;
+
+binaryOp: TIMES|DIV|PLUS|MINUS;
+variable: INTEGER;
+
+
+
+
+
+// values
+RATIONAL: INTEGER'/'INTEGER;
+INTEGER: ('0' .. '9')+;
+
+PLUS: '+';
+MINUS: '-';
+TIMES: '*';
+DIV: '/';
+
+LPAREN: '(';
+RPAREN: ')';

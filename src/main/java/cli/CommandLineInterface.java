@@ -25,9 +25,11 @@ public class CommandLineInterface {
                 this.mode=newMode;
                 continue;
             }
-            if(input.equals("HELP")) {
+            /*if(input.equals("HELP")) {
                 displayHelp();
-            }
+            }*/
+            Parser parser = new Parser();
+            parser.parse(input);
         }
     }
 
