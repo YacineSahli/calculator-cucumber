@@ -1,5 +1,8 @@
 package cli;
 
+import calculator.Calculator;
+import calculator.Expression;
+
 import java.util.Scanner;
 
 public class CommandLineInterface {
@@ -7,6 +10,7 @@ public class CommandLineInterface {
     private boolean is_running;
     private Scanner scanner;
     private Mode mode;
+    private Calculator c = new Calculator();
 
     public CommandLineInterface(Mode initialMode){
         this.mode = initialMode;
@@ -29,7 +33,12 @@ public class CommandLineInterface {
                 displayHelp();
             }*/
             Parser parser = new Parser();
-            parser.parse(input);
+            try{
+                Expression e = parser.parse(input);
+                System.out.println(c.eval(e));
+            }catch(IllegalStateException e){
+                System.out.println("Invalid expression");
+            }
         }
     }
 
