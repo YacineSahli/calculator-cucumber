@@ -15,21 +15,24 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GrammarVisitor extends calculator_grammarBaseVisitor<Expression> {
 
 
 
-    public Expression visitInteger(calculator_grammarParser.IntegerContext ctx){
+    public Expression visitIntegerInfix(calculator_grammarParser.IntegerInfixContext ctx){
+        return new IntegerNumber(Integer.parseInt(ctx.getText()));
+    }
+    public Expression visitIntegerPrefix(calculator_grammarParser.IntegerPrefixContext ctx){
+        return new IntegerNumber(Integer.parseInt(ctx.getText()));
+    }
+    public Expression visitIntegerPostfix(calculator_grammarParser.IntegerPostfixContext ctx){
         return new IntegerNumber(Integer.parseInt(ctx.getText()));
     }
 
-//    public Expression visitBoolean(calculator_grammarParser.BooleanContext ctx){
-//        return new MyBoolean(Integer.parseInt(ctx.getText()));
-//    }
 
-
-    public Expression visitOperationMul(calculator_grammarParser.OperationMulContext ctx){
+    public Expression visitOperationInfixMul(calculator_grammarParser.OperationInfixMulContext ctx){
         List<Expression> params = new ArrayList<>();
         Collections.addAll(params, visit(ctx.infixExpression(0)), visit(ctx.infixExpression(1)) );
         try {
@@ -39,7 +42,7 @@ public class GrammarVisitor extends calculator_grammarBaseVisitor<Expression> {
         }
     }
 
-    public Expression visitOperationDiv(calculator_grammarParser.OperationDivContext ctx){
+    public Expression visitOperationInfixDiv(calculator_grammarParser.OperationInfixDivContext ctx){
         List<Expression> params = new ArrayList<>();
         Collections.addAll(params, visit(ctx.infixExpression(0)), visit(ctx.infixExpression(1)) );
         try {
@@ -49,7 +52,7 @@ public class GrammarVisitor extends calculator_grammarBaseVisitor<Expression> {
         }
     }
 
-    public Expression visitOperationPlus(calculator_grammarParser.OperationPlusContext ctx){
+    public Expression visitOperationInfixPlus(calculator_grammarParser.OperationInfixPlusContext ctx){
         List<Expression> params = new ArrayList<>();
         Collections.addAll(params, visit(ctx.infixExpression(0)), visit(ctx.infixExpression(1)) );
         try {
@@ -59,7 +62,7 @@ public class GrammarVisitor extends calculator_grammarBaseVisitor<Expression> {
         }
     }
 
-    public Expression visitOperationMinus(calculator_grammarParser.OperationMinusContext ctx){
+    public Expression visitOperationInfixMinus(calculator_grammarParser.OperationInfixMinusContext ctx){
         List<Expression> params = new ArrayList<>();
         Collections.addAll(params, visit(ctx.infixExpression(0)), visit(ctx.infixExpression(1)) );
         try {
@@ -69,7 +72,81 @@ public class GrammarVisitor extends calculator_grammarBaseVisitor<Expression> {
         }
     }
 
-    public Expression visitParens(calculator_grammarParser.ParensContext ctx){
+    public Expression visitOperationPrefixMul(calculator_grammarParser.OperationPrefixMulContext ctx){
+        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        try {
+            return new Times(params);
+        } catch (IllegalConstruction illegalConstruction) {
+            throw new RuntimeException();
+        }
+    }
+
+    public Expression visitOperationPrefixDiv(calculator_grammarParser.OperationPrefixDivContext ctx){
+        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        try {
+            return new Divides(params);
+        } catch (IllegalConstruction illegalConstruction) {
+            throw new RuntimeException();
+        }
+    }
+
+    public Expression visitOperationPrefixPlus(calculator_grammarParser.OperationPrefixPlusContext ctx){
+        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        try {
+            return new Plus(params);
+        } catch (IllegalConstruction illegalConstruction) {
+            throw new RuntimeException();
+        }
+    }
+
+    public Expression visitOperationPrefixMinus(calculator_grammarParser.OperationPrefixMinusContext ctx){
+        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        try {
+            return new Minus(params);
+        } catch (IllegalConstruction illegalConstruction) {
+            throw new RuntimeException();
+        }
+    }
+
+
+    public Expression visitOperationPostfixMul(calculator_grammarParser.OperationPostfixMulContext ctx){
+        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        try {
+            return new Times(params);
+        } catch (IllegalConstruction illegalConstruction) {
+            throw new RuntimeException();
+        }
+    }
+
+    public Expression visitOperationPostfixDiv(calculator_grammarParser.OperationPostfixDivContext ctx){
+        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        try {
+            return new Divides(params);
+        } catch (IllegalConstruction illegalConstruction) {
+            throw new RuntimeException();
+        }
+    }
+
+    public Expression visitOperationPostfixPlus(calculator_grammarParser.OperationPostfixPlusContext ctx){
+        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        try {
+            return new Plus(params);
+        } catch (IllegalConstruction illegalConstruction) {
+            throw new RuntimeException();
+        }
+    }
+
+    public Expression visitOperationPostfixMinus(calculator_grammarParser.OperationPostfixMinusContext ctx){
+        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        try {
+            return new Minus(params);
+        } catch (IllegalConstruction illegalConstruction) {
+            throw new RuntimeException();
+        }
+    }
+
+
+    public Expression visitParensInfix(calculator_grammarParser.ParensInfixContext ctx){
         return visit((ParseTree) ctx.infixExpression());
     }
 }
