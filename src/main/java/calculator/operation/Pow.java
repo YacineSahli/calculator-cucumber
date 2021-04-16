@@ -25,6 +25,6 @@ public class Pow extends Operation {
         if (b.getDenum() != 1)
             throw new IllegalArgumentException("Can't use rational number as exponent");
         IntegerNumber bInt = new IntegerNumber(b.getNum());
-        return NumberBuilder.builder().build((int) pow(a.getNum(), bInt.getValue()), (int) pow(a.getDenum(), bInt.getValue()));
+        return buildNumber((int) pow(a.getNum(), bInt.getValue()), (int) pow(a.getDenum(), bInt.getValue()));
     }
 }

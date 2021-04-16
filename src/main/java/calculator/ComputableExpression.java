@@ -1,6 +1,8 @@
 package calculator;
 
 import calculator.variables.CalculatorVariable;
+import calculator.variables.IntegerNumber;
+import calculator.variables.RationalNumber;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -58,6 +60,14 @@ public abstract class ComputableExpression {
             error.printStackTrace();
         }
         return null;
+    }
+
+    //todo doc
+    final protected CalculatorVariable buildNumber(int num, int denum) {
+        if (denum == 1) {
+            return new IntegerNumber(num);
+        }
+        return new RationalNumber(num, denum);
     }
 
     @Override

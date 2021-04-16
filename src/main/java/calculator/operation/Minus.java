@@ -47,7 +47,7 @@ final public class Minus extends Operation {
     }
 
     public CalculatorVariable op(RationalNumber l, RationalNumber r) {
-        return NumberBuilder.builder().build((l.getNum() * r.getDenum()) - (l.getDenum() * r.getNum()),
+        return buildNumber((l.getNum() * r.getDenum()) - (l.getDenum() * r.getNum()),
                 l.getDenum() * r.getDenum());
     }
 }
