@@ -62,7 +62,6 @@ public abstract class ComputableExpression {
         return null;
     }
 
-    //todo doc
     final protected CalculatorVariable buildNumber(int num, int denum) {
         if (denum == 1) {
             return new IntegerNumber(num);
