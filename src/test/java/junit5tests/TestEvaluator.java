@@ -136,6 +136,36 @@ public class TestEvaluator {
     }
 
     @Test
+    public void testEvaluatorTimeMinusTimeGMT() {
+        try {
+            List<Expression> list = new ArrayList<>();
+            list.add(new MyTime("2020-12-10 10:10:10 GMT+03:00"));
+            list.add(new MyTime("2020-12-10 10:10:10 GMT+01:00"));
+            op = new Minus(list);
+            assertEquals("PT-2H",
+                    ((MyTime) calc.eval(op)).getLocalTime().toString());
+        } catch (IllegalConstruction | ParseException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testEvaluatorTimeMinusTimeGMTTimeOnly() {
+        try {
+            List<Expression> list = new ArrayList<>();
+            list.add(new MyTime("10:10:10 GMT+03:00"));
+            list.add(new MyTime("10:10:10 GMT+01:00"));
+            op = new Minus(list);
+            assertEquals("PT-2H",
+                    ((MyTime) calc.eval(op)).getLocalTime().toString());
+        } catch (IllegalConstruction | ParseException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
     public void testEvaluatorDatePlusTime() {
         try {
             List<Expression> list = new ArrayList<>();

@@ -19,7 +19,6 @@ public class DateVisitor extends datetime_grammarBaseVisitor<Expression> {
         List<Expression> params = new ArrayList<>();
         try {
             Collections.addAll(params, new MyTime(ctx.DATE(0).getText()), new MyTime(ctx.DATE(1).getText()));
-            System.out.println(params);
             return new Plus(params);
         } catch (IllegalConstruction|ParseException e) {
             throw new RuntimeException();

@@ -48,8 +48,13 @@ public class TestMyTime {
     @Test
     public void testParseIsoDatePST() throws ParseException {
         time = new MyTime("2020-12-10 10:10:10 PST");
-        time.formatDate("yyyy-MM-dd HH:mm:ss z");
         assertEquals("2020-12-10 10:10:10 PST", time.toString());
+    }
+
+    @Test
+    public void testParseIsoDateCET() throws ParseException {
+        time = new MyTime("2020-12-10 10:10:10 GMT+01:00");
+        assertEquals("2020-12-10 10:10:10 GMT+01:00", time.toString());
     }
 
     @Test
