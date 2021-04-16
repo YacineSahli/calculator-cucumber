@@ -1,21 +1,7 @@
 package calculator;
 
-import calculator.function.Not;
-import calculator.operation.Divides;
-import calculator.operation.Minus;
-import calculator.operation.Plus;
-import calculator.operation.Times;
-import calculator.variables.IntegerNumber;
-import calculator.variables.MyBoolean;
-import calculator.variables.MyTime;
-import calculator.variables.RationalNumber;
 import cli.CommandLineInterface;
 import cli.Mode;
-
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /***************************************
  * A very simple Calculator in Java    *

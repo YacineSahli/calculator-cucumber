@@ -1,5 +1,5 @@
 // Define a grammar called Hello
-grammar calculator_grammar;
+grammar arithmetic_grammar;
 
 expression
     : infixExpression
@@ -35,7 +35,6 @@ postfixExpression
 
 RATIONAL: INTEGER'/'INTEGER;
 INTEGER: ('0' .. '9')+;
-BOOLEAN: '0'|'1';
 SEPARATOR: ' ';
 
 PLUS: '+';

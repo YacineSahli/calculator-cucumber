@@ -1,19 +1,18 @@
 package cli;
 
 import calculator.Expression;
-import calculator.antlr4.arithmetic_grammarLexer;
-import calculator.antlr4.arithmetic_grammarParser;
+import calculator.antlr4.datetime_grammarLexer;
+import calculator.antlr4.datetime_grammarParser;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.ParseTree;
 
-public class Parser {
+public class DateParser {
 
     public Expression parse(String data){
 
         CharStream charStream = CharStreams.fromString(data);
-        arithmetic_grammarLexer lex = new arithmetic_grammarLexer(charStream);
+        datetime_grammarLexer lex = new datetime_grammarLexer(charStream);
         CommonTokenStream st = new CommonTokenStream(lex);
-        arithmetic_grammarParser parser = new arithmetic_grammarParser(st);
+        datetime_grammarParser parser = new datetime_grammarParser(st);
 
         parser.addErrorListener(new BaseErrorListener() {
             @Override
@@ -22,7 +21,7 @@ public class Parser {
             }
         });
 
-        GrammarVisitor visitor = new GrammarVisitor();
+        DateVisitor visitor = new DateVisitor();
         return visitor.visit(parser.expression());
     }
 }

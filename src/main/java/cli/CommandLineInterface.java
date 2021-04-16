@@ -32,13 +32,24 @@ public class CommandLineInterface {
             /*if(input.equals("HELP")) {
                 displayHelp();
             }*/
-            Parser parser = new Parser();
-            try{
-                Expression e = parser.parse(input);
-                System.out.println(c.eval(e));
-            }catch(IllegalStateException e){
-                System.out.println("Invalid expression");
-            }
+//            Parser parser = new Parser();
+//            try{
+//                Expression e = parser.parse(input);
+//                System.out.println(c.eval(e));
+//            }catch(IllegalStateException e){
+//                System.out.println("Invalid expression");
+//            }
+
+
+            //Convert Mode
+            //System.out.println(c.convert(input));
+
+//            Timedate Mod
+            DateParser dateParser = new DateParser();
+            Expression e = dateParser.parse(input);
+            System.out.println(c.eval(e));
+
+
         }
     }
 
