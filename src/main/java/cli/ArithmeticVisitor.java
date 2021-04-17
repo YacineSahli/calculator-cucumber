@@ -9,6 +9,7 @@ import calculator.operation.Minus;
 import calculator.operation.Plus;
 import calculator.operation.Times;
 import calculator.variables.IntegerNumber;
+import calculator.variables.RationalNumber;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
@@ -16,18 +17,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GrammarVisitor extends arithmetic_grammarBaseVisitor<Expression> {
+public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression> {
 
-
-
-    public Expression visitIntegerInfix(arithmetic_grammarParser.IntegerInfixContext ctx){
-        return new IntegerNumber(Integer.parseInt(ctx.getText()));
+    public Expression visitRationalnumber(arithmetic_grammarParser.RationalnumberContext ctx){
+        return new RationalNumber(Integer.parseInt(ctx.INTEGER(0).getText()),
+                Integer.parseInt(ctx.INTEGER(1).getText()));
     }
-    public Expression visitIntegerPrefix(arithmetic_grammarParser.IntegerPrefixContext ctx){
-        return new IntegerNumber(Integer.parseInt(ctx.getText()));
-    }
-    public Expression visitIntegerPostfix(arithmetic_grammarParser.IntegerPostfixContext ctx){
-        return new IntegerNumber(Integer.parseInt(ctx.getText()));
+
+    public Expression visitIntegernumber(arithmetic_grammarParser.IntegernumberContext ctx){
+        return new IntegerNumber(Integer.parseInt(ctx.INTEGER().getText()));
     }
 
 
