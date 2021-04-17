@@ -22,7 +22,7 @@ public class ArithmeticParser implements Parser{
             }
         });
 
-        GrammarVisitor visitor = new GrammarVisitor();
+        ArithmeticVisitor visitor = new ArithmeticVisitor();
         return visitor.visit(parser.expression());
     }
 }
