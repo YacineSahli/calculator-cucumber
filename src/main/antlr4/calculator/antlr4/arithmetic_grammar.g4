@@ -55,7 +55,7 @@ integer
     : INTEGER #integernumber
     ;
 
-INTEGER: ('0' .. '9')+;
+INTEGER: ('-')?('0' .. '9')+;
 
 //operation
 PLUS:   '+';
