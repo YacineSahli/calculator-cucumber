@@ -39,6 +39,10 @@ public class CommandLineInterface {
             }
             try{
                 e = mode.parser().parse(input);
+                if(e == null && this.mode == Mode.CONVERTOR){
+                    System.out.println((c.convert(input)));
+                    continue;
+                }
                 System.out.println(c.eval(e));
             }catch(IllegalStateException exception){
                 System.out.println("Invalid expression");
