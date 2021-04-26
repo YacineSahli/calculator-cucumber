@@ -3,7 +3,7 @@ package cli;
 public enum Mode {
 
     CALCULATOR(new ArithmeticParser()),
-    BOOLEAN(null), //todo
+    BOOLEAN(new BooleanParser()), //todo
     CONVERTOR(null), //todo
     DATE(new DateParser()),
     HELP(null);
