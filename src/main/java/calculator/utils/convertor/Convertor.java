@@ -17,7 +17,7 @@ public class Convertor {
     public Double convert(String input) {
         String[] inputList = input.split(" ");
         if (inputList.length != 3)
-            throw new InvalidParameterException("The format should be 'inputUnit outputUnit value;");
+            throw new IllegalStateException("The format should be 'inputUnit outputUnit value;");
         return convert(inputList[0], inputList[1], Double.parseDouble(inputList[2]));
     }
 
@@ -26,7 +26,7 @@ public class Convertor {
             return convertUnit(inputUnit, outputUnit, inputAmount);
         else if (stringToCurrency(inputUnit) != Currency.unknown_currency && stringToCurrency(outputUnit) != Currency.unknown_currency)
             return convertCurrency(inputUnit, outputUnit, inputAmount);
-        return null;
+        throw new IllegalStateException();
     }
 
     public Double convertCurrency(String inputUnit, String outputUnit, double inputAmount) {
