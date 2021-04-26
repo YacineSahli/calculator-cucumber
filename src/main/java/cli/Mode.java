@@ -4,7 +4,7 @@ public enum Mode {
 
     CALCULATOR(new ArithmeticParser()),
     BOOLEAN(new BooleanParser()), //todo
-    CONVERTOR(null), //todo
+    CONVERTOR(new ConvertorParser()), //todo
     DATE(new DateParser()),
     HELP(null);
 
