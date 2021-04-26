@@ -19,7 +19,7 @@ infixExpression
     | MINUS SPACE DATE #OperationInfixMinusUnary
     | DATE MINUS #OperationInfixMinusUnary
     | DATE SPACE MINUS #OperationInfixMinusUnary
-    | MINUS #DateInfix
+    | DATE #DateInfix
     ;
 
 prefixExpression
