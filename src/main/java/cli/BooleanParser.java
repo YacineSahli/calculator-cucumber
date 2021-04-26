@@ -25,5 +25,10 @@ public class BooleanParser implements Parser{
         BooleanVisitor visitor = new BooleanVisitor();
         return visitor.visit(parser.expression());
     }
+
+    @Override
+    public String getHelp() {
+        return "some help"; //todo
+    }
 }
 
