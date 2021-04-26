@@ -64,8 +64,8 @@ public class TestMemory {
     @Test
     public void testAdd() {
         memory = new Memory(calc, 5);
-        memory.add(expr1);
-        memory.add(expr2);
+        memory.add(expr1, null);
+        memory.add(expr2, null);
         assertEquals(1, memory.getPointer());
         assertEquals(2, memory.getLoad());
     }
@@ -73,9 +73,9 @@ public class TestMemory {
     @Test
     public void testUndo() {
         memory = new Memory(calc, 5);
-        memory.add(expr1);
-        memory.add(expr2);
-        memory.add(expr3);
+        memory.add(expr1, null);
+        memory.add(expr2, null);
+        memory.add(expr3, null);
         Expression expression = memory.undo();
         assertEquals(expr2, expression);
         assertEquals(1, memory.getPointer());
@@ -85,9 +85,9 @@ public class TestMemory {
     @Test
     public void testSupplementaryUndo() {
         memory = new Memory(calc, 5);
-        memory.add(expr1);
-        memory.add(expr2);
-        memory.add(expr3);
+        memory.add(expr1, null);
+        memory.add(expr2, null);
+        memory.add(expr3, null);
         Expression expression = memory.undo();
         expression = memory.undo();
         expression = memory.undo();
@@ -99,9 +99,9 @@ public class TestMemory {
     @Test
     public void testRedo() {
         memory = new Memory(calc, 5);
-        memory.add(expr1);
-        memory.add(expr2);
-        memory.add(expr3);
+        memory.add(expr1, null);
+        memory.add(expr2, null);
+        memory.add(expr3, null);
         Expression expression = memory.undo();
         expression = memory.undo();
         expression = memory.redo();
@@ -113,9 +113,9 @@ public class TestMemory {
     @Test
     public void testSupplementaryRedo() {
         memory = new Memory(calc, 5);
-        memory.add(expr1);
-        memory.add(expr2);
-        memory.add(expr3);
+        memory.add(expr1, null);
+        memory.add(expr2, null);
+        memory.add(expr3, null);
         Expression expression = memory.undo();
         expression = memory.redo();
         expression = memory.redo();
@@ -127,12 +127,12 @@ public class TestMemory {
     @Test
     public void testAddAfterUndo() {
         memory = new Memory(calc, 5);
-        memory.add(expr1);
-        memory.add(expr2);
-        memory.add(expr3);
+        memory.add(expr1, null);
+        memory.add(expr2, null);
+        memory.add(expr3, null);
         memory.undo();
         memory.undo();
-        memory.add(expr4);
+        memory.add(expr4, null);
         assertEquals(expr4, memory.getExpressions()[1]);
         assertEquals(1, memory.getPointer());
         assertEquals(2, memory.getLoad());

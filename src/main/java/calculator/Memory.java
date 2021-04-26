@@ -25,7 +25,7 @@ public class Memory {
         expressValueBinding = new HashMap<>();
     }
 
-    public void add(Expression express) {
+    public void add(Expression express, CalculatorVariable value) {
         if (pointer + 1 < expressions.length) {
             pointer++;
             if (expressions[pointer] != null) {
@@ -40,7 +40,7 @@ public class Memory {
                 load++;
             }
             expressions[pointer] = express;
-            expressValueBinding.put(express, calculator.eval(express));
+            expressValueBinding.put(express, value);
         } else {
             System.out.println("MEMORY FULL !");
         }
@@ -112,5 +112,9 @@ public class Memory {
 
     public Expression[] getExpressions() {
         return expressions;
+    }
+
+    public String getValue(Expression e) {
+        return expressValueBinding.get(e).toString();
     }
 }

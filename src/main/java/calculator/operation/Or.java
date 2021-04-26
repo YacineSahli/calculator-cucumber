@@ -11,10 +11,11 @@ public class Or extends Operation {
 
     public /*constructor*/ Or(List<Expression> elist) throws IllegalConstruction {
         super(elist);
+        symbol="or";
     }
 
 
     public CalculatorVariable op(MyBoolean l, MyBoolean r) {
-        return new MyBoolean(1 - (l.getValue() | r.getValue()));
+        return new MyBoolean(l.getValue() | r.getValue());
     }
 }

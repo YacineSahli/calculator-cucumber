@@ -8,6 +8,7 @@ import visitor.EvaluatorException;
 import visitor.Printer;
 
 public class Calculator {
+    public Memory memory = new Memory(this, 30);
     Convertor convertor = new Convertor();
 
     /*
@@ -46,6 +47,7 @@ public class Calculator {
         // and ask the expression to accept this visitor to start the evaluation process
         try {
             e.accept(v);
+            memory.add(e, v.getResult());
         } catch (EvaluatorException evaluatorException) {
             System.out.println(evaluatorException.getMessage());
             return null;
