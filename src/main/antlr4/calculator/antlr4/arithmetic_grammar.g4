@@ -8,28 +8,28 @@ expression
     ;
 
 infixExpression
-    : infixExpression TIMES  infixExpression #OperationInfixMul
-    | infixExpression DIV    infixExpression #OperationInfixDiv
-    | infixExpression PLUS   infixExpression #OperationInfixPlus
-    | infixExpression MINUS  infixExpression #OperationInfixMinus
-    | infixExpression MODINV infixExpression #OperationInfixModInv
-    | infixExpression MODULO infixExpression #OperationInfixModulo
-    | infixExpression POW    infixExpression #OperationInfixPow
-    | ABS LPAREN infixExpression RPAREN      #FunctionInfixAbs
-    | INV LPAREN infixExpression RPAREN      #FunctionInfixInv
-    | LPAREN infixExpression RPAREN          #ParensInfix
-    | integer                                #IntegerInfix
-    | rational                               #RationalInfix
+    : infixExpression ' '* TIMES  ' '* infixExpression ' '*  #OperationInfixMul
+    | infixExpression ' '* DIV    ' '* infixExpression ' '*  #OperationInfixDiv
+    | infixExpression ' '* PLUS   ' '* infixExpression ' '*  #OperationInfixPlus
+    | infixExpression ' '* MINUS  ' '* infixExpression ' '*  #OperationInfixMinus
+    | infixExpression ' '* MODINV ' '* infixExpression ' '*  #OperationInfixModInv
+    | infixExpression ' '* MODULO ' '* infixExpression ' '*  #OperationInfixModulo
+    | infixExpression ' '* POW    ' '* infixExpression ' '*  #OperationInfixPow
+    | ABS ' '* LPAREN ' '* infixExpression ' '* RPAREN ' '*  #FunctionInfixAbs
+    | INV ' '* LPAREN ' '* infixExpression ' '* RPAREN ' '*  #FunctionInfixInv
+    | LPAREN ' '* infixExpression ' '* RPAREN ' '*           #ParensInfix
+    | integer                                                #IntegerInfix
+    | rational                                               #RationalInfix
     ;
 
 prefixExpression
-    : TIMES  LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixMul
-    | DIV    LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixDiv
-    | PLUS   LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixPlus
-    | MINUS  LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixMinus
-    | MODINV LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixModInv
-    | MODULO LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixModulo
-    | POW    LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixPow
+    : TIMES   LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixMul
+    | DIV     LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixDiv
+    | PLUS    LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixPlus
+    | MINUS   LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixMinus
+    | MODINV  LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixModInv
+    | MODULO  LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixModulo
+    | POW     LPAREN prefixExpression (SEPARATOR prefixExpression)+ RPAREN #OperationPrefixPow
     | integer                                                             #IntegerPrefix
     | rational                                                            #RationalPrefix
     ;
@@ -75,4 +75,4 @@ LPAREN: '(';
 RPAREN: ')';
 
 //separator for postfix and prefix notation todo
-SEPARATOR: ' ';
+SEPARATOR: ' '|'@';
