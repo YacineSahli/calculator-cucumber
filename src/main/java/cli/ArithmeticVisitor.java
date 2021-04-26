@@ -24,7 +24,9 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitIntegernumber(arithmetic_grammarParser.IntegernumberContext ctx){
-        return new IntegerNumber(Integer.parseInt(ctx.INTEGER().getText()));
+        Integer i = Integer.parseInt(ctx.INTEGER().getText());
+        Expression e =  new IntegerNumber(i);
+        return e;
     }
     /*-----------------------------------------------------INFIX------------------------------------------------------*/
     public Expression visitOperationInfixMul(arithmetic_grammarParser.OperationInfixMulContext ctx){
