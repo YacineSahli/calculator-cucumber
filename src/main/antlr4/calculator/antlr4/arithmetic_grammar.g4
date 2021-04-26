@@ -63,16 +63,16 @@ MINUS:  '-';
 TIMES:  '*';
 DIV:    '/';
 MODINV: 'modinv';
-MODULO: '%';
-POW:    '^';
+MODULO: '%'|'mod';
+POW:    '^'|'pow';
 
 //functions
 ABS: 'abs';
-INV: '<>';
+INV: 'inv';
 
 //parentheses
 LPAREN: '(';
 RPAREN: ')';
 
-//separator for infix and prefix notation todo
+//separator for postfix and prefix notation todo
 SEPARATOR: ' ';
