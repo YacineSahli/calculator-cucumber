@@ -21,7 +21,7 @@ public class CommandLineInterface {
     }
 
     public void run(){
-        System.out.println("\uD835\uDE52\uD835\uDE5A\uD835\uDE61\uD835\uDE58\uD835\uDE64\uD835\uDE62\uD835\uDE5A \uD835\uDE69\uD835\uDE64 \uD835\uDE69\uD835\uDE5D\uD835\uDE5A \uD835\uDE3E\uD835\uDE3C\uD835\uDE47\uD835\uDE3E\uD835\uDE50\uD835\uDE47\uD835\uDE3C\uD835\uDE4F\uD835\uDE4A\uD835\uDE4D ❗");
+        System.out.println("Welcome to the calculator ! \n");
         String input;
         Mode newMode;
         Expression e;
@@ -31,7 +31,7 @@ public class CommandLineInterface {
             newMode = isMode(input);
 
             if(newMode != null && newMode == Mode.HELP){
-                displayHelp();
+                System.out.println(this.mode.parser().getHelp());
                 continue;
             }else if(newMode != null){
                 this.mode=newMode;
@@ -50,9 +50,11 @@ public class CommandLineInterface {
         }
     }
 
+    /*
     public void displayHelp(){
         System.out.println("THE HELP:\ntodo");
     }
+    */
 
     public Mode isMode(String input){
         String cleanInput = input.strip().toUpperCase();

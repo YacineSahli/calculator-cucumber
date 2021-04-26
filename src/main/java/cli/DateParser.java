@@ -32,4 +32,9 @@ public class DateParser implements Parser {
         DateVisitor visitor = new DateVisitor();
         return visitor.visit(parser.expression());
     }
+
+    @Override
+    public String getHelp() {
+        return null;
+    }
 }
