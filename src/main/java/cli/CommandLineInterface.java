@@ -3,6 +3,7 @@ package cli;
 import calculator.Calculator;
 import calculator.Expression;
 
+import java.security.InvalidParameterException;
 import java.util.Scanner;
 
 public class CommandLineInterface {
@@ -47,6 +48,8 @@ public class CommandLineInterface {
                     System.out.println(c.eval(e));
                 } catch (IllegalStateException exception) {
                     System.out.println("Invalid expression");
+                } catch (InvalidParameterException exception){
+                    System.out.println(exception.getMessage());
                 }
             }
 
