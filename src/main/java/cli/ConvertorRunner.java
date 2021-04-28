@@ -2,15 +2,15 @@ package cli;
 
 import calculator.Expression;
 
-public class ConvertorParser implements Parser {
+public class ConvertorRunner extends Runner {
     public Expression parse(String data) {
         return null;
     }
 
     @Override
     public String getHelp() {
-        return
-                "-------------------------------------------------- HELP --------------------------------------------------\n\n" +
+        return super.getHelp() +
+                "--------------------------------------------- CONVERTOR HELP ------------------------------------------------\n\n" +
                         "This mode allows you to convert units.\n" +
                         "You just have to write 3 parameters 'inputUnit' 'outputUnit' 'amount'.\n\n" +
                         "Example:  'kg lb 100' will convert 100 kilograms to pounds\n" +

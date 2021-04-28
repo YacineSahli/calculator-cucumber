@@ -5,7 +5,7 @@ import calculator.antlr4.arithmetic_grammarLexer;
 import calculator.antlr4.arithmetic_grammarParser;
 import org.antlr.v4.runtime.*;
 
-public class ArithmeticParser implements Parser{
+public class ArithmeticRunner extends Runner {
 
     public Expression parse(String data){
 
@@ -14,12 +14,11 @@ public class ArithmeticParser implements Parser{
         CommonTokenStream st = new CommonTokenStream(lex);
         arithmetic_grammarParser parser = new arithmetic_grammarParser(st);
 
-        parser.addErrorListener(new BaseErrorListener() {
-            @Override
-            public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
-                throw new IllegalStateException("failed to parse at line " + line + " due to " + msg, e);
-            }
-        });
+        lex.removeErrorListeners();
+        lex.addErrorListener(lexerBaseErrorListener);
+
+        parser.removeErrorListeners();
+        parser.addErrorListener(baseErrorListener);
 
         ArithmeticVisitor visitor = new ArithmeticVisitor();
         return visitor.visit(parser.expression());
@@ -27,8 +26,8 @@ public class ArithmeticParser implements Parser{
 
     @Override
     public String getHelp() {
-        return
-                "-------------------------------------------------- HELP --------------------------------------------------\n\n"+
+        return super.getHelp() +
+                "-------------------------------------------------- CALCULATOR HELP --------------------------------------------------\n\n"+
                 "This mode allows you to perform arithmetic operations.\n"+
                 "Expressions can be written in prefix, infix and postfix notation.\n\n"+
                 "In this mode, integers and rational numbers are supported: rational numbers are always noted as follows: 'integer/integer'.\n\n"+

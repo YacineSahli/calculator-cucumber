@@ -2,19 +2,18 @@ package cli;
 
 public enum Mode {
 
-    CALCULATOR(new ArithmeticParser()),
-    BOOLEAN(new BooleanParser()), //todo
-    CONVERTOR(new ConvertorParser()), //todo
-    DATE(new DateParser()),
-    HELP(null);
+    CALCULATOR(new ArithmeticRunner()),
+    BOOLEAN(new BooleanRunner()), //todo
+    CONVERTOR(new ConvertorRunner()), //todo
+    DATE(new DateRunner());
 
-    private final Parser parser;
+    private final Runner runner;
 
-    Mode(Parser parser){
-        this.parser=parser;
+    Mode(Runner runner){
+        this.runner = runner;
     }
 
-    public Parser parser(){
-        return this.parser;
+    public Runner parser(){
+        return this.runner;
     }
 }
