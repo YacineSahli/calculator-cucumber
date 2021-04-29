@@ -22,7 +22,7 @@ public abstract class Runner {
     };
 
 
-    abstract Expression parse(String data);
+    public abstract Expression parse(String data);
 
     public String getHelp(){
         return

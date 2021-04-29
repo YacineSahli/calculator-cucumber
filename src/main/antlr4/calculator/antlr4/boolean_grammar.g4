@@ -47,7 +47,8 @@ NOT: 'not';
 LPAREN: '(';
 RPAREN: ')';
 
-SEPARATOR: ' ';
+SEPARATOR: ','|'@';
+WS : [ \t\r\n]+ -> skip ;
 
 
 

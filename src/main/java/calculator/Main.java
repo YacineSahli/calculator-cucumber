@@ -14,7 +14,7 @@ import cli.Mode;
 public class Main {
 
     public static void main(String[] args) {
-        CommandLineInterface cal_interface = new CommandLineInterface(Mode.CALCULATOR);
+        CommandLineInterface cal_interface = new CommandLineInterface(Mode.BOOLEAN);
         cal_interface.run();
         /*
         Expression e;
