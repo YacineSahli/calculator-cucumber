@@ -77,7 +77,7 @@ public class DateVisitor extends datetime_grammarBaseVisitor<Expression> {
     }
 
 
-    public Expression visitOperationPostPlus(datetime_grammarParser.OperationPostfixPlusContext ctx) {
+    public Expression visitOperationPostfixPlus(datetime_grammarParser.OperationPostfixPlusContext ctx) {
         List<Expression> params = new ArrayList<>();
         try {
             Collections.addAll(params, new MyTime(ctx.DATE(0).getText()), new MyTime(ctx.DATE(1).getText()));
@@ -87,7 +87,7 @@ public class DateVisitor extends datetime_grammarBaseVisitor<Expression> {
         }
     }
 
-    public Expression visitOperationPostMinus(datetime_grammarParser.OperationPostfixMinusContext ctx) {
+    public Expression visitOperationPostfixMinus(datetime_grammarParser.OperationPostfixMinusContext ctx) {
         List<Expression> params = new ArrayList<>();
         try {
             Collections.addAll(params, new MyTime(ctx.DATE(0).getText()), new MyTime(ctx.DATE(1).getText()));
