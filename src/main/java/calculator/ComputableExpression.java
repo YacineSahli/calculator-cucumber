@@ -30,9 +30,7 @@ public abstract class ComputableExpression {
             fun = this.getClass().getMethod(funcName, Collections.nCopies(args.length, targetClass)
                     .toArray(new Class[args.length]));
             return (CalculatorVariable) fun.invoke(this, convertedArgs);
-        } catch (InvocationTargetException e) {
-            throw e;
-        } catch (NoSuchMethodException e) {
+        } catch (InvocationTargetException | NoSuchMethodException e) {
             throw e;
         } catch (Exception error) {
             error.printStackTrace();//todo throw error and catch error in main or CLI ?

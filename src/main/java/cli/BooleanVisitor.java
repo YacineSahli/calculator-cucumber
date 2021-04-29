@@ -83,7 +83,7 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
     }
 
     public Expression visitOperationPrefixAnd(boolean_grammarParser.OperationPrefixAndContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new And(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -92,7 +92,7 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
     }
 
     public Expression visitOperationPrefixOr(boolean_grammarParser.OperationPrefixOrContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Or(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -101,7 +101,7 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
     }
 
     public Expression visitOperationPrefixXor(boolean_grammarParser.OperationPrefixXorContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Xor(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -110,7 +110,7 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
     }
 
     public Expression visitOperationPrefixImplication(boolean_grammarParser.OperationPrefixImplicationContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Implication(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -119,7 +119,7 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
     }
 
     public Expression visitOperationPrefixEquivalence(boolean_grammarParser.OperationPrefixEquivalenceContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Equivalence(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -128,7 +128,7 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
     }
 
     public Expression visitOperationPostfixAnd(boolean_grammarParser.OperationPostfixAndContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new And(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -137,7 +137,7 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
     }
 
     public Expression visitOperationPostfixOr(boolean_grammarParser.OperationPostfixOrContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Or(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -146,7 +146,7 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
     }
 
     public Expression visitOperationPostfixXor(boolean_grammarParser.OperationPostfixXorContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Xor(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -155,7 +155,7 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
     }
 
     public Expression visitOperationPostfixImplication(boolean_grammarParser.OperationPostfixImplicationContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Implication(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -164,7 +164,7 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
     }
 
     public Expression visitOperationPostfixEquivalence(boolean_grammarParser.OperationPostfixEquivalenceContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Equivalence(params);
         } catch (IllegalConstruction illegalConstruction) {

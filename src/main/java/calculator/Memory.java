@@ -36,7 +36,7 @@ public class Memory {
             if (expressions[pointer] != null) {
                 load = pointer + 1;
                 int k = load;
-                while (expressions[k] != null && k < expressions.length) {
+                while (expressions[k] != null) {
                     expressValueBinding.remove(expressions[k]);
                     expressions[k] = null;
                     k++;
@@ -100,9 +100,7 @@ public class Memory {
             }
             fileWriter.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (EvaluatorException e) {
+        } catch (IOException | EvaluatorException e) {
             e.printStackTrace();
         }
     }
@@ -128,9 +126,7 @@ public class Memory {
             }
             fileWriter.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (EvaluatorException e) {
+        } catch (IOException | EvaluatorException e) {
             e.printStackTrace();
         }
     }

@@ -52,18 +52,14 @@ public class CliSteps {
     public void thenTheResultOfTheEvaluationIs(String s) {
         assertNotNull(currentMode);
         assertNotNull(expression);
-        assertDoesNotThrow(() -> {
-            assertEquals(s, cli.parse(expression));
-        });
+        assertDoesNotThrow(() -> assertEquals(s, cli.parse(expression)));
     }
 
     @Then("the evaluation fail")
     public void theEvaluationFail() {
         assertNotNull(currentMode);
         assertNotNull(expression);
-        assertDoesNotThrow(() -> {
-            assertTrue(cli.parse(expression).startsWith("ERROR "));
-        });
+        assertDoesNotThrow(() -> assertTrue(cli.parse(expression).startsWith("ERROR ")));
     }
 
 

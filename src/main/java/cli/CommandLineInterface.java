@@ -43,13 +43,18 @@ public class CommandLineInterface {
         } else {
             try {
                 e = mode.parser().parse(input);
-                if (e == null && this.mode == Mode.CONVERTOR) {
-                    return Double.toString(c.convert(input));
+                if (e == null ) {
+                    if(this.mode == Mode.CONVERTOR)
+                        return Double.toString(c.convert(input));
+                    else{
+                        throw new IllegalStateException("");
+                    }
                 }
-                return c.eval(e).toString();
-            } catch (IllegalStateException exception) {
-                return "ERROR " + exception.getMessage();
-            } catch (InvalidParameterException exception) {
+                Expression res = c.eval(e);
+                if(res == null)
+                    throw  new IllegalStateException("");
+                return res.toString();
+            } catch (IllegalStateException | InvalidParameterException exception) {
                 return "ERROR " + exception.getMessage();
             }
         }
@@ -59,7 +64,7 @@ public class CommandLineInterface {
         System.out.println("Welcome to the calculator ! \n");
         String input;
 
-        String result = "";
+        String result;
 
         while (true) {
             System.out.print("[" + mode.toString() + "]> ");

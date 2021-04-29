@@ -23,9 +23,8 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitIntegernumber(arithmetic_grammarParser.IntegernumberContext ctx) {
-        Integer i = Integer.parseInt(ctx.INTEGER().getText());
-        Expression e = new IntegerNumber(i);
-        return e;
+        int i = Integer.parseInt(ctx.INTEGER().getText());
+        return new IntegerNumber(i);
     }
 
     /*-----------------------------------------------------INFIX------------------------------------------------------*/
@@ -74,7 +73,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationInfixModInv(arithmetic_grammarParser.OperationInfixModInvContext ctx) {
-        List<Expression> params = ctx.infixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.infixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new ModularInverse(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -83,7 +82,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationInfixModulo(arithmetic_grammarParser.OperationInfixModuloContext ctx) {
-        List<Expression> params = ctx.infixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.infixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Modulo(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -92,7 +91,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationInfixPow(arithmetic_grammarParser.OperationInfixPowContext ctx) {
-        List<Expression> params = ctx.infixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.infixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Pow(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -118,7 +117,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
 
     /*-----------------------------------------------------PREFIX-----------------------------------------------------*/
     public Expression visitOperationPrefixMul(arithmetic_grammarParser.OperationPrefixMulContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Times(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -127,7 +126,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPrefixDiv(arithmetic_grammarParser.OperationPrefixDivContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Divides(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -136,7 +135,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPrefixPlus(arithmetic_grammarParser.OperationPrefixPlusContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Plus(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -145,7 +144,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPrefixMinus(arithmetic_grammarParser.OperationPrefixMinusContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Minus(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -154,7 +153,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPrefixModInv(arithmetic_grammarParser.OperationPrefixModInvContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new ModularInverse(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -163,7 +162,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPrefixModulo(arithmetic_grammarParser.OperationPrefixModuloContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Modulo(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -172,7 +171,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPrefixPow(arithmetic_grammarParser.OperationPrefixPowContext ctx) {
-        List<Expression> params = ctx.prefixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.prefixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Pow(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -182,7 +181,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
 
     /*----------------------------------------------------POSTFIX-----------------------------------------------------*/
     public Expression visitOperationPostfixMul(arithmetic_grammarParser.OperationPostfixMulContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Times(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -191,7 +190,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPostfixDiv(arithmetic_grammarParser.OperationPostfixDivContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Divides(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -200,7 +199,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPostfixPlus(arithmetic_grammarParser.OperationPostfixPlusContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Plus(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -209,7 +208,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPostfixMinus(arithmetic_grammarParser.OperationPostfixMinusContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Minus(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -218,7 +217,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPostfixModInv(arithmetic_grammarParser.OperationPostfixModInvContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new ModularInverse(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -227,7 +226,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPostfixModulo(arithmetic_grammarParser.OperationPostfixModuloContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Modulo(params);
         } catch (IllegalConstruction illegalConstruction) {
@@ -236,7 +235,7 @@ public class ArithmeticVisitor extends arithmetic_grammarBaseVisitor<Expression>
     }
 
     public Expression visitOperationPostfixPow(arithmetic_grammarParser.OperationPostfixPowContext ctx) {
-        List<Expression> params = ctx.postfixExpression().stream().map(i -> visit(i)).collect(Collectors.toList());
+        List<Expression> params = ctx.postfixExpression().stream().map(this::visit).collect(Collectors.toList());
         try {
             return new Pow(params);
         } catch (IllegalConstruction illegalConstruction) {

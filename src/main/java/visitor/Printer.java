@@ -27,7 +27,7 @@ public class Printer extends Visitor {
     }
 
     @Override
-    public void visit(Function f) throws EvaluatorException {
+    public void visit(Function f) {
 
     }
 
