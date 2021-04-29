@@ -22,10 +22,10 @@ public class Invert extends Function {
      * @return the integer inverted. i.e. a rational number equals to 1/i.
      */
     public CalculatorVariable apply(IntegerNumber i) {
-        return NumberBuilder.builder().build(1, i.getValue());
+        return buildNumber(1, i.getValue());
     }
 
     public CalculatorVariable apply(RationalNumber r) {
-        return NumberBuilder.builder().build(r.getDenum(), r.getNum());
+        return buildNumber(r.getDenum(), r.getNum());
     }
 }

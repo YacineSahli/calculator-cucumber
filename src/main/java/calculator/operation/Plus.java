@@ -20,7 +20,7 @@ final public class Plus extends Operation {
         if (l.getZonedDateTime() != null) {
             // Not meaningful to add two ZonedDateTime
             if (r.getZonedDateTime() != null) {
-                return null;
+                throw new IllegalStateException("Not possible to sum two ZonedDateTime");
             } else {
                 return new MyTime(l.getZonedDateTime().plus(r.getLocalTime()));
             }
@@ -29,7 +29,7 @@ final public class Plus extends Operation {
         else {
             // Not meaningful to add ZonedDateTime to LocalTime
             if (r.getZonedDateTime() != null) {
-                return null;
+                throw new IllegalStateException("Not possible to add ZonedDateTime to a LocalTime");
             } else {
                 return new MyTime(l.getLocalTime().plus(r.getLocalTime()));
             }
@@ -41,7 +41,7 @@ final public class Plus extends Operation {
     }
 
     public CalculatorVariable op(RationalNumber l, RationalNumber r) {
-        return NumberBuilder.builder().build((l.getNum() * r.getDenum()) + (l.getDenum() * r.getNum()),
+        return buildNumber((l.getNum() * r.getDenum()) + (l.getDenum() * r.getNum()),
                 l.getDenum() * r.getDenum());
     }
 }

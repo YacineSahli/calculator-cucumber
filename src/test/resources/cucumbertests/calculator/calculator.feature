@@ -36,6 +36,12 @@ Feature: Integer Arithmetic Expressions
     And I provide a second number 5
     Then the operation evaluates to 1
 
+  Scenario: Calculate the exponent of a integer number
+    Given an integer operation '^'
+    When I provide a first number 2
+    And I provide a second number 3
+    Then the operation evaluates to 8
+
   Scenario: Printing the sum of two integer numbers
     Given the sum of two numbers 8 and 6
     Then its INFIX notation is ( 8 + 6 )

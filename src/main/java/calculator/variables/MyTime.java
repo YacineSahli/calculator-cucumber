@@ -6,7 +6,9 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
@@ -69,6 +71,11 @@ public class MyTime extends CalculatorVariable {
 
     private ZonedDateTime parseDate(String s) throws ParseException {
         List<DateTimeFormatter> knownPatterns = new ArrayList<DateTimeFormatter>();
+        knownPatterns.add(new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd[ HH:mm:ss] z")
+                .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+                .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+                .toFormatter().withZone(ZoneOffset.UTC));
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z"));
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm z"));
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH z"));
@@ -77,8 +84,23 @@ public class MyTime extends CalculatorVariable {
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a z"));
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd hh a z"));
 
+        knownPatterns.add(new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd[ HH:mm:ss]")
+                .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+                .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+                .toFormatter().withZone(ZoneOffset.UTC));
+        knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm O"));
+        knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH O"));
+        knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd O"));
+        knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a O"));
+        knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a O"));
+        knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd hh a O"));
 
-        knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC));
+        knownPatterns.add(new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd[ HH:mm:ss]")
+                .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+                .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+                .toFormatter().withZone(ZoneOffset.UTC));
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(ZoneOffset.UTC));
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH").withZone(ZoneOffset.UTC));
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneOffset.UTC));
@@ -86,6 +108,12 @@ public class MyTime extends CalculatorVariable {
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a").withZone(ZoneOffset.UTC));
         knownPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd hh a").withZone(ZoneOffset.UTC));
 
+
+        knownPatterns.add(new DateTimeFormatterBuilder().appendPattern("[yyyy-MM-dd ]HH:mm:ss z")
+                .parseDefaulting(ChronoField.YEAR_OF_ERA, ZonedDateTime.now().getYear())
+                .parseDefaulting(ChronoField.MONTH_OF_YEAR, ZonedDateTime.now().getMonthValue())
+                .parseDefaulting(ChronoField.DAY_OF_MONTH, ZonedDateTime.now().getDayOfMonth())
+                .toFormatter().withZone(ZoneOffset.UTC));
 
         for (DateTimeFormatter formatter : knownPatterns) {
             try {

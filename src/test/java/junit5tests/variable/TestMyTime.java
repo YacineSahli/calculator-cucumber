@@ -21,10 +21,40 @@ public class TestMyTime {
     }
 
     @Test
+    public void testParseIsoDate2() throws ParseException {
+        time = new MyTime("2020-12-10");
+        assertEquals("2020-12-10", time.toString());
+    }
+
+    @Test
+    public void testParseIsoDate3() throws ParseException {
+        time = new MyTime("2020-12-10 12");
+        assertEquals("2020-12-10 12", time.toString());
+    }
+
+    @Test
+    public void testParseIsoDate4() throws ParseException {
+        time = new MyTime("2020-12-10 12:21");
+        assertEquals("2020-12-10 12:21", time.toString());
+    }
+
+    @Test
+    public void testParseIsoDate5() throws ParseException {
+        time = new MyTime("2020-12-10 12:51:26");
+        assertEquals("2020-12-10 12:51:26", time.toString());
+    }
+
+
+    @Test
     public void testParseIsoDatePST() throws ParseException {
         time = new MyTime("2020-12-10 10:10:10 PST");
-        time.formatDate("yyyy-MM-dd HH:mm:ss z");
         assertEquals("2020-12-10 10:10:10 PST", time.toString());
+    }
+
+    @Test
+    public void testParseIsoDateCET() throws ParseException {
+        time = new MyTime("2020-12-10 10:10:10 GMT+01:00");
+        assertEquals("2020-12-10 10:10:10 GMT+01:00", time.toString());
     }
 
     @Test

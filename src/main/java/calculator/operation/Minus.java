@@ -34,7 +34,7 @@ final public class Minus extends Operation {
         else {
             // Not meaningful to subtract ZonedDateTime from LocalTime
             if (r.getZonedDateTime() != null) {
-                return null;
+                throw new IllegalStateException("Not possible to substract ZonedDateTime to a LocalTime");
             } else {
                 return new MyTime(l.getLocalTime().minus(r.getLocalTime()));
             }
@@ -47,7 +47,7 @@ final public class Minus extends Operation {
     }
 
     public CalculatorVariable op(RationalNumber l, RationalNumber r) {
-        return NumberBuilder.builder().build((l.getNum() * r.getDenum()) - (l.getDenum() * r.getNum()),
+        return buildNumber((l.getNum() * r.getDenum()) - (l.getDenum() * r.getNum()),
                 l.getDenum() * r.getDenum());
     }
 }

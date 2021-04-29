@@ -38,7 +38,7 @@ public class BooleanOperationTest {
         args.add(second);
         try {
             op = new And(args);
-            assertEquals(new MyBoolean(1), calc.eval(op));
+            assertEquals(new MyBoolean(0), calc.eval(op));
         } catch (IllegalConstruction illegalConstruction) {
             illegalConstruction.printStackTrace();
         }
@@ -53,7 +53,7 @@ public class BooleanOperationTest {
         args.add(second);
         try {
             op = new Or(args);
-            assertEquals(new MyBoolean(0), calc.eval(op));
+            assertEquals(new MyBoolean(1), calc.eval(op));
         } catch (IllegalConstruction illegalConstruction) {
             illegalConstruction.printStackTrace();
         }
@@ -68,7 +68,7 @@ public class BooleanOperationTest {
         args.add(second);
         try {
             op = new Xor(args);
-            assertEquals(new MyBoolean(0), calc.eval(op));
+            assertEquals(new MyBoolean(1), calc.eval(op));
         } catch (IllegalConstruction illegalConstruction) {
             illegalConstruction.printStackTrace();
         }
@@ -83,7 +83,7 @@ public class BooleanOperationTest {
         args.add(second);
         try {
             op = new Implication(args);
-            assertEquals(new MyBoolean(1), calc.eval(op));
+            assertEquals(new MyBoolean(0), calc.eval(op));
         } catch (IllegalConstruction illegalConstruction) {
             illegalConstruction.printStackTrace();
         }
@@ -98,7 +98,7 @@ public class BooleanOperationTest {
         args.add(second);
         try {
             op = new Equivalence(args);
-            assertEquals(new MyBoolean(1), calc.eval(op));
+            assertEquals(new MyBoolean(0), calc.eval(op));
         } catch (IllegalConstruction illegalConstruction) {
             illegalConstruction.printStackTrace();
         }
