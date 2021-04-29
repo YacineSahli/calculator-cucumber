@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestArithmeticRunner {
 
@@ -51,7 +51,6 @@ public class TestArithmeticRunner {
 
     @Test
     public void testPrefix() {
-        //todo test incorrect expression
         assertEquals(plus, runner.parse("+(" + n1_s + ", " + n2_s + ")"));
         assertEquals(plus, runner.parse(" + ( " + n1_s + "   " + n2_s + "   )"));
 
@@ -64,22 +63,23 @@ public class TestArithmeticRunner {
         assertEquals(pow, runner.parse("^(" + n1_s + " " + n2_s + ")"));
         assertEquals(pow, runner.parse("^ ( " + n1_s + "@ " + n2_s + " ) "));
         assertEquals(pow, runner.parse(" pow (" + n1_s + ", " + n2_s + ")   "));
+
+        assertThrows(IllegalStateException.class , () -> runner.parse("BOOM"));
     }
 
     @Test
     public void testInfix() {
-        //todo test incorrect expression
-        assertEquals(plus, runner.parse("" + n1_s + "+" + n2_s + ""));
+        assertEquals(plus, runner.parse( n1_s + "+" + n2_s));
         assertEquals(plus, runner.parse(" " + n1_s + "  +  " + n2_s + "   "));
 
-        assertEquals(times, runner.parse("" + n1_s + "*" + n2_s + ""));
+        assertEquals(times, runner.parse(n1_s + "*" + n2_s ));
         assertEquals(times, runner.parse(" " + n1_s + "  *  " + n2_s + "   "));
 
-        assertEquals(modinv, runner.parse("" + n1_s + "modinv" + n2_s + ""));
+        assertEquals(modinv, runner.parse (n1_s + "modinv" + n2_s));
         assertEquals(modinv, runner.parse(" " + n1_s + "  modinv  " + n2_s + "   "));
 
-        assertEquals(pow, runner.parse("" + n1_s + "^" + n2_s + ""));
-        assertEquals(pow, runner.parse("" + n1_s + "^ " + n2_s + ""));
+        assertEquals(pow, runner.parse( n1_s + "^" + n2_s));
+        assertEquals(pow, runner.parse(n1_s + "^ " + n2_s));
         assertEquals(pow, runner.parse(" " + n1_s + "  pow  " + n2_s + "   "));
 
         assertEquals(abs, runner.parse("abs( -" + n1_s + ")"));
@@ -91,7 +91,6 @@ public class TestArithmeticRunner {
 
     @Test
     public void testPostfix() {
-        //todo test incorrect expression
         assertEquals(plus, runner.parse(" (" + n1_s + ", " + n2_s + ")  +  "));
         assertEquals(plus, runner.parse("  ( " + n1_s + "   " + n2_s + "   )+"));
 

@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  *
  * @author Arnaud.P
  */
-public abstract class ComputableExpression {
+public class ComputableExpression {
     protected String symbol; //the symbol of the ComputableExpression
     protected String funcName; // the name of the function to apply
 
@@ -33,7 +33,7 @@ public abstract class ComputableExpression {
         } catch (InvocationTargetException | NoSuchMethodException e) {
             throw e;
         } catch (Exception error) {
-            error.printStackTrace();//todo throw error and catch error in main or CLI ?
+            error.printStackTrace();
         }
         return null;
     }

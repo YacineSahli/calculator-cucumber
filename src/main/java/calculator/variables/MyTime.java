@@ -15,7 +15,6 @@ import java.util.function.BiFunction;
 
 
 public class MyTime extends CalculatorVariable {
-    private final static int ACCURACY = 1;
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
     private ZonedDateTime date = null;
     private Duration time = null;
