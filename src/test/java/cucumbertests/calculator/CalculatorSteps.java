@@ -1,8 +1,9 @@
-package cucumbertests;
+package cucumbertests.calculator;
 
 import calculator.*;
 import calculator.operation.*;
 import calculator.variables.IntegerNumber;
+import calculator.variables.RationalNumber;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,6 +12,7 @@ import visitor.Printer;
 import visitor.EvaluatorException;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
@@ -43,6 +45,7 @@ public class CalculatorSteps {
 				case "-": { op = new Minus(params); break; }
 				case "*": { op = new Times(params); break; }
 				case "/": { op = new Divides(params); break; }
+				case "^": { op = new Pow(params); break;}
 				default: { fail(); }
 			}
 		} catch (IllegalConstruction e) {
@@ -55,7 +58,7 @@ public class CalculatorSteps {
 	//  tables in two dimensions, i.e. rows and lines. This is why the input
 	//  is a list of lists.
 	@Given("the following list of integer numbers")
-	public void givenTheFollowingListOfNumbers(List<List<String>> numbers) {
+	public void givenTheFollowingListOfIntegerNumbers(List<List<String>> numbers) {
 		params = new ArrayList<>();
 		// Since we only use one line of input, we use get(0) to take the first line of the list,
 		// which is a list of strings, that we will manually convert to integers:
@@ -106,6 +109,7 @@ public class CalculatorSteps {
 				case "product": { op = new Times(params); break; }
 				case "quotient": { op = new Divides(params); break; }
 				case "difference": { op = new Minus(params); break; }
+				case "pow": { op = new Pow(params); break; }
 				default: fail();
 			}
 			assertEquals(val.intValue(), ((IntegerNumber) c.eval(op)).getValue());
