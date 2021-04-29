@@ -30,7 +30,7 @@ public class ArithmeticRunner extends Runner {
                 "-------------------------------------------------- CALCULATOR HELP --------------------------------------------------\n\n"+
                 "This mode allows you to perform arithmetic operations.\n"+
                 "Expressions can be written in prefix, infix and postfix notation.\n\n"+
-                "In this mode, integers and rational numbers are supported: rational numbers are always noted as follows: 'integer/integer'.\n\n"+
+                "In this mode, integers and rational numbers are supported: rational numbers are always noted as follows: 'r<integer>/<integer>'. For example: r5/2.\n\n"+
                 "The following operations are available:\n\n"+
                 "| Operation       |    Symbol    | Example (infix notation) |\n"+
                 "|:----------------|:------------:|:------------------------:|\n"+

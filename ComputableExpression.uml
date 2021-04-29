@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>calculator.ComputableExpression</OriginalElement>
+  <nodes>
+    <node x="848.0" y="630.0">calculator.operation.Plus</node>
+    <node x="0.0" y="642.0">calculator.operation.Pow</node>
+    <node x="1631.0" y="642.0">calculator.function.Invert</node>
+    <node x="1308.0" y="654.0">calculator.function.Not</node>
+    <node x="1990.0" y="642.0">calculator.function.Abs</node>
+    <node x="483.0" y="279.0">calculator.operation.Operation</node>
+    <node x="1630.9166666666665" y="291.0">calculator.function.Function</node>
+    <node x="1031.25" y="0.0">calculator.ComputableExpression</node>
+    <node x="460.0" y="654.0">calculator.operation.Xor</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="calculator.operation.Operation" target="calculator.ComputableExpression" relationship="GENERALIZATION">
+      <point x="0.0" y="-150.5" />
+      <point x="644.0" y="254.0" />
+      <point x="1222.25" y="254.0" />
+      <point x="0.0" y="114.5" />
+    </edge>
+    <edge source="calculator.function.Function" target="calculator.ComputableExpression" relationship="GENERALIZATION">
+      <point x="0.0" y="-138.5" />
+      <point x="1813.4166666666665" y="254.0" />
+      <point x="1222.25" y="254.0" />
+      <point x="0.0" y="114.5" />
+    </edge>
+    <edge source="calculator.function.Invert" target="calculator.function.Function" relationship="GENERALIZATION">
+      <point x="0.0" y="-42.0" />
+      <point x="1800.5" y="605.0" />
+      <point x="1813.4166666666665" y="605.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="calculator.operation.Pow" target="calculator.operation.Operation" relationship="GENERALIZATION">
+      <point x="0.0" y="-42.0" />
+      <point x="220.0" y="605.0" />
+      <point x="644.0" y="605.0" />
+      <point x="0.0" y="150.5" />
+    </edge>
+    <edge source="calculator.operation.Plus" target="calculator.operation.Operation" relationship="GENERALIZATION">
+      <point x="0.0" y="-54.0" />
+      <point x="1068.0" y="605.0" />
+      <point x="644.0" y="605.0" />
+      <point x="0.0" y="150.5" />
+    </edge>
+    <edge source="calculator.operation.Xor" target="calculator.operation.Operation" relationship="GENERALIZATION">
+      <point x="0.0" y="-30.0" />
+      <point x="0.0" y="150.5" />
+    </edge>
+    <edge source="calculator.function.Abs" target="calculator.function.Function" relationship="GENERALIZATION">
+      <point x="2.8421709430404007E-14" y="-42.0" />
+      <point x="2159.5" y="605.0" />
+      <point x="1813.4166666666665" y="605.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="calculator.function.Not" target="calculator.function.Function" relationship="GENERALIZATION">
+      <point x="0.0" y="-30.0" />
+      <point x="1459.5" y="605.0" />
+      <point x="1813.4166666666665" y="605.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6351638995317156" showDependencies="false" x="1164.5" y="369.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

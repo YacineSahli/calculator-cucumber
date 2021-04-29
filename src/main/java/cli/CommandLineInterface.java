@@ -50,10 +50,10 @@ public class CommandLineInterface {
                     return Double.toString(c.convert(input));
                 }
                 return c.eval(e).toString();
-            } catch (IllegalStateException exception) {//todo should not raise an exception
-                return exception.getMessage();
+            } catch (IllegalStateException exception) {
+                return "ERROR "+exception.getMessage();
             } catch (InvalidParameterException exception){
-                return exception.getMessage();
+                return "ERROR "+exception.getMessage();
             }
         }
     }
@@ -74,7 +74,7 @@ public class CommandLineInterface {
         }
     }
 
-    public boolean eventHandling(String input) {
+    private boolean eventHandling(String input) {
         input = input.toLowerCase();
         Expression e;
         boolean result=true;
@@ -121,7 +121,7 @@ public class CommandLineInterface {
         return false;
     }
 
-    public Mode isMode(String input) {
+    private Mode isMode(String input) {
         String cleanInput = input.strip().toUpperCase();
         Mode result = null;
         for (Mode mode : Mode.values()) {
