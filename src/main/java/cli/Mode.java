@@ -9,11 +9,11 @@ public enum Mode {
 
     private final Runner runner;
 
-    Mode(Runner runner){
+    Mode(Runner runner) {
         this.runner = runner;
     }
 
-    public Runner parser(){
+    public Runner parser() {
         return this.runner;
     }
 }

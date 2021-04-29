@@ -1,8 +1,8 @@
 package junit5tests;
 
+import calculator.utils.MyRandom;
 import calculator.variables.CalculatorVariable;
 import calculator.variables.IntegerNumber;
-import calculator.utils.MyRandom;
 import calculator.variables.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ class TestMyRandom {
     }
 
     @Test
-    void testConstructor(){
+    void testConstructor() {
         MyRandom r2 = new MyRandom();
         MyRandom r3 = new MyRandom(seed);
         assertNotNull(r2);
@@ -42,7 +42,7 @@ class TestMyRandom {
     @Test
     void testNextIntBound() {
         MyRandom generator = new MyRandom(seed);
-        assertTrue(((IntegerNumber)generator.nextInt(new IntegerNumber(bound))).getValue()<bound);
+        assertTrue(((IntegerNumber) generator.nextInt(new IntegerNumber(bound))).getValue() < bound);
     }
 
     @Test

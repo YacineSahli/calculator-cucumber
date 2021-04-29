@@ -24,19 +24,19 @@ public abstract class Runner {
 
     public abstract Expression parse(String data);
 
-    public String getHelp(){
+    public String getHelp() {
         return
                 "-------------------------------------------------- HELP --------------------------------------------------\n\n" +
-                        "Available commands:\n\n"+
-                        "Modes:\n"+
-                        "- calculator\n"+
-                        "- boolean\n"+
-                        "- convertor\n"+
-                        "- date\n"+
-                        "\n"+
-                        "Commands:\n"+
-                        "- todo history\n"+
-                        "- exit\n"+
+                        "Available commands:\n\n" +
+                        "Modes:\n" +
+                        "- calculator\n" +
+                        "- boolean\n" +
+                        "- convertor\n" +
+                        "- date\n" +
+                        "\n" +
+                        "Commands:\n" +
+                        "- todo history\n" +
+                        "- exit\n" +
                         "- help\n";
 
     }

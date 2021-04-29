@@ -1,9 +1,9 @@
 package calculator.operation;
 
-import calculator.variables.MyBoolean;
-import calculator.variables.CalculatorVariable;
 import calculator.Expression;
 import calculator.IllegalConstruction;
+import calculator.variables.CalculatorVariable;
+import calculator.variables.MyBoolean;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class Equivalence extends Operation {
 
     public Equivalence(List<Expression> elist) throws IllegalConstruction {
         super(elist);
-        symbol="<=>";
+        symbol = "<=>";
     }
 
     public CalculatorVariable op(MyBoolean l, MyBoolean r) {

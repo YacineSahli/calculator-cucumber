@@ -1,6 +1,8 @@
 package junit5tests;
 
-import calculator.*;
+import calculator.Calculator;
+import calculator.Expression;
+import calculator.IllegalConstruction;
 import calculator.function.Invert;
 import calculator.variables.IntegerNumber;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,9 +15,9 @@ public class TestInvert {
 
     private final int value1 = -8;
     private final int value2 = 6;
+    private final Calculator c = new Calculator();
     private Invert func;
     private Expression param;
-    private final Calculator c = new Calculator();
 
     @BeforeEach
     public void setUp() {

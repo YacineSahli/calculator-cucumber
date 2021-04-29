@@ -1,6 +1,8 @@
 package junit5tests.operation;
 
-import calculator.*;
+import calculator.Calculator;
+import calculator.Expression;
+import calculator.IllegalConstruction;
 import calculator.function.Abs;
 import calculator.function.Invert;
 import calculator.variables.IntegerNumber;
@@ -14,9 +16,9 @@ public class TestAbs {
 
     private final int value1 = -8;
     private final int value2 = 6;
+    private final Calculator c = new Calculator();
     private Abs func;
     private Expression param;
-    private final Calculator c = new Calculator();
 
     @BeforeEach
     public void setUp() {

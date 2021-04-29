@@ -1,6 +1,7 @@
 package calculator.function;
 
-import calculator.*;
+import calculator.Expression;
+import calculator.IllegalConstruction;
 import calculator.variables.CalculatorVariable;
 import calculator.variables.IntegerNumber;
 import calculator.variables.RationalNumber;

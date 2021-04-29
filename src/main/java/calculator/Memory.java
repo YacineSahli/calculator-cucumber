@@ -6,17 +6,20 @@ import cli.Runner;
 import visitor.EvaluatorException;
 import visitor.Printer;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Memory {
     private final Calculator calculator;
     private final Printer printer;
+    private final HashMap<Expression, CalculatorVariable> expressValueBinding;
     private Expression[] expressions;
     private int pointer;
     private int load;
-    private final HashMap<Expression, CalculatorVariable> expressValueBinding;
 
     public Memory(Calculator calculator, int size) {
         this.calculator = calculator;
@@ -111,7 +114,8 @@ public class Memory {
     public int getLoad() {
         return load;
     }
-    public void save(String filename){
+
+    public void save(String filename) {
         try {
             FileWriter fileWriter = new FileWriter(filename);
             for (Expression e : expressions) {
@@ -130,13 +134,14 @@ public class Memory {
             e.printStackTrace();
         }
     }
-    public void load(String filename, Mode mode){
+
+    public void load(String filename, Mode mode) {
         try {
 
             File file = new File(filename);
             Scanner reader = new Scanner(file);
             reset();
-            while (reader.hasNextLine()){
+            while (reader.hasNextLine()) {
                 String toParse = reader.nextLine();
                 Runner runner = mode.parser();
                 Expression expression = runner.parse(toParse);
@@ -147,12 +152,14 @@ public class Memory {
             e.printStackTrace();
         }
     }
-    public void reset(){
+
+    public void reset() {
         pointer = -1;
         load = 0;
         expressions = new Expression[expressions.length];
         expressValueBinding.clear();
     }
+
     public Expression[] getExpressions() {
         return expressions;
     }

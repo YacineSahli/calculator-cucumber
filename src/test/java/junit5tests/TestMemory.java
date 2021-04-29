@@ -1,6 +1,9 @@
 package junit5tests;
 
-import calculator.*;
+import calculator.Calculator;
+import calculator.Expression;
+import calculator.IllegalConstruction;
+import calculator.Memory;
 import calculator.operation.Divides;
 import calculator.operation.Minus;
 import calculator.operation.Plus;

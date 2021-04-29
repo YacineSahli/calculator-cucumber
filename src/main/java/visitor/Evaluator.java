@@ -1,9 +1,9 @@
 package visitor;
 
-import calculator.variables.CalculatorVariable;
 import calculator.Expression;
 import calculator.function.Function;
 import calculator.operation.Operation;
+import calculator.variables.CalculatorVariable;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class Evaluator extends Visitor {
             } catch (InvocationTargetException e) {
                 throw new EvaluatorException("Impossible to evaluate the expression: " + e.getCause().getMessage(), o);
             } catch (NoSuchMethodException e) {
-                throw new EvaluatorException("Operation " + o.toString() + " don't exist for: " + temp.getClass().getName()
+                throw new EvaluatorException("Operation " + o + " don't exist for: " + temp.getClass().getName()
                         + " and " + evaluatedArgs.get(counter).getClass().getName(), o);
             }
         }

@@ -3,11 +3,13 @@ package cli;
 import calculator.Expression;
 import calculator.antlr4.boolean_grammarLexer;
 import calculator.antlr4.boolean_grammarParser;
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 
 public class BooleanRunner extends Runner {
 
-    public Expression parse(String data){
+    public Expression parse(String data) {
 
         CharStream charStream = CharStreams.fromString(data);
         boolean_grammarLexer lex = new boolean_grammarLexer(charStream);
@@ -26,7 +28,7 @@ public class BooleanRunner extends Runner {
 
     @Override
     public String getHelp() {
-        return super.getHelp() ; //todo
+        return super.getHelp(); //todo
     }
 }
 

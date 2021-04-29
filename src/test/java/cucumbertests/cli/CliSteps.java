@@ -1,10 +1,10 @@
 package cucumbertests.cli;
 
+import cli.CommandLineInterface;
+import cli.Mode;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
-import cli.*;
 import io.cucumber.java.en.Then;
-
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,10 +26,10 @@ public class CliSteps {
     }
 
     @Given("a mode name {string}")
-    public void givenAModeName(String s){
+    public void givenAModeName(String s) {
         Mode isMode = null;
         s = s.toUpperCase();
-        for(Mode mode: Mode.values()){
+        for (Mode mode : Mode.values()) {
             if (s.equals(mode.toString()))
                 isMode = mode;
         }
@@ -39,27 +39,31 @@ public class CliSteps {
     }
 
     @Then("the mode of the cli is {string}")
-    public void thenTheModeIs(String s){
+    public void thenTheModeIs(String s) {
         assertEquals(s.toUpperCase(), cli.getMode().toString().toUpperCase());
     }
 
     @Given("an expression {string}")
-    public void givenAnExpression(String s){
+    public void givenAnExpression(String s) {
         expression = s;
     }
 
     @Then("the result of the evaluation is {string}")
-    public void thenTheResultOfTheEvaluationIs(String s){
+    public void thenTheResultOfTheEvaluationIs(String s) {
         assertNotNull(currentMode);
         assertNotNull(expression);
-        assertDoesNotThrow(()->{assertEquals(s, cli.parse(expression));});
+        assertDoesNotThrow(() -> {
+            assertEquals(s, cli.parse(expression));
+        });
     }
 
     @Then("the evaluation fail")
-    public void theEvaluationFail(){
+    public void theEvaluationFail() {
         assertNotNull(currentMode);
         assertNotNull(expression);
-        assertDoesNotThrow(()->{assertTrue(cli.parse(expression).startsWith("ERROR "));});
+        assertDoesNotThrow(() -> {
+            assertTrue(cli.parse(expression).startsWith("ERROR "));
+        });
     }
 
 
