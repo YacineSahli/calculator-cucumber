@@ -1,6 +1,5 @@
 package junit5tests;
 
-import calculator.Calculator;
 import calculator.Expression;
 import calculator.IllegalConstruction;
 import calculator.function.Invert;
@@ -15,7 +14,6 @@ public class TestInvert {
 
     private final int value1 = -8;
     private final int value2 = 6;
-    private final Calculator c = new Calculator();
     private Invert func;
     private Expression param;
 

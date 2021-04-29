@@ -1,6 +1,5 @@
 package junit5tests.operation;
 
-import calculator.Calculator;
 import calculator.Expression;
 import calculator.IllegalConstruction;
 import calculator.operation.Pow;
@@ -20,7 +19,6 @@ public class TestPow {
 
     private final int value1 = 8;
     private final int value2 = 6;
-    private final Calculator c = new Calculator();
     private Pow op;
     private List<Expression> params;
 

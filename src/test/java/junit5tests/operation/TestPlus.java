@@ -1,6 +1,5 @@
 package junit5tests.operation;
 
-import calculator.Calculator;
 import calculator.Expression;
 import calculator.IllegalConstruction;
 import calculator.operation.Plus;
@@ -20,7 +19,6 @@ public class TestPlus {
 
     private final int value1 = 8;
     private final int value2 = 6;
-    private final Calculator c = new Calculator();
     private Plus op;
     private List<Expression> params;
 

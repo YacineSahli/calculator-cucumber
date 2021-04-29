@@ -1,6 +1,5 @@
 package junit5tests.operation;
 
-import calculator.Calculator;
 import calculator.Expression;
 import calculator.IllegalConstruction;
 import calculator.function.Abs;
@@ -16,7 +15,6 @@ public class TestAbs {
 
     private final int value1 = -8;
     private final int value2 = 6;
-    private final Calculator c = new Calculator();
     private Abs func;
     private Expression param;
 
