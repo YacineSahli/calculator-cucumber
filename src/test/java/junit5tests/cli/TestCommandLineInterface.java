@@ -26,12 +26,12 @@ public class TestCommandLineInterface {
         }
     }
 
-    @Test
-    public void testEventHandling(){
-        CliMock cli = new CliMock(Mode.CALCULATOR);
-        assertNull(cli.parse("help"));
-        assertEquals(1, cli.eventHandling_call);
-    }
+//    @Test
+//    public void testEventHandling(){
+//        CliMock cli = new CliMock(Mode.CALCULATOR);
+//        assertNull(cli.parse("help"));
+//        assertEquals(1, cli.eventHandling_call);
+//    }
 
     @Test
     public void testMode(){

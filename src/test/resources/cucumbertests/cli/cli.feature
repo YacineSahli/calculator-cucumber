@@ -29,3 +29,8 @@ Feature: Command line interface
     Given a mode name 'calculator'
     And an expression 'bonjour'
     Then the evaluation fail
+
+  Scenario: Check the result of a correct date addition
+    Given a mode name 'date'
+    And an expression '2020-12-11 10:10:10 + PT3H40M'
+    Then the result of the evaluation is '2020-12-11T13:50:10Z'
