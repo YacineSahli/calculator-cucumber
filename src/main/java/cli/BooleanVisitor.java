@@ -7,6 +7,7 @@ import calculator.antlr4.boolean_grammarParser;
 import calculator.function.Not;
 import calculator.operation.*;
 import calculator.variables.MyBoolean;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,6 +64,9 @@ public class BooleanVisitor extends boolean_grammarBaseVisitor<Expression> {
         } catch (IllegalConstruction illegalConstruction) {
             throw new RuntimeException();
         }
+    }
+    public Expression visitParensInfix(boolean_grammarParser.ParensInfixContext ctx){
+        return visit((ParseTree) ctx.infixExpression());
     }
     public Expression visitFunctionInfixNot(boolean_grammarParser.FunctionInfixNotContext ctx) {
         Expression param =  visit(ctx.infixExpression());

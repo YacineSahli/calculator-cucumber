@@ -1,17 +1,19 @@
 package calculator;
 
 import calculator.variables.CalculatorVariable;
+import cli.Mode;
+import cli.Runner;
 import visitor.EvaluatorException;
 import visitor.Printer;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Memory {
     private final Calculator calculator;
     private final Printer printer;
-    private final Expression[] expressions;
+    private Expression[] expressions;
     private int pointer;
     private int load;
     private final HashMap<Expression, CalculatorVariable> expressValueBinding;
@@ -109,7 +111,48 @@ public class Memory {
     public int getLoad() {
         return load;
     }
+    public void save(String filename){
+        try {
+            FileWriter fileWriter = new FileWriter(filename);
+            for (Expression e : expressions) {
+                if (e == null) {
+                    break;
+                } else {
+                    e.accept(printer);
+                    fileWriter.write(printer.getResult() + '\n');
+                }
+            }
+            fileWriter.close();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (EvaluatorException e) {
+            e.printStackTrace();
+        }
+    }
+    public void load(String filename, Mode mode){
+        try {
+
+            File file = new File(filename);
+            Scanner reader = new Scanner(file);
+            reset();
+            while (reader.hasNextLine()){
+                String toParse = reader.nextLine();
+                Runner runner = mode.parser();
+                Expression expression = runner.parse(toParse);
+                calculator.eval(expression);
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public void reset(){
+        pointer = -1;
+        load = 0;
+        expressions = new Expression[expressions.length];
+        expressValueBinding.clear();
+    }
     public Expression[] getExpressions() {
         return expressions;
     }

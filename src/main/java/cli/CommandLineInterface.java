@@ -4,7 +4,6 @@ import calculator.Calculator;
 import calculator.Expression;
 
 import java.security.InvalidParameterException;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class CommandLineInterface {
@@ -29,7 +28,19 @@ public class CommandLineInterface {
         newMode = isMode(input);
         if (eventHandling(input)){
             return null;
-        } else if (newMode != null) {
+        }
+        else if (isSave(input)){
+            String[] splittedString = input.split(" ");
+            c.memory.save(splittedString[1]);
+            return null;
+
+        }
+        else if (isLoad(input)){
+            String[] splittedString = input.split(" ");
+            c.memory.load(splittedString[1], mode);
+            return null;
+        }
+        else if (newMode != null) {
             this.mode = newMode;
             return null;
         } else {
@@ -39,10 +50,10 @@ public class CommandLineInterface {
                     return Double.toString(c.convert(input));
                 }
                 return c.eval(e).toString();
-            } catch (IllegalStateException exception) {//todo should not raise an exception
-                return exception.getMessage();
+            } catch (IllegalStateException exception) {
+                return "ERROR "+exception.getMessage();
             } catch (InvalidParameterException exception){
-                return exception.getMessage();
+                return "ERROR "+exception.getMessage();
             }
         }
     }
@@ -63,7 +74,7 @@ public class CommandLineInterface {
         }
     }
 
-    public boolean eventHandling(String input) {
+    private boolean eventHandling(String input) {
         input = input.toLowerCase();
         Expression e;
         boolean result=true;
@@ -79,6 +90,12 @@ public class CommandLineInterface {
             case "history":
                 c.memory.displayLog();
                 break;
+            case "reset":
+                c.memory.reset();
+                break;
+            case "s":
+                c.memory.history();
+                break;
             case "help":
                 System.out.println(this.mode.parser().getHelp());
             case "exit":
@@ -89,8 +106,22 @@ public class CommandLineInterface {
         }
         return result;
     }
+    public boolean isSave(String input){
+        String[] splittedString = input.split(" ");
+        if (input.length()>3 && input.substring(0, 4).equals("save") && splittedString.length==2){
+            return true;
+        }
+        return false;
+    }
+    public boolean isLoad(String input){
+        String[] splittedString = input.split(" ");
+        if (input.length()>3 && input.substring(0, 4).equals("load") && splittedString.length==2){
+            return true;
+        }
+        return false;
+    }
 
-    public Mode isMode(String input) {
+    private Mode isMode(String input) {
         String cleanInput = input.strip().toUpperCase();
         Mode result = null;
         for (Mode mode : Mode.values()) {
