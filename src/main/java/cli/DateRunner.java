@@ -40,25 +40,24 @@ public class DateRunner extends Runner {
                 "The supported date format are as follow.\n" +
                 "z being a timezone like GMT, CET, GMT+8:30\n" +
                 "a is the AM/PM hour otherwise the date is considered 24h format\n" +
-                "| yyyy-MM-dd HH:mm:ss z |\n" +
-                "| yyyy-MM-dd HH:mm z |\n" +
-                "| yyyy-MM-dd HH z |\n" +
-                "| yyyy-MM-dd z |\n" +
-                "| yyyy-MM-dd HH:mm:ss a z |\n" +
-                "| yyyy-MM-dd HH:mm a  z |\n" +
-                "| yyyy-MM-dd HH a z |\n" +
-                "| yyyy-MM-dd HH:mm |\n"+
-                "| yyyy-MM-dd HH |\n"+
-                "| yyyy-MM-dd |\n"+
-                "| yyyy-MM-dd hh:mm:ss a |\n"+
-                "| yyyy-MM-dd hh:mm a |\n"+
-                "| yyyy-MM-dd hh a |\n\n"+
-
+                "|:----------------------------------------:|\n"+
+                "| yyyy-MM-dd HH:mm:ss z                    |\n" +
+                "| yyyy-MM-dd HH:mm z                       |\n" +
+                "| yyyy-MM-dd HH z                          |\n" +
+                "| yyyy-MM-dd z                             |\n" +
+                "| yyyy-MM-dd HH:mm:ss a z                  |\n" +
+                "| yyyy-MM-dd HH:mm a  z                    |\n" +
+                "| yyyy-MM-dd HH a z                        |\n" +
+                "| yyyy-MM-dd HH:mm                         |\n"+
+                "| yyyy-MM-dd HH                            |\n"+
+                "| yyyy-MM-dd                               |\n"+
+                "| yyyy-MM-dd hh:mm:ss a                    |\n"+
+                "| yyyy-MM-dd hh:mm a                       |\n"+
+                "| yyyy-MM-dd hh a                          |\n\n"+
                 "The supported duration format is ISO-8601 with entire seconds. Examples.\n"+
-                "| 1 day | P1D |\n"+
-                "| 2 hours | PT2H |\n"+
-                "| 2 days, 3 hours and 4 minutes | P2DT3H4M |\n"+
-
+                "| 1 day                         | P1D               |\n"+
+                "| 2 hours                       | PT2H              |\n"+
+                "| 2 days, 3 hours and 4 minutes | P2DT3H4M          |\n"+
                 "----------------------------------------------------------------------------------------------------------\n";
     }
 }
