@@ -9,7 +9,7 @@ Feature: Command line interface
   Scenario: Change the mode of the cli
     Given a mode name 'convertor'
     Then the mode of the cli is 'convertor'
-    
+
   Scenario: Check the result of a correct arithmetic expression
     Given a mode name 'calculator'
     And an expression '3^3'

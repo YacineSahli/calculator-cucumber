@@ -1,16 +1,16 @@
 package calculator.operation;
 
-import calculator.variables.MyBoolean;
-import calculator.variables.CalculatorVariable;
 import calculator.Expression;
 import calculator.IllegalConstruction;
+import calculator.variables.CalculatorVariable;
+import calculator.variables.MyBoolean;
 
 import java.util.List;
 
 public class Xor extends Operation {
     public Xor(List<Expression> elist) throws IllegalConstruction {
         super(elist);
-        symbol="xor";
+        symbol = "xor";
     }
 
     public CalculatorVariable op(MyBoolean l, MyBoolean r) {

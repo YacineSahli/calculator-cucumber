@@ -11,8 +11,8 @@ import visitor.Visitor;
 public abstract class CalculatorVariable implements Expression {
 
     private final String strValue;
-    protected int accuracyLevel;// ex: 1 is more accurate than 2
-    protected boolean canInteract;// true if we can apply an operation with other types
+    protected final int accuracyLevel;// ex: 1 is more accurate than 2
+    protected final boolean canInteract;// true if we can apply an operation with other types
 
     protected CalculatorVariable(String strValue, int accuracy, boolean canInteract) {
         this.strValue = strValue;

@@ -1,6 +1,7 @@
 package calculator.function;
 
-import calculator.*;
+import calculator.Expression;
+import calculator.IllegalConstruction;
 import calculator.variables.CalculatorVariable;
 import calculator.variables.IntegerNumber;
 import calculator.variables.RationalNumber;
@@ -9,7 +10,7 @@ public class Abs extends Function {
 
     public Abs(Expression arg) throws IllegalConstruction {
         super(arg);
-        symbol="abs";
+        symbol = "abs";
     }
 
     public CalculatorVariable apply(IntegerNumber i) {

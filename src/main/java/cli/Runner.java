@@ -24,7 +24,7 @@ public abstract class Runner {
 
     public abstract Expression parse(String data);
 
-    public String getHelp(){
+    public String getHelp() {
         return
                 "-------------------------------------------------- HELP --------------------------------------------------\n\n" +
                         "Available commands:\n\n"+

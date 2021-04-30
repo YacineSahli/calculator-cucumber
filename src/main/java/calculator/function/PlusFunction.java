@@ -1,7 +1,8 @@
 package calculator.function;
 
 
-import calculator.*;
+import calculator.Expression;
+import calculator.IllegalConstruction;
 import calculator.operation.Plus;
 import calculator.variables.CalculatorVariable;
 import calculator.variables.MyTime;

@@ -3,11 +3,13 @@ package cli;
 import calculator.Expression;
 import calculator.antlr4.boolean_grammarLexer;
 import calculator.antlr4.boolean_grammarParser;
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 
 public class BooleanRunner extends Runner {
 
-    public Expression parse(String data){
+    public Expression parse(String data) {
 
         CharStream charStream = CharStreams.fromString(data);
         boolean_grammarLexer lex = new boolean_grammarLexer(charStream);
@@ -27,7 +29,7 @@ public class BooleanRunner extends Runner {
     @Override
     public String getHelp() {
         return super.getHelp() +
-                "-------------------------------------------------- CALCULATOR HELP --------------------------------------------------\n\n"+
+                "-------------------------------------------------- BOOLEAN HELP --------------------------------------------------\n\n"+
                 "This mode allows you to perform boolean operations.\n"+
                 "Expressions can be written in prefix, infix and postfix notation.\n\n"+
                 "In this mode, true is represented by the number 1 and false is represented by the number 0 \n\n"+

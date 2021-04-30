@@ -2,7 +2,9 @@ package junit5tests;
 
 //Import Junit5 libraries for unit testing:
 
-import calculator.*;
+import calculator.Calculator;
+import calculator.Expression;
+import calculator.IllegalConstruction;
 import calculator.function.Abs;
 import calculator.function.Invert;
 import calculator.function.MinusFunction;
@@ -67,9 +69,8 @@ public class TestEvaluator {
             MyTime time = new MyTime(duration1);
             op = new MinusFunction(time);
             assertEquals(ZonedDateTime.now().minus(time.getAsDuration()).toEpochSecond(),
-                    ((MyTime) calc.eval(op)).getZonedDateTime().toEpochSecond(),0.01);
-        }
-        catch(IllegalConstruction | ParseException e) {
+                    ((MyTime) calc.eval(op)).getZonedDateTime().toEpochSecond(), 0.01);
+        } catch (IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }
@@ -81,9 +82,8 @@ public class TestEvaluator {
             MyTime time = new MyTime(duration1);
             op = new PlusFunction(time);
             assertEquals(ZonedDateTime.now().plus(time.getAsDuration()).toEpochSecond(),
-                    ((MyTime) calc.eval(op)).getZonedDateTime().toEpochSecond(),0.01);
-        }
-        catch(IllegalConstruction | ParseException e) {
+                    ((MyTime) calc.eval(op)).getZonedDateTime().toEpochSecond(), 0.01);
+        } catch (IllegalConstruction | ParseException e) {
             e.printStackTrace();
             fail();
         }

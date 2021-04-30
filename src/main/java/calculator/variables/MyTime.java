@@ -15,23 +15,16 @@ import java.util.function.BiFunction;
 
 
 public class MyTime extends CalculatorVariable {
-    private final static int ACCURACY = 1;
+    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
     private ZonedDateTime date = null;
     private Duration time = null;
-    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
     private ZoneId zoneId;
 
 
     public /*constructor*/ MyTime(String s) throws ParseException {
         super(s, 3, false);
-        try {
-            date = parseDate(s);
-        } catch (ParseException e) {
-        }
-        try {
-            time = parseTime(s);
-        } catch (ParseException e) {
-        }
+        date = parseDate(s);
+        time = parseTime(s);
         if (date == null && time == null) {
             throw new ParseException("Cannot parse input", 0);
         }
@@ -61,7 +54,7 @@ public class MyTime extends CalculatorVariable {
         return time;
     }
 
-    private Duration parseTime(String s) throws ParseException {
+    private Duration parseTime(String s) {
         try {
             return Duration.parse(s);
         } catch (DateTimeParseException e) {
@@ -69,8 +62,9 @@ public class MyTime extends CalculatorVariable {
         }
     }
 
-    private ZonedDateTime parseDate(String s) throws ParseException {
-        List<DateTimeFormatter> knownPatterns = new ArrayList<DateTimeFormatter>();
+    @SuppressWarnings("CatchMayIgnoreException")
+    private ZonedDateTime parseDate(String s) {
+        List<DateTimeFormatter> knownPatterns = new ArrayList<>();
         knownPatterns.add(new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd[ HH:mm:ss] z")
                 .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
                 .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
@@ -131,8 +125,7 @@ public class MyTime extends CalculatorVariable {
             return this.time;
         } else {
             seconds = date.toEpochSecond();
-            Duration res = Duration.ofSeconds(seconds);
-            return res;
+            return Duration.ofSeconds(seconds);
         }
     }
 
@@ -175,7 +168,7 @@ public class MyTime extends CalculatorVariable {
 
     public String toHumanFormat(String outputUnit) {
         Duration d = this.getAsDuration();
-        Double res;
+        double res;
         switch (outputUnit) {
             case "DAYS":
             case "Days":

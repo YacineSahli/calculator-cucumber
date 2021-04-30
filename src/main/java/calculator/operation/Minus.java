@@ -1,6 +1,7 @@
 package calculator.operation;
 
-import calculator.*;
+import calculator.Expression;
+import calculator.IllegalConstruction;
 import calculator.variables.CalculatorVariable;
 import calculator.variables.IntegerNumber;
 import calculator.variables.MyTime;
@@ -16,10 +17,6 @@ final public class Minus extends Operation {
         super(elist);
         symbol = "-";
         neutral = 0;
-    }
-
-    public CalculatorVariable op(IntegerNumber l, IntegerNumber r) {
-        return new IntegerNumber(l.getValue() - r.getValue());
     }
 
     public static CalculatorVariable op(MyTime l, MyTime r) {
@@ -39,6 +36,10 @@ final public class Minus extends Operation {
                 return new MyTime(l.getLocalTime().minus(r.getLocalTime()));
             }
         }
+    }
+
+    public CalculatorVariable op(IntegerNumber l, IntegerNumber r) {
+        return new IntegerNumber(l.getValue() - r.getValue());
     }
 
     public CalculatorVariable op(MyTime r) {

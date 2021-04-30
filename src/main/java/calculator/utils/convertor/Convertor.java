@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.InvalidParameterException;
+import java.util.Objects;
 import java.util.Scanner;
 
 import static calculator.utils.convertor.Currency.stringToCurrency;
@@ -30,15 +31,15 @@ public class Convertor {
     }
 
     public Double convertCurrency(String inputUnit, String outputUnit, double inputAmount) {
-        URL url = null;
+        URL url;
         Scanner sc = null;
         try {
             url = new URL("https://api.exchangerate.host/latest&base=" + inputUnit + "&symbols=" + outputUnit);
-            HttpURLConnection conn = null;
+            HttpURLConnection conn;
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
-            int responseCode = 0;
+            int responseCode;
             responseCode = conn.getResponseCode();
             if (responseCode != 200)
                 throw new RuntimeException("HttpResponseCode: " + responseCode);
@@ -62,7 +63,7 @@ public class Convertor {
         double result;
         Unit InputUnit = stringToUnit(inputUnit);
         Unit OutputUnit = stringToUnit(outputUnit);
-        if (InputUnit.type != OutputUnit.type)
+        if (!Objects.equals(InputUnit.type, OutputUnit.type))
             throw new InvalidParameterException("Input and output unit types does not match !");
         result = (inputAmount + InputUnit.offset) * InputUnit.value;
         result = (result / OutputUnit.value) - OutputUnit.offset;

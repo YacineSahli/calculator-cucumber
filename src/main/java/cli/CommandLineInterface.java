@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class CommandLineInterface {
 
-    private Scanner scanner;
+    private final Scanner scanner;
+    private final Calculator c;
     private Mode mode;
-    private Calculator c;
 
     public CommandLineInterface(Mode initialMode) {
         this.mode = initialMode;
@@ -22,38 +22,40 @@ public class CommandLineInterface {
         return mode;
     }
 
-    public String parse(String input){
+    public String parse(String input) {
         Mode newMode;
         Expression e;
         newMode = isMode(input);
-        if (eventHandling(input)){
+        if (eventHandling(input)) {
             return null;
-        }
-        else if (isSave(input)){
+        } else if (isSave(input)) {
             String[] splittedString = input.split(" ");
             c.memory.save(splittedString[1]);
             return null;
 
-        }
-        else if (isLoad(input)){
+        } else if (isLoad(input)) {
             String[] splittedString = input.split(" ");
             c.memory.load(splittedString[1], mode);
             return null;
-        }
-        else if (newMode != null) {
+        } else if (newMode != null) {
             this.mode = newMode;
             return null;
         } else {
             try {
                 e = mode.parser().parse(input);
-                if (e == null && this.mode == Mode.CONVERTOR) {
-                    return Double.toString(c.convert(input));
+                if (e == null ) {
+                    if(this.mode == Mode.CONVERTOR)
+                        return Double.toString(c.convert(input));
+                    else{
+                        throw new IllegalStateException("");
+                    }
                 }
-                return c.eval(e).toString();
-            } catch (IllegalStateException exception) {
-                return "ERROR "+exception.getMessage();
-            } catch (InvalidParameterException exception){
-                return "ERROR "+exception.getMessage();
+                Expression res = c.eval(e);
+                if(res == null)
+                    throw  new IllegalStateException("");
+                return res.toString();
+            } catch (IllegalStateException | InvalidParameterException exception) {
+                return "ERROR " + exception.getMessage();
             }
         }
     }
@@ -62,13 +64,13 @@ public class CommandLineInterface {
         System.out.println("Welcome to the calculator ! \n");
         String input;
 
-        String result="";
+        String result;
 
         while (true) {
             System.out.print("[" + mode.toString() + "]> ");
             input = scanner.nextLine();
             result = parse(input);
-            if(result !=null){
+            if (result != null) {
                 System.out.println(result);
             }
         }
@@ -77,8 +79,8 @@ public class CommandLineInterface {
     private boolean eventHandling(String input) {
         input = input.toLowerCase();
         Expression e;
-        boolean result=true;
-        switch (input){
+        boolean result = true;
+        switch (input) {
             case "j":
                 e = c.memory.undo();
                 System.out.println(c.memory.getValue(e));
@@ -103,23 +105,20 @@ public class CommandLineInterface {
                 System.out.println("Goodbye !");
                 System.exit(0);
                 break;
-            default: result=false;
+            default:
+                result = false;
         }
         return result;
     }
-    public boolean isSave(String input){
+
+    public boolean isSave(String input) {
         String[] splittedString = input.split(" ");
-        if (input.length()>3 && input.substring(0, 4).equals("save") && splittedString.length==2){
-            return true;
-        }
-        return false;
+        return input.length() > 3 && input.startsWith("save") && splittedString.length == 2;
     }
-    public boolean isLoad(String input){
+
+    public boolean isLoad(String input) {
         String[] splittedString = input.split(" ");
-        if (input.length()>3 && input.substring(0, 4).equals("load") && splittedString.length==2){
-            return true;
-        }
-        return false;
+        return input.length() > 3 && input.startsWith("load") && splittedString.length == 2;
     }
 
     private Mode isMode(String input) {

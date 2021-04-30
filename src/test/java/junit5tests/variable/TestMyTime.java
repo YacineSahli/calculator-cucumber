@@ -63,25 +63,25 @@ public class TestMyTime {
     }
 
     @Test
-    public void testToHumanFormat() throws ParseException {
+    public void testToHumanFormat() {
         time = new MyTime(Duration.ofSeconds(3912322));
         assertEquals("45d 6h 45m 22s", time.toHumanFormat());
     }
 
     @Test
-    public void testToHumanFormatChosenTemporal() throws ParseException {
+    public void testToHumanFormatChosenTemporal() {
         time = new MyTime(Duration.ofSeconds(3912322));
-        assertEquals("1086"+  DecimalFormatSymbols.getInstance().getDecimalSeparator() +"756 HOURS", time.toHumanFormat("HOURS"));
+        assertEquals("1086" + DecimalFormatSymbols.getInstance().getDecimalSeparator() + "756 HOURS", time.toHumanFormat("HOURS"));
     }
 
     @Test
-    public void testToHumanFormatChosenTemporalSubUnits1() throws ParseException {
+    public void testToHumanFormatChosenTemporalSubUnits1() {
         time = new MyTime(Duration.ofSeconds(3912322));
         assertEquals("1086HOURS 45MINUTES 22SECONDS", time.toHumanFormat("HOURS", false));
     }
 
     @Test
-    public void testToHumanFormatChosenTemporalSubUnits2() throws ParseException {
+    public void testToHumanFormatChosenTemporalSubUnits2() {
         time = new MyTime(Duration.ofSeconds(3912322));
         assertEquals("65205Minutes 22Seconds", time.toHumanFormat("Minutes", false));
     }

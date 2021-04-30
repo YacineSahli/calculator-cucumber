@@ -74,7 +74,6 @@ INV: 'inv';
 LPAREN: '(';
 RPAREN: ')';
 
-//separator for postfix and prefix notation todo
 SEPARATOR: ','|'@';
 WS : [ \t\r\n]+ -> skip ;
 

@@ -1,6 +1,9 @@
 package junit5tests;
 
-import calculator.*;
+import calculator.Calculator;
+import calculator.Expression;
+import calculator.IllegalConstruction;
+import calculator.Memory;
 import calculator.operation.Divides;
 import calculator.operation.Minus;
 import calculator.operation.Plus;
@@ -15,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class TestMemory {
     private final Calculator calc = new Calculator();
@@ -140,7 +144,7 @@ public class TestMemory {
         assertEquals(expr4, memory.getExpressions()[1]);
         assertEquals(1, memory.getPointer());
         assertEquals(2, memory.getLoad());
-        assertEquals(null, memory.getExpressions()[memory.getPointer() + 1]);
+        assertNull(memory.getExpressions()[memory.getPointer() + 1]);
     }
     /*@Test
     public void testDisplayLog(){

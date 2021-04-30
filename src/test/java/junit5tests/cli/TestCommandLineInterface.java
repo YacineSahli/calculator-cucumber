@@ -12,8 +12,8 @@ public class TestCommandLineInterface {
     private CommandLineInterface cli;
 
     @Test
-    public void testMode(){
-        cli=new CommandLineInterface(Mode.CALCULATOR);
+    public void testMode() {
+        cli = new CommandLineInterface(Mode.CALCULATOR);
         assertNull(cli.parse("ConVertor"));
         assertEquals(Mode.CONVERTOR, cli.getMode());
         assertNull(cli.parse("calCulaTor"));
