@@ -17,19 +17,19 @@ infixExpression
     | bool #BooleanInfix
     ;
 prefixExpression
-    : AND LPAREN prefixExpression SEPARATOR? prefixExpression RPAREN #OperationPrefixAnd
-    | OR LPAREN prefixExpression SEPARATOR? prefixExpression RPAREN #OperationPrefixOr
-    | XOR LPAREN prefixExpression SEPARATOR? prefixExpression RPAREN #OperationPrefixXor
-    | IMPLICATION LPAREN prefixExpression SEPARATOR? prefixExpression RPAREN #OperationPrefixImplication
-    | EQUIVALENCE LPAREN prefixExpression SEPARATOR? prefixExpression RPAREN #OperationPrefixEquivalence
+    : AND LPAREN prefixExpression (SEPARATOR? prefixExpression)+ RPAREN #OperationPrefixAnd
+    | OR LPAREN prefixExpression (SEPARATOR? prefixExpression)+ RPAREN #OperationPrefixOr
+    | XOR LPAREN prefixExpression (SEPARATOR? prefixExpression)+ RPAREN #OperationPrefixXor
+    | IMPLICATION LPAREN prefixExpression (SEPARATOR? prefixExpression)+ RPAREN #OperationPrefixImplication
+    | EQUIVALENCE LPAREN prefixExpression (SEPARATOR? prefixExpression)+ RPAREN #OperationPrefixEquivalence
     | bool #BooleanPrefix
     ;
 postfixExpression
-    : LPAREN postfixExpression SEPARATOR? postfixExpression RPAREN AND #OperationPostfixAnd
-    | LPAREN postfixExpression SEPARATOR? postfixExpression RPAREN OR #OperationPostfixOr
-    | LPAREN postfixExpression SEPARATOR? postfixExpression RPAREN XOR #OperationPostfixXor
-    | LPAREN postfixExpression SEPARATOR? postfixExpression RPAREN IMPLICATION #OperationPostfixImplication
-    | LPAREN postfixExpression SEPARATOR?  postfixExpression RPAREN EQUIVALENCE #OperationPostfixEquivalence
+    : LPAREN postfixExpression (SEPARATOR? postfixExpression)+ RPAREN AND #OperationPostfixAnd
+    | LPAREN postfixExpression (SEPARATOR? postfixExpression)+ RPAREN OR #OperationPostfixOr
+    | LPAREN postfixExpression (SEPARATOR? postfixExpression)+ RPAREN XOR #OperationPostfixXor
+    | LPAREN postfixExpression (SEPARATOR? postfixExpression)+ RPAREN IMPLICATION #OperationPostfixImplication
+    | LPAREN postfixExpression (SEPARATOR? postfixExpression)+ RPAREN EQUIVALENCE #OperationPostfixEquivalence
     | bool #BooleanPostfix
     ;
 bool:
