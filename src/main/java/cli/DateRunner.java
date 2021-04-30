@@ -27,15 +27,18 @@ public class DateRunner extends Runner {
 
     @Override
     public String getHelp() {
-        return "--------------------------------------------- CONVERTOR HELP ------------------------------------------------\n\n" +
+        return super.getHelp() + "--------------------------------------------- CONVERTOR HELP ------------------------------------------------\n\n" +
                 "This mode allows you to do addition and substraction operations on dates and duration.\n" +
+                "|:---------------------------------------------------------------------------------------:|\n" +
                 "| PLUS            |     '+'      |           2020-12-11 10:10:10 + 2020-12-11 10:10:10    |\n" +
-                "| MINUS           |     '-'      |           2020-12-11 10:10:10 - PT10H20M55S            |\n\n" +
+                "| MINUS           |     '-'      |           2020-12-11 10:10:10 - PT10H20M55S            |\n" +
+                "|-----------------------------------------------------------------------------------------|\n\n"+
+
                 "List of supported operations" +
                 "| DATE + DURATION| DATE - DURATION  | DATE - DATE |\n\n" +
-                "INFIX, PREFIX and POSTFIX notations are supported. Examples" +
+                "INFIX, PREFIX and POSTFIX notations are supported. Examples\n" +
                 "| +(DATE, DURATION)         |        DATE + DURATION       |         (DATE, DURATION)+    |\n" +
-                "The separator inside the parenthesis for the POSTFIX and PREFIX notation can either be a space or a comma" +
+                "The separator inside the parenthesis for the POSTFIX and PREFIX notation can either be a space or a comma\n" +
                 "The supported date format are as follow.\n" +
                 "z being a timezone like GMT, CET, GMT+8:30\n" +
                 "a is the AM/PM hour otherwise the date is considered 24h format\n" +
@@ -52,11 +55,14 @@ public class DateRunner extends Runner {
                 "| yyyy-MM-dd                               |\n" +
                 "| yyyy-MM-dd hh:mm:ss a                    |\n" +
                 "| yyyy-MM-dd hh:mm a                       |\n" +
-                "| yyyy-MM-dd hh a                          |\n\n" +
-                "The supported duration format is ISO-8601 with entire seconds. Examples.\n" +
+                "| yyyy-MM-dd hh a                          |\n" +
+                "|------------------------------------------|\n\n"+
+
+        "The supported duration format is ISO-8601 with entire seconds. Examples.\n\n" +
+                "|:-------------------------------------------------:|\n" +
                 "| 1 day                         | P1D               |\n" +
                 "| 2 hours                       | PT2H              |\n" +
                 "| 2 days, 3 hours and 4 minutes | P2DT3H4M          |\n" +
-                "----------------------------------------------------------------------------------------------------------\n";
+                "|---------------------------------------------------|\n\n";
     }
 }
