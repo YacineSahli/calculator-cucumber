@@ -100,6 +100,7 @@ public class CommandLineInterface {
                 break;
             case "help":
                 System.out.println(this.mode.parser().getHelp());
+                break;
             case "exit":
                 System.out.println("Goodbye !");
                 System.exit(0);
