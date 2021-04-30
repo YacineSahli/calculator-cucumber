@@ -106,7 +106,7 @@ public class ConvertorRunner extends Runner {
                 "| lbf    |\n" +
                 "| dyn    |\n" +
                 "| pdl    |\n" +
-                "}--------|\n" +
+                "|--------|\n" +
 
                 "| Mass |\n" +
                 "|:----:|\n" +
@@ -119,6 +119,7 @@ public class ConvertorRunner extends Runner {
                 "|------|\n" +
 
                 "| Currency |\n" +
+                "|:--------:|\n" +
                 "| CAD      |\n" +
                 "| HKD      |\n" +
                 "| ISK      |\n" +
@@ -153,8 +154,6 @@ public class ConvertorRunner extends Runner {
                 "| MYR      |\n" +
                 "| EUR      |\n" +
                 "|----------|\n" +
-
-
                 "----------------------------------------------------------------------------------------------------------\n";
     }
 }
