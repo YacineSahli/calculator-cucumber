@@ -1,5 +1,4 @@
 --------------------------------------------- CONVERTOR HELP ------------------------------------------------
-
 This mode allows you to convert units.
 You just have to write 3 parameters 'inputUnit' 'outputUnit' 'amount'.
 
