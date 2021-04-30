@@ -43,22 +43,6 @@ public abstract class Runner {
     }
     public String getHelp() {
         return loadHelpFile("Help.txt");
-                /*"-------------------------------------------------- HELP --------------------------------------------------\n\n" +
-                        "Available commands:\n\n"+
-                        "Modes:\n"+
-                        "- calculator\n"+
-                        "- boolean\n"+
-                        "- convertor\n"+
-                        "- date\n"+
-                        "\n"+
-                        "Commands:\n"+
-                        "- history : Display the history of the expressions used recently\n"+
-                        "- save [filename] : Save the history in the given filename\n"+
-                        "- save [load] : Load the history from the given filename\n"+
-                        "- reset : Reset the memory of the calculator\n"+
-                        "- s : Save always in the same history.txt file the memory history\n"+
-                        "- exit\n"+
-                        "- help\n";*/
 
     }
 }
