@@ -5,7 +5,12 @@ import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public abstract class Runner {
+    protected Scanner scanner;
 
     public static final BaseErrorListener baseErrorListener = new BaseErrorListener() {
         @Override
@@ -23,10 +28,22 @@ public abstract class Runner {
 
 
     public abstract Expression parse(String data);
-
+    public String loadHelpFile(String filename){
+        String help = "";
+        try {
+            scanner = new Scanner(new File("help/"+filename));
+            while (scanner.hasNextLine()){
+                help += scanner.nextLine()+"\n";
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Help file not found");
+        }
+        return help;
+    }
     public String getHelp() {
-        return
-                "-------------------------------------------------- HELP --------------------------------------------------\n\n" +
+        return loadHelpFile("Help.txt");
+                /*"-------------------------------------------------- HELP --------------------------------------------------\n\n" +
                         "Available commands:\n\n"+
                         "Modes:\n"+
                         "- calculator\n"+
@@ -41,7 +58,7 @@ public abstract class Runner {
                         "- reset : Reset the memory of the calculator\n"+
                         "- s : Save always in the same history.txt file the memory history\n"+
                         "- exit\n"+
-                        "- help\n";
+                        "- help\n";*/
 
     }
 }

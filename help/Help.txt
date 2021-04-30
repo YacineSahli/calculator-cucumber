@@ -1,0 +1,17 @@
+--------------------------------------------------- HELP --------------------------------------------------
+
+
+Available commands:
+Modes:
+- calculator
+- boolean
+- convertor
+- date
+Commands:
+- history : Display the history of the expressions used recently
+- save [filename] : Save the history in the given filename
+- save [load] : Load the history from the given filename
+- reset : Reset the memory of the calculator
+- s : Save always in the same history.txt file the memory history
+- exit
+- help

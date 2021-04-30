@@ -1,0 +1,26 @@
+-------------------------------------------------- CALCULATOR HELP --------------------------------------------------
+This mode allows you to perform arithmetic operations.
+Expressions can be written in prefix, infix and postfix notation.
+
+In this mode, integers and rational numbers are supported: rational numbers are always noted as follows: 'r<integer>/<integer>'. For example: r5/2.
+
+The following operations are available:
+
+| Operation       |    Symbol    | Example (infix notation) |
+|:----------------|:------------:|:------------------------:|
+| PLUS            |     '+'      |           8+2            |
+| MINUS           |     '-'      |           5-9            |
+| TIMES           |     '*'      |           3*4            |
+| DIVISION        |     '/'      |           8/4            |
+| MODULAR INVERSE |   'modinv'   |       4 modinv 11        |
+| MODULO          | '%' or 'mod' |           5%2            |
+| POW             | '^' or 'pow' |           3^2            |
+
+The following functions are available.
+Note: the functions can only be used with the notation used in the example.
+
+| Function | Symbol | Example |
+|:---------|:------:|:-------:|
+| ABS      | 'abs'  | abs(-2) |
+| INV      | 'inv'  | inv(3)  |
+---------------------------------------------------------------------------------------------------------------------

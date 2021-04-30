@@ -27,7 +27,8 @@ public class DateRunner extends Runner {
 
     @Override
     public String getHelp() {
-        return "--------------------------------------------- CONVERTOR HELP ------------------------------------------------\n\n" +
+        return super.getHelp() + "\n" + loadHelpFile("DateHelper.txt");
+        /*"--------------------------------------------- DATE HELP ------------------------------------------------\n\n" +
                 "This mode allows you to do addition and substraction operations on dates and duration.\n" +
                 "| PLUS            |     '+'      |           2020-12-11 10:10:10 + 2020-12-11 10:10:10    |\n" +
                 "| MINUS           |     '-'      |           2020-12-11 10:10:10 - PT10H20M55S            |\n\n" +
@@ -57,6 +58,6 @@ public class DateRunner extends Runner {
                 "| 1 day                         | P1D               |\n" +
                 "| 2 hours                       | PT2H              |\n" +
                 "| 2 days, 3 hours and 4 minutes | P2DT3H4M          |\n" +
-                "----------------------------------------------------------------------------------------------------------\n";
+                "----------------------------------------------------------------------------------------------------------\n";*/
     }
 }

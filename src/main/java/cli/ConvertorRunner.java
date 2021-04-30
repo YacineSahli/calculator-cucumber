@@ -9,8 +9,8 @@ public class ConvertorRunner extends Runner {
 
     @Override
     public String getHelp() {
-        return super.getHelp() +
-                "--------------------------------------------- CONVERTOR HELP ------------------------------------------------\n\n" +
+        return super.getHelp() + "\n"  + loadHelpFile("ConvertorHelper.txt");
+                /*"--------------------------------------------- CONVERTOR HELP ------------------------------------------------\n\n" +
                 "This mode allows you to convert units.\n" +
                 "You just have to write 3 parameters 'inputUnit' 'outputUnit' 'amount'.\n\n" +
                 "Example:  'kg lb 100' will convert 100 kilograms to pounds\n" +
@@ -117,7 +117,7 @@ public class ConvertorRunner extends Runner {
                 "| kg |\n" +
                 "| t |\n" +
 
-                "----------------------------------------------------------------------------------------------------------\n";
+                "----------------------------------------------------------------------------------------------------------\n";*/
     }
 }
 

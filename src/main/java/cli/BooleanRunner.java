@@ -28,8 +28,8 @@ public class BooleanRunner extends Runner {
 
     @Override
     public String getHelp() {
-        return super.getHelp() +
-                "-------------------------------------------------- BOOLEAN HELP --------------------------------------------------\n\n"+
+        return super.getHelp() + "\n"  + loadHelpFile("BooleanHelper.txt");
+                /*"-------------------------------------------------- BOOLEAN HELP --------------------------------------------------\n\n"+
                 "This mode allows you to perform boolean operations.\n"+
                 "Expressions can be written in prefix, infix and postfix notation.\n\n"+
                 "In this mode, true is represented by the number 1 and false is represented by the number 0 \n\n"+
@@ -46,7 +46,7 @@ public class BooleanRunner extends Runner {
                 "| Function | Symbol | Example |\n"+
                 "|:---------|:------:|:-------:|\n"+
                 "| NOT      | 'not'  | not(0)  |\n\n"+
-                "----------------------------------------------------------------------------------------------------------\n";
+                "----------------------------------------------------------------------------------------------------------\n";*/
     }
 }
 
