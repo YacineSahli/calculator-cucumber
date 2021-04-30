@@ -34,7 +34,7 @@ public class Convertor {
         URL url;
         Scanner sc = null;
         try {
-            url = new URL("https://api.exchangerate.host/latest&base=" + inputUnit + "&symbols=" + outputUnit);
+            url = new URL("https://api.exchangerate.host/latest&base=" + inputUnit.toUpperCase() + "&symbols=" + outputUnit.toUpperCase());
             HttpURLConnection conn;
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -56,7 +56,10 @@ public class Convertor {
     public double getRateFromJson(String json, String outputUnit) {
         JsonElement jsonElement = new JsonParser().parse(json);
         JsonObject jsonObject = jsonElement.getAsJsonObject();
-        return Double.parseDouble(jsonObject.get("rates").getAsJsonObject().get(outputUnit).toString());
+        JsonElement res = jsonObject.get("rates").getAsJsonObject().get(outputUnit);
+        if(res == null)
+            throw new IllegalStateException("Could not fetch data. Is the currency available ?");
+        return Double.parseDouble(res.toString());
     }
 
     public Double convertUnit(String inputUnit, String outputUnit, double inputAmount) {
