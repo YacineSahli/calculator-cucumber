@@ -1,0 +1,24 @@
+-------------------------------------------------- BOOLEAN HELP --------------------------------------------------
+This mode allows you to perform boolean operations.
+Expressions can be written in prefix, infix and postfix notation.
+
+In this mode, true is represented by the number 1 and false is represented by the number 0.
+
+The following operations are available:
+
+| Operation       |    Symbol    | Example (infix notation) |
+|:----------------|:------------:|:------------------------:|
+| AND             |    'and'     |           1 and 0        |
+| OR              |    'or'      |           1 or 0         |
+| XOR             |    'xor'     |           1 xor 0        |
+| IMPLICATION     |    '=>'      |           1 => 0         |
+| EQUIVALENCE     |    '<=>'     |           1 <=> 0        |
+
+The following function is available.
+Note: the functions can only be used with the notation used in the example.
+
+| Function | Symbol | Example |
+|:---------|:------:|:-------:|
+| NOT      | 'not'  | not(0)  |
+
+-----------------------------------------------------------------------------------------------------------------

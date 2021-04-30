@@ -1,0 +1,39 @@
+-------------------------------------------- DATE HELP ------------------------------------------------
+
+This mode allows you to do addition and substraction operations on dates and duration.
+|:---------------------------------------------------------------------------------------:|
+| PLUS            |     '+'      |           2020-12-11 10:10:10 + 2020-12-11 10:10:10    |
+| MINUS           |     '-'      |           2020-12-11 10:10:10 - PT10H20M55S            |
+|-----------------------------------------------------------------------------------------|
+
+List of supported operations| DATE + DURATION| DATE - DURATION  | DATE - DATE |
+
+INFIX, PREFIX and POSTFIX notations are supported. Examples
+| +(DATE, DURATION)         |        DATE + DURATION       |         (DATE, DURATION)+    |
+The separator inside the parenthesis for the POSTFIX and PREFIX notation can either be a space or a comma
+The supported date format are as follow.
+z being a timezone like GMT, CET, GMT+8:30
+a is the AM/PM hour otherwise the date is considered 24h format
+|:----------------------------------------:|
+| yyyy-MM-dd HH:mm:ss z                    |
+| yyyy-MM-dd HH:mm z                       |
+| yyyy-MM-dd HH z                          |
+| yyyy-MM-dd z                             |
+| yyyy-MM-dd HH:mm:ss a z                  |
+| yyyy-MM-dd HH:mm a  z                    |
+| yyyy-MM-dd HH a z                        |
+| yyyy-MM-dd HH:mm                         |
+| yyyy-MM-dd HH                            |
+| yyyy-MM-dd                               |
+| yyyy-MM-dd hh:mm:ss a                    |
+| yyyy-MM-dd hh:mm a                       |
+| yyyy-MM-dd hh a                          |
+|------------------------------------------|
+
+The supported duration format is ISO-8601 with entire seconds. Examples.
+
+|:-------------------------------------------------:|
+| 1 day                         | P1D               |
+| 2 hours                       | PT2H              |
+| 2 days, 3 hours and 4 minutes | P2DT3H4M          |
+|---------------------------------------------------|
