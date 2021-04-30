@@ -1,4 +1,5 @@
 --------------------------------------------- CONVERTOR HELP ------------------------------------------------
+
 This mode allows you to convert units.
 You just have to write 3 parameters 'inputUnit' 'outputUnit' 'amount'.
 
@@ -6,105 +7,131 @@ Example:  'kg lb 100' will convert 100 kilograms to pounds
 The following units are supported are available:
 
 | Length |
-|:--------:|
-| km |
-| m |
-| dm |
-| cm |
-| mm |
-| nm |
-| in |
-| mi |
-| nmi |
-| ft |
-| yd |
----------
-
+|:------:|
+| km     |
+| m      |
+| dm     |
+| cm     |
+| mm     |
+| nm     |
+| in     |
+| mi     |
+| nmi    |
+| ft     |
+| yd     |
+|--------|
 | Area |
-|:--------:|
-| m2 |
-| km2 |
----------
-
+|:----:|
+| m2   |
+| km2  |
+|------|
 | Power |
-|:--------:|
-| W |
-| hp |
-| TR |
----------
-
+|:-----:|
+| W     |
+| hp    |
+| TR    |
+|-------|
 | Energy |
-|:--------:|
-| J |
-| eV |
-| ftlbf |
-| hph |
----------
-
+|:------:|
+| J      |
+| eV     |
+| ftlbf  |
+| hph    |
+|--------|
 | Pressure |
 |:--------:|
-| Pa |
-| bar |
-| kPa |
-| MPa |
-| psi |
-| inHg |
-| mmHg |
-| Torr |
----------
-
+| Pa       |
+| bar      |
+| kPa      |
+| MPa      |
+| psi      |
+| inHg     |
+| mmHg     |
+| Torr     |
+|----------|
 | Speed |
-|:--------:|
-| mps |
-| kmph |
-| mph |
-| kts |
-| ftps |
----------
-
+|:-----:|
+| mps   |
+| kmph  |
+| mph   |
+| kts   |
+| ftps  |
+|-------|
 | Temperature |
-|:--------:|
-| c |
-| k |
-| f |
----------
-
+|:-----------:|
+| c           |
+| k           |
+| f           |
+|-------------|
 | Time |
-|:--------:|
-| ps |
-| ns |
-| us |
-| ms |
-| s |
-| min |
-| h |
-| day |
----------
-
+|:----:|
+| ps   |
+| ns   |
+| us   |
+| ms   |
+| s    |
+| min  |
+| h    |
+| day  |
+|------|
 | Volume |
-|:--------:|
-| m3 |
-| ft3 |
-| in3 |
-| cm3 |
-| l |
----------
-
+|:------:|
+| m3     |
+| ft3    |
+| in3    |
+| cm3    |
+| l      |
+|--------|
 | Weight |
-|:--------:|
-| N |
-| lbf |
-| dyn |
-| pdl |
----------
-
+|:------:|
+| N      |
+| lbf    |
+| dyn    |
+| pdl    |
+|--------|
 | Mass |
+|:----:|
+| oz   |
+| lb   |
+| g    |
+| mg   |
+| kg   |
+| t    |
+|------|
+| Currency |
 |:--------:|
-| oz |
-| lb |
-| g |
-| mg |
-| kg |
-| t |
-
+| CAD      |
+| HKD      |
+| ISK      |
+| PHP      |
+| DKK      |
+| HUF      |
+| CZK      |
+| AUD      |
+| RON      |
+| SEK      |
+| IDR      |
+| INR      |
+| BRL      |
+| RUB      |
+| HRK      |
+| JPY      |
+| THB      |
+| CHF      |
+| SGD      |
+| PLN      |
+| BGN      |
+| TRY      |
+| CNY      |
+| NOK      |
+| NZD      |
+| ZAR      |
+| USD      |
+| MXN      |
+| ILS      |
+| GBP      |
+| KRW      |
+| MYR      |
+| EUR      |
+|----------|
 ----------------------------------------------------------------------------------------------------------

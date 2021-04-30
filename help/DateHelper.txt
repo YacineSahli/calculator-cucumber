@@ -1,11 +1,12 @@
---------------------------------------------- DATE HELP ------------------------------------------------
+-------------------------------------------- DATE HELP ------------------------------------------------
 
 This mode allows you to do addition and substraction operations on dates and duration.
+|:---------------------------------------------------------------------------------------:|
 | PLUS            |     '+'      |           2020-12-11 10:10:10 + 2020-12-11 10:10:10    |
 | MINUS           |     '-'      |           2020-12-11 10:10:10 - PT10H20M55S            |
+|-----------------------------------------------------------------------------------------|
 
-List of supported operations
-| DATE + DURATION| DATE - DURATION  | DATE - DATE |
+List of supported operations| DATE + DURATION| DATE - DURATION  | DATE - DATE |
 
 INFIX, PREFIX and POSTFIX notations are supported. Examples
 | +(DATE, DURATION)         |        DATE + DURATION       |         (DATE, DURATION)+    |
@@ -27,9 +28,12 @@ a is the AM/PM hour otherwise the date is considered 24h format
 | yyyy-MM-dd hh:mm:ss a                    |
 | yyyy-MM-dd hh:mm a                       |
 | yyyy-MM-dd hh a                          |
+|------------------------------------------|
 
 The supported duration format is ISO-8601 with entire seconds. Examples.
+
+|:-------------------------------------------------:|
 | 1 day                         | P1D               |
 | 2 hours                       | PT2H              |
 | 2 days, 3 hours and 4 minutes | P2DT3H4M          |
-----------------------------------------------------------------------------------------------------------
+|---------------------------------------------------|
