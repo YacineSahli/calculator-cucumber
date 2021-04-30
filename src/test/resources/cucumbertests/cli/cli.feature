@@ -34,3 +34,33 @@ Feature: Command line interface
     Given a mode name 'date'
     And an expression '2020-12-11 10:10:10 + PT3H40M'
     Then the result of the evaluation is '2020-12-11T13:50:10Z'
+
+  Scenario: Check the result of a correct AND with multiple arguments
+    Given a mode name 'boolean'
+    And an expression 'and(1 0 1)'
+    Then the result of the evaluation is '0'
+
+  Scenario: Check the result of a correct OR with multiple arguments
+    Given a mode name 'boolean'
+    And an expression 'or(1 0 1)'
+    Then the result of the evaluation is '1'
+
+  Scenario: Check the result of a correct XOR with multiple arguments
+    Given a mode name 'boolean'
+    And an expression 'xor(1 0 1)'
+    Then the result of the evaluation is '0'
+
+  Scenario: Check the result of a correct IMPLICATION with multiple arguments
+    Given a mode name 'boolean'
+    And an expression '=>(1 0 1)'
+    Then the result of the evaluation is '1'
+
+  Scenario: Check the result of a correct EQUIVALENCE with multiple arguments
+    Given a mode name 'boolean'
+    And an expression '<=>(1 0 1)'
+    Then the result of the evaluation is '0'
+
+  Scenario: Check the result of a correct NOT
+    Given a mode name 'boolean'
+    And an expression 'not(1)'
+    Then the result of the evaluation is '0'
