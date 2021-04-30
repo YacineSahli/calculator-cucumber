@@ -23,7 +23,7 @@ public class DateVisitor extends datetime_grammarBaseVisitor<Expression> {
             Collections.addAll(params, new MyTime(ctx.DATE(0).getText()), new MyTime(ctx.DATE(1).getText()));
             return new Plus(params);
         } catch (IllegalConstruction | ParseException e) {
-            throw new RuntimeException();
+            throw new IllegalStateException();
         }
     }
 
@@ -33,7 +33,7 @@ public class DateVisitor extends datetime_grammarBaseVisitor<Expression> {
             Collections.addAll(params, new MyTime(ctx.DATE(0).getText()), new MyTime(ctx.DATE(1).getText()));
             return new Minus(params);
         } catch (IllegalConstruction | ParseException e) {
-            throw new RuntimeException();
+            throw new IllegalStateException();
         }
     }
 
