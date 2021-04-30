@@ -42,11 +42,6 @@ final public class Minus extends Operation {
         return new IntegerNumber(l.getValue() - r.getValue());
     }
 
-    public CalculatorVariable op(MyTime r) {
-        MyTime l = new MyTime(ZonedDateTime.now());
-        return op(l, r);
-    }
-
     public CalculatorVariable op(RationalNumber l, RationalNumber r) {
         return buildNumber((l.getNum() * r.getDenum()) - (l.getDenum() * r.getNum()),
                 l.getDenum() * r.getDenum());
