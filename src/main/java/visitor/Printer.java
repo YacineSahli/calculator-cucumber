@@ -1,9 +1,10 @@
 package visitor;
 
-import calculator.CalculatorValue;
 import calculator.Expression;
 import calculator.Notation;
-import calculator.Operation;
+import calculator.function.Function;
+import calculator.operation.Operation;
+import calculator.variables.CalculatorVariable;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -21,8 +22,13 @@ public class Printer extends Visitor {
     }
 
     @Override
-    public void visit(CalculatorValue n) {
+    public void visit(CalculatorVariable n) {
         result = n.toString();
+    }
+
+    @Override
+    public void visit(Function f) {
+
     }
 
     @Override
@@ -37,11 +43,11 @@ public class Printer extends Visitor {
         switch (notation) {
             case INFIX:
                 result = "( " +
-                        s.reduce((s1, s2) -> s1 + " " + o.toString() + " " + s2).get() +
+                        s.reduce((s1, s2) -> s1 + " " + o + " " + s2).get() +
                         " )";
                 break;
             case PREFIX:
-                result = o.toString() + " " +
+                result = o + " " +
                         "(" +
                         s.reduce((s1, s2) -> s1 + separator + s2).get() +
                         ")";
@@ -50,7 +56,7 @@ public class Printer extends Visitor {
                 result = "(" +
                         s.reduce((s1, s2) -> s1 + separator + s2).get() +
                         ")" +
-                        " " + o.toString();
+                        " " + o;
                 break;
             default:
                 result = "This case should never occur.";

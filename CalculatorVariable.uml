@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>calculator.variables.CalculatorVariable</OriginalElement>
+  <nodes>
+    <node x="327.0" y="0.0">calculator.Expression</node>
+    <node x="294.0" y="83.0">calculator.variables.CalculatorVariable</node>
+    <node x="0.0" y="241.0">calculator.variables.MyTime</node>
+    <node x="233.0" y="277.0">calculator.variables.MyBoolean</node>
+    <node x="603.0" y="265.0">calculator.variables.RationalNumber</node>
+    <node x="400.0" y="277.0">calculator.variables.IntegerNumber</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="calculator.variables.RationalNumber" target="calculator.variables.CalculatorVariable" relationship="GENERALIZATION">
+      <point x="0.0" y="-54.0" />
+      <point x="699.5" y="216.0" />
+      <point x="399.0" y="216.0" />
+      <point x="0.0" y="54.0" />
+    </edge>
+    <edge source="calculator.variables.MyTime" target="calculator.variables.CalculatorVariable" relationship="GENERALIZATION">
+      <point x="0.0" y="-78.0" />
+      <point x="106.5" y="216.0" />
+      <point x="399.0" y="216.0" />
+      <point x="0.0" y="54.0" />
+    </edge>
+    <edge source="calculator.variables.IntegerNumber" target="calculator.variables.CalculatorVariable" relationship="GENERALIZATION">
+      <point x="0.0" y="-42.0" />
+      <point x="491.5" y="216.0" />
+      <point x="399.0" y="216.0" />
+      <point x="0.0" y="54.0" />
+    </edge>
+    <edge source="calculator.variables.CalculatorVariable" target="calculator.Expression" relationship="REALIZATION">
+      <point x="0.0" y="-54.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="calculator.variables.MyBoolean" target="calculator.variables.CalculatorVariable" relationship="GENERALIZATION">
+      <point x="0.0" y="-42.0" />
+      <point x="306.5" y="216.0" />
+      <point x="399.0" y="216.0" />
+      <point x="0.0" y="54.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="398.0" y="198.5" />
+  <SelectedNodes>
+    <node>calculator.variables.CalculatorVariable</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,11 +1,15 @@
 package calculator;
 
 
+import calculator.utils.convertor.Convertor;
+import calculator.variables.CalculatorVariable;
 import visitor.Evaluator;
-import visitor.Printer;
 import visitor.EvaluatorException;
+import visitor.Printer;
 
 public class Calculator {
+    public Memory memory = new Memory(this, 30);
+    final Convertor convertor = new Convertor();
 
     /*
      For the moment the calculator only contains a print method and an eval method
@@ -37,18 +41,28 @@ public class Calculator {
         System.out.println();
     }
 
-    public CalculatorValue eval(Expression e){
+    public CalculatorVariable eval(Expression e) {
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process
         try {
             e.accept(v);
+            memory.add(e, v.getResult());
         } catch (EvaluatorException evaluatorException) {
             System.out.println(evaluatorException.getMessage());
             return null;
         }
         // and return the result of the evaluation at the end of the process
         return v.getResult();
+    }
+
+
+    public Double convert(String inputUnit, String outputUnit, double inputAmount) {
+        return convertor.convert(inputUnit, outputUnit, inputAmount);
+    }
+
+    public Double convert(String input) {
+        return convertor.convert(input);
     }
 
     /*
