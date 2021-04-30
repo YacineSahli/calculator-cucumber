@@ -7,6 +7,8 @@ import calculator.operation.Plus;
 import calculator.operation.Times;
 import calculator.variables.CalculatorVariable;
 import calculator.variables.IntegerNumber;
+import cli.ArithmeticRunner;
+import cli.Mode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestMemory {
     private final Calculator calc = new Calculator();
+    private Mode mode;
     private Memory memory;
     private Expression expr1, expr2, expr3, expr4, expr5;
     private CalculatorVariable arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10;
@@ -24,6 +27,7 @@ public class TestMemory {
     public void setUp() {
 
         try {
+            mode = Mode.CALCULATOR;
             arg1 = new IntegerNumber(1);
             arg2 = new IntegerNumber(3);
             arg3 = new IntegerNumber(14);
@@ -154,6 +158,16 @@ public class TestMemory {
         memory.add(expr4);
         memory.history();
     }*/
+    @Test
+    public void testLoadAndSave(){
+        memory = new Memory(calc, 5);
+        memory.add(expr1, new IntegerNumber(4));
+        memory.save("test.txt");
+        memory.reset();
+        calc.memory.load("test.txt", mode);
+        memory.displayLog();
+        assertEquals(expr1, calc.memory.getExpressions()[0]);
+    }
 
 
 }
