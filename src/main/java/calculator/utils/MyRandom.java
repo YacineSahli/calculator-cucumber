@@ -4,6 +4,7 @@ import calculator.variables.CalculatorVariable;
 import calculator.variables.IntegerNumber;
 import calculator.variables.RationalNumber;
 
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -34,7 +35,7 @@ public class MyRandom {
     }
 
     public CalculatorVariable nextRational() {
-        int num, denum = 0;
+        int num, denum;
         num = generator.nextInt();
         denum = generator.nextInt();
         while (denum == 0) {
@@ -54,7 +55,7 @@ public class MyRandom {
 
         MyRandom myRandom = (MyRandom) o;
 
-        return seed == myRandom.getSeed();
+        return Objects.equals(seed, myRandom.getSeed());
     }
 
     @Override

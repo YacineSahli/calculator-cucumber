@@ -5,8 +5,7 @@ import calculator.variables.RationalNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TestCalculatorVariable {
 
@@ -45,7 +44,7 @@ class TestCalculatorVariable {
 
     @Test
     void testEquals() {
-        assertNotEquals(integerNumber, null);
+        assertNotNull(integerNumber);
         assertNotEquals(rationalNumber, "Hello World !");
         assertEquals(integerNumber, integerNumber);
     }

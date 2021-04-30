@@ -2,7 +2,8 @@ package junit5tests.operation;
 
 //Import Junit5 libraries for unit testing:
 
-import calculator.*;
+import calculator.Expression;
+import calculator.IllegalConstruction;
 import calculator.operation.Divides;
 import calculator.operation.Times;
 import calculator.variables.IntegerNumber;
@@ -21,7 +22,6 @@ public class TestDivides {
     private final int value2 = 6;
     private Divides op;
     private List<Expression> params;
-    private final Calculator c = new Calculator();
 
     @BeforeEach
     public void setUp() {

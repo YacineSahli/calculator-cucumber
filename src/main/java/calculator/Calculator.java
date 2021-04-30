@@ -9,7 +9,7 @@ import visitor.Printer;
 
 public class Calculator {
     public Memory memory = new Memory(this, 30);
-    Convertor convertor = new Convertor();
+    final Convertor convertor = new Convertor();
 
     /*
      For the moment the calculator only contains a print method and an eval method

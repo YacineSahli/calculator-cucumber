@@ -5,9 +5,9 @@ package junit5tests.operation;
 import calculator.Calculator;
 import calculator.Expression;
 import calculator.IllegalConstruction;
-import calculator.variables.MyBoolean;
 import calculator.function.Not;
 import calculator.operation.*;
+import calculator.variables.MyBoolean;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -103,6 +103,7 @@ public class BooleanOperationTest {
             illegalConstruction.printStackTrace();
         }
     }
+
     @Test
     public void testNot() {
         first = new MyBoolean(0);

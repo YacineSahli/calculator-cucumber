@@ -3,17 +3,17 @@ package cli;
 public enum Mode {
 
     CALCULATOR(new ArithmeticRunner()),
-    BOOLEAN(new BooleanRunner()), //todo
-    CONVERTOR(new ConvertorRunner()), //todo
+    BOOLEAN(new BooleanRunner()),
+    CONVERTOR(new ConvertorRunner()),
     DATE(new DateRunner());
 
     private final Runner runner;
 
-    Mode(Runner runner){
+    Mode(Runner runner) {
         this.runner = runner;
     }
 
-    public Runner parser(){
+    public Runner parser() {
         return this.runner;
     }
 }

@@ -2,7 +2,7 @@ package junit5tests.operation;
 
 //Import Junit5 libraries for unit testing:
 
-import calculator.*;
+import calculator.Expression;
 import calculator.operation.Divides;
 import calculator.operation.Minus;
 import calculator.operation.Operation;

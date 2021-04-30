@@ -15,12 +15,12 @@ import java.util.stream.Stream;
  *
  * @author Arnaud.P
  */
-public abstract class ComputableExpression {
+public class ComputableExpression {
     protected String symbol; //the symbol of the ComputableExpression
     protected String funcName; // the name of the function to apply
 
     public CalculatorVariable op(CalculatorVariable... args) throws InvocationTargetException, NoSuchMethodException {
-        try{
+        try {
             Method fun;
 
             Class targetClass = computeTargetClass(args); // get the class in which convert the arguments
@@ -30,17 +30,15 @@ public abstract class ComputableExpression {
             fun = this.getClass().getMethod(funcName, Collections.nCopies(args.length, targetClass)
                     .toArray(new Class[args.length]));
             return (CalculatorVariable) fun.invoke(this, convertedArgs);
-        } catch (InvocationTargetException e) {
-            throw e;
-        } catch (NoSuchMethodException e) {
+        } catch (InvocationTargetException | NoSuchMethodException e) {
             throw e;
         } catch (Exception error) {
-            error.printStackTrace();//todo throw error and catch error in main or CLI ?
+            error.printStackTrace();
         }
         return null;
     }
 
-    private Class computeTargetClass(CalculatorVariable[] args){
+    private Class computeTargetClass(CalculatorVariable[] args) {
         //retrieve the most accurate level. i.e. with the lowest accuracy value
         CalculatorVariable most_accurate_item = Arrays.stream(args)
                 .max((o1, o2) -> o2.getAccuracyLevel() - o1.getAccuracyLevel())
@@ -51,26 +49,26 @@ public abstract class ComputableExpression {
 
     private Object[] convertArgs(Class targetClass, CalculatorVariable[] args) throws Exception {
 
-         /* compute the name of the convert function
-          * ex: if targetClass is calculator.variables.IntegerNumber
-          * the convert function's name is toIntegerNumber
-          */
+        /* compute the name of the convert function
+         * ex: if targetClass is calculator.variables.IntegerNumber
+         * the convert function's name is toIntegerNumber
+         */
         String convert_fun_name = "to" + targetClass.getName()
                 .substring(targetClass.getName().lastIndexOf(".") + 1);
 
         // convert all args to the targetClass
         final Exception[] exception = new Exception[1];
-            Stream<Object> streamConvertedArgs = Arrays.stream(args).map(i -> {
-                try {
-                    return i.getClass().getMethod(convert_fun_name).invoke(i);
-                } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                    exception[0] = e;
-                }
-                return null;
-            });
-            if (exception[0] != null)
-                throw exception[0];
-            return streamConvertedArgs.toArray();
+        Stream<Object> streamConvertedArgs = Arrays.stream(args).map(i -> {
+            try {
+                return i.getClass().getMethod(convert_fun_name).invoke(i);
+            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+                exception[0] = e;
+            }
+            return null;
+        });
+        if (exception[0] != null)
+            throw exception[0];
+        return streamConvertedArgs.toArray();
     }
 
     final protected CalculatorVariable buildNumber(int num, int denum) {
