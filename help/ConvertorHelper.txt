@@ -21,8 +21,8 @@ The following units are supported are available:
 |--------|
 | Area |
 |:----:|
-| m2   |
-| km2  |
+| m^2   |
+| km^2  |
 |------|
 | Power |
 |:-----:|
@@ -58,9 +58,9 @@ The following units are supported are available:
 |-------|
 | Temperature |
 |:-----------:|
-| c           |
-| k           |
-| f           |
+| C          |
+| K          |
+| F           |
 |-------------|
 | Time |
 |:----:|
@@ -75,10 +75,10 @@ The following units are supported are available:
 |------|
 | Volume |
 |:------:|
-| m3     |
-| ft3    |
-| in3    |
-| cm3    |
+| m^3     |
+| ft^3    |
+| in^3    |
+| cm^3    |
 | l      |
 |--------|
 | Weight |
